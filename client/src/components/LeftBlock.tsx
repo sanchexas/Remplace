@@ -1,4 +1,5 @@
 import '../style.css';
+import { Link } from 'react-router-dom';
 
 const LeftBlock = () => {
     return(
@@ -24,7 +25,7 @@ const LeftBlock = () => {
                 </defs>
             </svg>
             <div className="nav">
-                <a href="" className="nav__item">
+                <Link to="/categories" className="nav__item">
                     <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13.125 4.375H5.83333C5.02792 4.375 4.375 5.02792 4.375 5.83333V13.125C4.375 13.9304 5.02792 14.5833 5.83333 14.5833H13.125C13.9304 14.5833 14.5833 13.9304 14.5833 13.125V5.83333C14.5833 5.02792 13.9304 4.375 13.125 4.375Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M13.125 20.4167H5.83333C5.02792 20.4167 4.375 21.0696 4.375 21.875V29.1667C4.375 29.9721 5.02792 30.625 5.83333 30.625H13.125C13.9304 30.625 14.5833 29.9721 14.5833 29.1667V21.875C14.5833 21.0696 13.9304 20.4167 13.125 20.4167Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -32,21 +33,21 @@ const LeftBlock = () => {
                         <path d="M29.1667 20.4167H21.875C21.0696 20.4167 20.4167 21.0696 20.4167 21.875V29.1667C20.4167 29.9721 21.0696 30.625 21.875 30.625H29.1667C29.9721 30.625 30.625 29.9721 30.625 29.1667V21.875C30.625 21.0696 29.9721 20.4167 29.1667 20.4167Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span>Категории</span>
-                </a>
-                <a href="" className="nav__item">
+                </Link>
+                <Link to="/business" className="nav__item">
                     <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M27.7083 10.2083H7.29167C5.68084 10.2083 4.375 11.5142 4.375 13.125V24.7917C4.375 26.4025 5.68084 27.7083 7.29167 27.7083H27.7083C29.3192 27.7083 30.625 26.4025 30.625 24.7917V13.125C30.625 11.5142 29.3192 10.2083 27.7083 10.2083Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M14.5833 17.5L14.891 17.6546C15.7011 18.0596 16.5943 18.2705 17.5 18.2705C18.4057 18.2705 19.2989 18.0596 20.109 17.6546L20.4167 17.5M13.125 8.75C13.125 7.97645 13.4323 7.23458 13.9793 6.6876C14.5263 6.14062 15.2681 5.83333 16.0417 5.83333H18.9583C19.7319 5.83333 20.4737 6.14062 21.0207 6.6876C21.5677 7.23458 21.875 7.97645 21.875 8.75V10.2083H13.125V8.75Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span>Для бизнеса</span>
-                </a>
-                <a href="" className="nav__item">
+                </Link>
+                <Link to="/" className="nav__item">
                     <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.00141 15.1181L12.2857 7.02596V27.1084L8.06455 26.2772L8.00141 15.1181Z" stroke="black" stroke-width="2"/>
                         <path d="M14.9142 4.50055L28 9.95818V30.0533L14.9142 27.4781V4.50055Z" stroke="black" stroke-width="2"/>
                     </svg>
                     <span>О нас</span>
-                </a>
+                </Link>
             </div>
         </div>
         <div className="contacts__rights">
