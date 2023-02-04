@@ -1,11 +1,12 @@
 import { IUserModel } from "../Models/user.model.js";
-import { dbConnection } from "../db.js";
+import { connection } from "../db.js";
 import { OkPacket } from "mysql2";
 
 export class UserRepository{
-    getAll(): Promise<IUserModel[]>{
+    async getAll(): Promise<IUserModel[]>{
+        const conn = await connection()
         return new Promise((resolve, reject) => {
-            dbConnection.query<IUserModel[]>("SELECT * FROM users", (err: any, res: IUserModel[] | PromiseLike<IUserModel[]>) => {
+            conn.query<IUserModel[]>("SELECT login FROM users", (err: any, res: IUserModel[] | PromiseLike<IUserModel[]>) => {
                 if(err){
                     reject(err);
                 }else{

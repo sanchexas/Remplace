@@ -1,8 +1,9 @@
-import { dbConnection } from "../db.js";
+import { connection } from "../db.js";
 export class UserRepository {
-    getAll() {
+    async getAll() {
+        const conn = await connection();
         return new Promise((resolve, reject) => {
-            dbConnection.query("SELECT * FROM users", (err, res) => {
+            conn.query("SELECT login FROM users", (err, res) => {
                 if (err) {
                     reject(err);
                 }
