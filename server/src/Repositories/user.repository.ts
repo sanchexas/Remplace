@@ -9,8 +9,10 @@ export class UserRepository{
             conn.query<IUserModel[]>("SELECT login FROM users", (err: any, res: IUserModel[] | PromiseLike<IUserModel[]>) => {
                 if(err){
                     reject(err);
+                    conn.end();
                 }else{
                     resolve(res);
+                    conn.end();
                 } 
             });
         });

@@ -6,9 +6,11 @@ export class UserRepository {
             conn.query("SELECT login FROM users", (err, res) => {
                 if (err) {
                     reject(err);
+                    conn.end();
                 }
                 else {
                     resolve(res);
+                    conn.end();
                 }
             });
         });

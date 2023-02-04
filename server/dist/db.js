@@ -1,8 +1,8 @@
-import { createConnection } from 'mysql2';
+import { createPool } from 'mysql2';
 import { config } from 'dotenv';
 config();
 export async function connection() {
-    const dbConnection = await createConnection({
+    const dbConnection = await createPool({
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
         password: '',
