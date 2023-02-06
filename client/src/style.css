@@ -6,7 +6,6 @@ body{
     margin: 0;
 }
 .wrapper{
-    position: relative;
     display: flex;
     max-width: 1900px;
     margin: 0 auto;
@@ -34,7 +33,7 @@ input{
     position: sticky;
     top: 0;
     height: 100vh;
-    border-right: 2px solid black;
+    /* border-right: 1px solid black; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,7 +48,7 @@ input{
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 20px;
+    font-size: 18px;
     color: black;
 }
 .nav__block{
@@ -60,6 +59,7 @@ input{
     gap: 100px;    
 }
 .nav{
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -71,8 +71,7 @@ input{
     gap: 20px;
 }
 .center__container{
-    position: relative;
-    width: 83%;
+    width: 85%;
     /* height: 5000px; */
 }
 header{
@@ -80,7 +79,7 @@ header{
     top: 0;
     height: 50px;
     width: 100%;
-    border-bottom: 2px solid black;
+    /* border-bottom: 1px solid black; */
     background: rgb(255, 255, 255);
     display: flex;
     flex-direction: row;
@@ -92,14 +91,14 @@ header{
     width: 25%;
     /* border-radius: 3px; */
     /* background: rgb(255, 157, 0); */
-    border-left: 2px solid black;
+    /* border-left: 1px solid black; */
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 .icon{
-    width: 27px;
+    min-width: 27px;
 }
 .header__search ::-webkit-input-placeholder{
     color: rgb(127, 127, 127);

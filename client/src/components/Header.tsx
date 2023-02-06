@@ -1,6 +1,6 @@
 import '../style.css'
-import tsuk from '../tsuk.PNG';
 import {Link} from 'react-router-dom';
+import LoginBlock from './LoginBlock';
 
 const Header = () => {
     return(
@@ -38,12 +38,7 @@ const Header = () => {
                     </svg>
                 </Link>
             </div>
-            <div className="header__account">
-                <div className="avatar">
-                    <img src={tsuk} alt="avatar"/>
-                </div>
-                <span>SergeySanches</span>
-            </div>
+            <LoginBlock/>
         </header>
     );
 }
