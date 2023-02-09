@@ -1,8 +1,15 @@
 import { RowDataPacket } from "mysql2";
-// Test model
+
 export interface IUserModel extends RowDataPacket{ 
-    id?: number
-    login: string
+    id?: number;
+    fio: string;
+    email: string;
+    password: string;
+    phone?: string;
+    image?: string;
+    roleId: number;
+    bankCardId?: number;
+    birthday?: string;
 }
 
 
