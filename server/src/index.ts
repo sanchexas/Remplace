@@ -10,6 +10,11 @@ app.use(express.json());
 app.listen(PORT, ()=>{
     console.log(`Server works on PORT ${PORT}`);
 });
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    methods: ["GET", "POST"],
+    credentials: true
+}));
 app.use('/users', userRouter);
 app.get('/', (req, res)=>{
     res.status(200).json("Server works");

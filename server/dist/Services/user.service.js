@@ -16,12 +16,12 @@ export class UserService {
         try {
             let testVariable;
             await ur.getAll().then((result) => {
-                testVariable = result[0].login; // ***ISSUE
+                testVariable = result; // ***ISSUE
             });
             return testVariable;
         }
         catch (e) {
-            return "Errorrrrrrrr";
+            return e;
         }
     }
 }

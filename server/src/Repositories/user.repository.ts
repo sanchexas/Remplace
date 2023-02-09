@@ -6,7 +6,7 @@ export class UserRepository{
     async getAll(): Promise<IUserModel[]>{
         const conn = await connection()
         return new Promise((resolve, reject) => {
-            conn.query<IUserModel[]>("SELECT login FROM users", (err: any, res: IUserModel[] | PromiseLike<IUserModel[]>) => {
+            conn.query<IUserModel[]>("SELECT * FROM users", (err: any, res: IUserModel[] | PromiseLike<IUserModel[]>) => {
                 if(err){
                     reject(err);
                     conn.end();
