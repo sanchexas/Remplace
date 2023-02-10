@@ -11,14 +11,13 @@
  */
 
 import { IUserModel } from "../Models/user.model.js";
-import { UserRepository } from "../Repositories/user.repository.js";
+import UserRepository from "../Repositories/user.repository.js";
 
-export class UserService{
+class UserService{
     async getAll(){
-        const ur = new UserRepository;
         try{
             let testVariable;
-            await ur.getAll().then((result: IUserModel[])=>{ // ***ISSUE
+            await UserRepository.getAll().then((result: IUserModel[])=>{ // ***ISSUE
                 testVariable = result; // ***ISSUE
             });
             return testVariable;
@@ -26,4 +25,17 @@ export class UserService{
             return e;
         }
     }
+    async getUserById(id: number){
+        try{
+            let testVariable;
+            await UserRepository.getUserById(id).then((result: IUserModel[])=>{
+                testVariable = result;
+            });
+            return testVariable;
+        }catch(e){
+            return e;
+        }
+    }
 }
+
+export default new UserService;

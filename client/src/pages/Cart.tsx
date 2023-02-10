@@ -1,17 +1,13 @@
 import '../style.css';
-import  Axios  from 'axios';
 // import {AxiosResponse} from 'axios'
-import { IUserModel } from '../models/IUserModel';
 import { useEffect } from 'react';
-Axios.defaults.withCredentials = true;
+import UserController from '../controllers/UserController';
 
-const Cart = () =>{
-    async function getAllUsers(){
-        const response = await Axios.get<IUserModel>('http://localhost:3005/users/getall');
-        console.log(response);
-    }
-    useEffect(()=>{
-        getAllUsers();
+const Cart = () => {
+    useEffect(()=> {
+        UserController.getUserById(4).then((res)=>{
+            console.log("YES IT PROMISE")
+        })
     },[])
     return(
         <div>CART</div>

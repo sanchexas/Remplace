@@ -9,13 +9,12 @@
  * Если я напечатаю "result[0].blablabla", компилятор не обнаружит ошибку. Но на самом деле он должен.
  * В любом случае, я указал тип переменной "result", потому что это соответствует правилам typescript.
  */
-import { UserRepository } from "../Repositories/user.repository.js";
-export class UserService {
+import UserRepository from "../Repositories/user.repository.js";
+class UserService {
     async getAll() {
-        const ur = new UserRepository;
         try {
             let testVariable;
-            await ur.getAll().then((result) => {
+            await UserRepository.getAll().then((result) => {
                 testVariable = result; // ***ISSUE
             });
             return testVariable;
@@ -24,4 +23,17 @@ export class UserService {
             return e;
         }
     }
+    async getUserById(id) {
+        try {
+            let testVariable;
+            await UserRepository.getUserById(id).then((result) => {
+                testVariable = result;
+            });
+            return testVariable;
+        }
+        catch (e) {
+            return e;
+        }
+    }
 }
+export default new UserService;
