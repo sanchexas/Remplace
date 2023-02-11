@@ -24,6 +24,7 @@ export class App{
             methods: ["GET", "POST"],
             credentials: true
         }));
+        this.app.use(express.json())
     }
     routes(){
         this.app.use('/users',userRouter);
