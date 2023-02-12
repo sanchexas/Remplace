@@ -1,12 +1,36 @@
+@font-face {
+    font-family: IL;
+    src: url(./fonts/Inter-Light.ttf);
+}
+@font-face {
+    font-family: IR;
+    src: url(./fonts/Inter-Regular.ttf);
+}
+@font-face {
+    font-family: IM;
+    src: url(./fonts/Inter-Medium.ttf);
+}
+@font-face {
+    font-family: IB;
+    src: url(./fonts/Inter-Bold.ttf);
+}
+@font-face {
+    font-family: IBl;
+    src: url(./fonts/Inter-Black.ttf);
+}
+@font-face {
+    font-family: IEL;
+    src: url(./fonts/Inter-ExtraLight.ttf);
+}
 body{
-    margin: 0 auto;
-    max-width: 1900px;
+    margin: 0px;
+    font-family: IR;
+    transition: all 0.2s;
 }
 .center__wrapper{
     padding: 10px;
-    margin: 10px auto;
+    margin: 0px auto;
     max-width: 1300px;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,6 +47,7 @@ button{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    font-family: IM;
 }
 input{
     outline: none;
@@ -31,6 +56,7 @@ div{
     border-radius: 5px;
 }
 header{
+    z-index: 1;
     position: sticky;
     top: -1px;
     width: 100%;
@@ -44,7 +70,7 @@ header{
 main{
     margin-top: 30px;
     width: 100%;
-    min-height: 1000px;
+    min-height: 600px;
     
     /* background: lightblue; */
 }
@@ -82,14 +108,25 @@ footer{
 .logo{
     width: auto;
 }
+
+.fake__button{
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-family: IM;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s;
+}
 .sign__button{
-    border: 2px #0762C4 solid;
+    /* border: 1px #000000 solid; */
+    background: #2592ff;
+    color: white;
     height: 45px;
     width: 60%;
 }
 .sign__button:hover{
-    background: #0762C4;
-    color: white;
+    border-radius: 50px;
 }
 .catalogue__search__wrapper{
     width: 100%;
@@ -141,5 +178,85 @@ footer{
     align-items: center;
     gap: 5px;
     font-size: 16px;
-    font-weight: 600;
+    /* font-weight: 600; */
+    font-family: IB;
+}
+.sign__page{
+    border-radius: 0%;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: #064283;
+    z-index: 2;
+    display: flex;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    background-image: url(./pages/figura.svg);
+    background-repeat: no-repeat;
+}
+.sign__form{
+    border-radius: 20px;
+    background: white;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding-bottom: 50px;
+}
+.sign__form h1{
+    font-family: IEL;
+    font-size: 60px;
+    padding: 0;
+    letter-spacing: 5px;
+}
+.header__logo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.sign__form__inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 55px;
+}
+.sign__desc__block{
+    width: 40%;
+    color: white;
+    font-size: 22px;
+}
+.sign__form__block{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.sign__two__blocks{
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.sign__input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0%;
+    width: 75%;
+    height: 70px;
+    background: rgb(247, 247, 247);
+    box-shadow: 0px 5px 0px rgb(0, 85, 255);
+}
+.sign__input input{
+    width: 90%;
+    height: 100%;
+    border: none;
+    background: none;
+    font-size: 22px;
 }
