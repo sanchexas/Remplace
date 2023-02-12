@@ -30,7 +30,7 @@ const SignIn = () =>{
                             </div>
                             <button className='sign__button' style={{height: "60px", width: "30%"}}>Войти</button>
                             <span>или</span>
-                            <Link to=''>Зарегистрироватья</Link>
+                            <Link to='/signup'>Зарегистрироватья</Link>
                         </form>
                     </div>
                 </div>

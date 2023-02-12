@@ -6,12 +6,14 @@ import MainPage from './pages/MainPage';
 import Favorite from './pages/Favorite';
 import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
       <Route path='/signin' element={<SignIn/>}/>
+      <Route path='/signup' element={<SignUp/>}/>
     </Routes>
       <div className='wrapper'>
         <div className="center__wrapper">

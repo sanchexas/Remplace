@@ -194,6 +194,7 @@ footer{
     flex-direction: column;
     background-image: url(./pages/figura.svg);
     background-repeat: no-repeat;
+    overflow-y: scroll;
 }
 .sign__form{
     border-radius: 20px;
