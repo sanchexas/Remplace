@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 config();
 import { Application } from 'express';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 import userRouter from './Routes/user.routes';
 import testRouter from './Routes/test.routes';
 
@@ -24,7 +25,8 @@ export class App{
             methods: ["GET", "POST"],
             credentials: true
         }));
-        this.app.use(express.json())
+        this.app.use(express.json());
+        this.app.use(bodyParser.urlencoded({extended: true}));
     }
     routes(){
         this.app.use('/users',userRouter);
