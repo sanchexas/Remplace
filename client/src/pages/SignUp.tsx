@@ -5,7 +5,7 @@ import '../style.css';
 
 const SignUp = () =>{
     return(
-            <div className="sign__page">
+            <div className="sign__page signup__background">
                 <div className='header__logo'>
                     <LogoDark/>
                 </div>
@@ -21,24 +21,21 @@ const SignUp = () =>{
                             <h1>Регистрация</h1>
                             <div className='sign__form__inputs'>
                                 <div className='sign__input'>
-                                    <input type="text" placeholder='Электронная почта'/>
+                                    <input name='fio' type="text" placeholder='ФИО' required/>
                                 </div>
                                 <div className='sign__input'>
-                                    <input type="password" placeholder='Пароль'/>
+                                    <input name='email' type="email" placeholder='E-mail' required/>
                                 </div>
                                 <div className='sign__input'>
-                                    <input type="password" placeholder='Пароль'/>
+                                    <input name='password' type="password" placeholder='Придумайте пароль' required/>
                                 </div>
                                 <div className='sign__input'>
-                                    <input type="password" placeholder='Пароль'/>
-                                </div>
-                                <div className='sign__input'>
-                                    <input type="password" placeholder='Пароль'/>
+                                    <input name='reppassword' type="password" placeholder='Повторите пароль' required/>
                                 </div>
                             </div>
-                            <button className='sign__button' style={{height: "60px", width: "30%"}}>Войти</button>
+                            <button className='sign__button' style={{height: "60px", width: "40%"}}>Зарегистрироваться</button>
                             <span>или</span>
-                            <Link to=''>Зарегистрироватья</Link>
+                            <Link to='/signin'>Войти</Link>
                         </form>
                     </div>
                 </div>

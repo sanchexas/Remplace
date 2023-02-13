@@ -196,6 +196,10 @@ footer{
     background-repeat: no-repeat;
     overflow-y: scroll;
 }
+.signup__background{
+    background-image: url(./pages/figura2.svg);
+    background-position: bottom -100px right 0px;;
+}
 .sign__form{
     border-radius: 20px;
     background: white;
@@ -242,6 +246,7 @@ footer{
     width: 100%;
     display: flex;
     justify-content: space-around;
+    padding-bottom: 70px;
 }
 .sign__input{
     display: flex;

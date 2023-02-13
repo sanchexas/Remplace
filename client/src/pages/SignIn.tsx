@@ -21,10 +21,10 @@ const SignIn = () =>{
                             <h1>Вход</h1>
                             <div className='sign__form__inputs'>
                                 <div className='sign__input'>
-                                    <input type="text" placeholder='Электронная почта'/>
+                                    <input type="email" placeholder='Электронная почта' required/>
                                 </div>
                                 <div className='sign__input'>
-                                    <input type="password" placeholder='Пароль'/>
+                                    <input type="password" placeholder='Пароль' required/>
                                 </div>
                                 
                             </div>
