@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom';
 import { LogoDark } from '../components/LogoDark';
 import '../style.css';
+import { useState } from 'react';
+import UserController from '../controllers/UserController';
 
 
 const SignUp = () =>{
+    const [fio, setFio] = useState<string>();
+    const [email, setEmail] = useState<string>();
+    const [password, setPassword] = useState<string>();
+    const [reppassword, setReppassword] = useState<string>();
+    
     return(
             <div className="sign__page signup__background">
                 <div className='header__logo'>
@@ -21,19 +28,19 @@ const SignUp = () =>{
                             <h1>Регистрация</h1>
                             <div className='sign__form__inputs'>
                                 <div className='sign__input'>
-                                    <input name='fio' type="text" placeholder='ФИО' required/>
+                                    <input name='fio' type="text" placeholder='ФИО' onChange={(e)=>setFio(e.target.value)} required/>
                                 </div>
                                 <div className='sign__input'>
-                                    <input name='email' type="email" placeholder='E-mail' required/>
+                                    <input name='email' type="email" placeholder='E-mail' onChange={(e)=>setEmail(e.target.value)} required/>
                                 </div>
                                 <div className='sign__input'>
-                                    <input name='password' type="password" placeholder='Придумайте пароль' required/>
+                                    <input name='password' type="password" placeholder='Придумайте пароль' onChange={(e)=>setPassword(e.target.value)} required/>
                                 </div>
                                 <div className='sign__input'>
-                                    <input name='reppassword' type="password" placeholder='Повторите пароль' required/>
+                                    <input name='reppassword' type="password" placeholder='Повторите пароль' onChange={(e)=>setReppassword(e.target.value)} required/>
                                 </div>
                             </div>
-                            <button className='sign__button' style={{height: "60px", width: "40%"}}>Зарегистрироваться</button>
+                            <button className='sign__button' style={{height: "60px", width: "40%"}} onClick={()=>UserController.createUser({fio: fio, email: email, password: password, reppassword: reppassword})}>Зарегистрироваться</button>
                             <span>или</span>
                             <Link to='/signin'>Войти</Link>
                         </form>

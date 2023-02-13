@@ -6,6 +6,7 @@ const userRouter = Router();
 
 userRouter.get('/doeswork', userController.doesWork);
 userRouter.get('/getall', userController.getAllUsers);
-// userRouter.get('/getUserById', UserController.getUserById);
+userRouter.post('/create', userController.createUser);
+userRouter.get('/getuserbyid', userController.getUserById);
 
 export default userRouter;

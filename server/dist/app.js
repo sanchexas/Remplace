@@ -8,6 +8,7 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
 const cors_1 = __importDefault(require("cors"));
+const body_parser_1 = __importDefault(require("body-parser"));
 const user_routes_1 = __importDefault(require("./Routes/user.routes"));
 const test_routes_1 = __importDefault(require("./Routes/test.routes"));
 class App {
@@ -27,6 +28,8 @@ class App {
             methods: ["GET", "POST"],
             credentials: true
         }));
+        this.app.use(express_1.default.json());
+        this.app.use(body_parser_1.default.urlencoded({ extended: true }));
     }
     routes() {
         this.app.use('/users', user_routes_1.default);

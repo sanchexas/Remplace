@@ -6,7 +6,8 @@ import UserController from '../controllers/UserController';
 const Cart = () => {
     useEffect(()=> {
         UserController.getUserById(4).then((res)=>{
-            console.log("YES IT PROMISE")
+            console.log(res.fio);
+            console.log("dsdsdsdsdds");
         })
     },[])
     return(
