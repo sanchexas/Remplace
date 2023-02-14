@@ -16,7 +16,11 @@ class UserController{
         return data[0];
     }
     async createUser(info: Object){
-        await Axios.post<IUsersResponse[]>(`${apiPath}/users/create`, info)
+        await Axios.post<IUsersResponse[]>(`${apiPath}/users/create`, info);
+    }
+    async signIn(info: Object){
+        const {data} = await Axios.post<IUsersResponse[]>(`${apiPath}/users/signin`, info);
+        return data[0];
     }
 }
 

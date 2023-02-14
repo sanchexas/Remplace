@@ -1,9 +1,11 @@
 import { Request, Response } from "express";
 import { connection } from "../db";
 import {IUserModel} from '../Models/user.model';
-import { type } from "os";
+import bcrypt from 'bcrypt';
 
 class UserController{
+    private readonly SALT_ROUNDS: number = 10;
+
     doesWork(req: Request, res: Response){
         return res.json('User Router and Controller are work').status(200);
     }
@@ -23,7 +25,8 @@ class UserController{
     async createUser(req: Request, res: Response): Promise<Response>{
         const conn = await connection();
         const newUser: IUserModel = req.body;
-        await conn.query('INSERT INTO users (fio, email, password, role_id) VALUES (?, ?, ?, ?)', [newUser.fio, newUser.email, newUser.password, 2]);
+        const hashPassword = await bcrypt.hash(newUser.password, 10);
+        await conn.query('INSERT INTO users (fio, email, password, role_id) VALUES (?, ?, ?, ?)', [newUser.fio, newUser.email, hashPassword, 2]);
         await conn.end();
         return res.json({
             message: 'user created',

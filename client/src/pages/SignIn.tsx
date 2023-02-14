@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
 import { LogoDark } from '../components/LogoDark';
 import '../style.css';
+import { useState } from 'react';
+import UserController from '../controllers/UserController';
 
 
 const SignIn = () =>{
+    const [email, setEmail] = useState<string>();
+    const [password, setPassword] = useState<string>();
     return(
             <div className="sign__page">
                 <div className='header__logo'>
@@ -21,14 +25,14 @@ const SignIn = () =>{
                             <h1>Вход</h1>
                             <div className='sign__form__inputs'>
                                 <div className='sign__input'>
-                                    <input type="email" placeholder='Электронная почта' required/>
+                                    <input type="email" name='email' placeholder='Электронная почта' onChange={(e)=> setEmail(e.target.value)} required/>
                                 </div>
                                 <div className='sign__input'>
-                                    <input type="password" placeholder='Пароль' required/>
+                                    <input type="password" name='password' placeholder='Пароль' onChange={(e)=> setPassword(e.target.value)} required/>
                                 </div>
                                 
                             </div>
-                            <button className='sign__button' style={{height: "60px", width: "30%"}}>Войти</button>
+                            <button className='sign__button' style={{height: "60px", width: "30%"}} onClick={()=>UserController}>Войти</button>
                             <span>или</span>
                             <Link to='/signup'>Зарегистрироватья</Link>
                         </form>
