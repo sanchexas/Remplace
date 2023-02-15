@@ -9,11 +9,10 @@ class UserController{
         console.log(response);
         return response;
     }
-    //example
     async getUserById(idReq: number){
         // const data = {fio, email} (короче содержит поля IUserResponse)
-        const {data} = await Axios.get<IUsersResponse[]>(`${apiPath}/users/getuserbyid`, {params:{idReq}});
-        return data[0];
+        const {data} = await Axios.get<IUsersResponse>(`${apiPath}/users/getuserbyid`, {params:{idReq}});
+        return data;
     }
     async createUser(info: Object){
         await Axios.post<IUsersResponse[]>(`${apiPath}/users/create`, info);

@@ -10,6 +10,7 @@ export interface IUserModel extends RowDataPacket{
     roleId: number;
     bankCardId?: number;
     birthday?: string;
+    messange?: string;
 }
 
 
