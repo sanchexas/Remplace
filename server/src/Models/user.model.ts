@@ -5,7 +5,7 @@ export interface IUserModel extends RowDataPacket{
     fio: string;
     email: string;
     password: string;
-    reppasword?: string;
+    reppassword?: string;
     phone?: string;
     image?: string;
     roleId: number;

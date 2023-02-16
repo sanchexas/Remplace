@@ -1,5 +1,4 @@
 import e, { Request, Response, NextFunction } from "express";
-import { connection } from "../db";
 import {IUserModel} from '../Models/user.model';
 import userService from "../Services/user.service";
 
@@ -18,7 +17,7 @@ class UserController{
         const id = req.query.idReq;
         if(id !== undefined){
             try{
-                const user = await userService.getUserById(id)
+                const user = await userService.getUserById(id);
                 return res.jsonp({message: user}).status(200);
             }catch(e){
                 return res.json({err: "Пользователь не найден.", click_here: `https://youtu.be/dQw4w9WgXcQ`})

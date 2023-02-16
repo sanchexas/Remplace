@@ -19,8 +19,9 @@ class UserController{
         console.log(response);
     }
     async signIn(info: Object){
-        const {data} = await Axios.post<IUsersResponse[]>(`${apiPath}/users/signin`, info);
-        return data[0];
+        const response = await Axios.post<IUsersResponse[]>(`${apiPath}/users/signin`, info);
+        console.log(response);
+        return response;
     }
 }
 

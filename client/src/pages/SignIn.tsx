@@ -30,9 +30,8 @@ const SignIn = () =>{
                                 <div className='sign__input'>
                                     <input type="password" name='password' placeholder='Пароль' onChange={(e)=> setPassword(e.target.value)} required/>
                                 </div>
-                                
                             </div>
-                            <button className='sign__button' style={{height: "60px", width: "30%"}} onClick={()=>UserController}>Войти</button>
+                            <button className='sign__button' style={{height: "60px", width: "30%"}} onClick={()=>UserController.signIn({email: email, password: password})}>Войти</button>
                             <span>или</span>
                             <Link to='/signup'>Зарегистрироватья</Link>
                         </form>
