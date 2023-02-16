@@ -10,7 +10,9 @@ const SignUp = () =>{
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
     const [reppassword, setReppassword] = useState<string>();
-    
+    function create(){
+        UserController.createUser({fio: fio, email: email, password: password, reppassword: reppassword});
+    }
     return(
             <div className="sign__page signup__background">
                 <div className='header__logo'>
@@ -24,7 +26,7 @@ const SignUp = () =>{
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
                     </div>
                     <div className='sign__form__block'>
-                        <form className='sign__form'>
+                        <form className='sign__form' >
                             <h1>Регистрация</h1>
                             <div className='sign__form__inputs'>
                                 <div className='sign__input'>
@@ -40,7 +42,7 @@ const SignUp = () =>{
                                     <input name='reppassword' type="password" placeholder='Повторите пароль' onChange={(e)=>setReppassword(e.target.value)} required/>
                                 </div>
                             </div>
-                            <button className='sign__button' style={{height: "60px", width: "40%"}} onClick={()=>UserController.createUser({fio: fio, email: email, password: password, reppassword: reppassword})}>Зарегистрироваться</button>
+                            <button className='sign__button' style={{height: "60px", width: "40%"}} onClick={(e)=>{create(); e.preventDefault()}}>Зарегистрироваться</button>
                             <span>или</span>
                             <Link to='/signin'>Войти</Link>
                         </form>

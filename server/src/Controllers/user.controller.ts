@@ -2,7 +2,6 @@ import e, { Request, Response, NextFunction } from "express";
 import { connection } from "../db";
 import {IUserModel} from '../Models/user.model';
 import userService from "../Services/user.service";
-import bcrypt from 'bcrypt';
 
 class UserController{
 
@@ -26,16 +25,20 @@ class UserController{
             }
         } 
     }
-    // async createUser(req: Request, res: Response): Promise<Response>{
-    //     const conn = await connection();
-    //     const newUser: IUserModel = req.body;
-    //     const hashPassword = await bcrypt.hash(newUser.password, 10);
-    //     await conn.query('INSERT INTO users (fio, email, password, role_id) VALUES (?, ?, ?, ?)', [newUser.fio, newUser.email, hashPassword, 2]);
-    //     await conn.end();
-    //     return res.json({
-    //         message: 'user created',
-    //     });
-    // }
+    async createUser(req: Request, res: Response){
+        const newUser: IUserModel = req.body;
+        if(req.body !== undefined){
+            try{
+                const result = await userService.createUser(newUser)
+                console.log(result)
+                return res.jsonp({
+                    message: result.message,
+                });
+            }catch(e){
+                    return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`})
+            }
+        }
+    }
 }
 
 export default new UserController;

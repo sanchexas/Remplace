@@ -14,8 +14,9 @@ class UserController{
         const {data} = await Axios.get<IUsersResponse>(`${apiPath}/users/getuserbyid`, {params:{idReq}});
         return data;
     }
-    async createUser(info: Object){
-        await Axios.post<IUsersResponse[]>(`${apiPath}/users/create`, info);
+    async createUser(data: object){ 
+        const response = await Axios.post<IUsersResponse[]>(`${apiPath}/users/create`, data);
+        console.log(response);
     }
     async signIn(info: Object){
         const {data} = await Axios.post<IUsersResponse[]>(`${apiPath}/users/signin`, info);

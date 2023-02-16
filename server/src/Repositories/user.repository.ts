@@ -13,6 +13,25 @@ class UserRepository{
             throw new Error("ОшибОчка");
         }
     }
+    async doesExist(email: string){
+        try{
+            const conn = await connection();
+            const checkUsers = await conn.query<IUserModel[]>('SELECT * FROM users WHERE email = ?', email);
+            await conn.end();
+            return checkUsers[0].length;
+        }catch(e){
+            throw new Error("ОшибОчка");
+        }
+    }
+    async createUser(newUser: IUserModel, hashPassword: string){
+        try{
+            const conn = await connection();
+            await conn.query<IUserModel[]>('INSERT INTO users (fio, email, password, role_id) VALUES (?, ?, ?, ?)', [newUser.fio, newUser.email, hashPassword, 2]);
+            await conn.end();
+        }catch(e){
+            throw new Error("ОшибОчка");
+        }
+    }
 }
 
 export default new UserRepository;
