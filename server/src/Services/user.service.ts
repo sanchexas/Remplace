@@ -8,10 +8,9 @@ class UserService{
     async getUserById(idReq: string | ParsedQs | string[] | ParsedQs[]){
         const user = await userRepository.getUserById(idReq);
         console.log(user)
-        return {fio: user[0].fio, email: user[0].email};
+        return {fio: user[0].fio, email: user[0].email, role_id: user[0].role_id};
     }
     async createUser(newUser: IUserModel){
-        console.log(newUser)
         if(newUser.fio.length < 10 || newUser.fio.length > 100){
             return {message: "ФИО не должно быть меньше 10 либо больше 100 символов"};
         }else if(newUser.password.length < 8 || newUser.password.length > 100){
@@ -24,6 +23,14 @@ class UserService{
         const hashPassword = await bcrypt.hash(newUser.password, 10);
         await userRepository.createUser(newUser, hashPassword);
         return {message: "Успешно"};
+    }
+    async signIn(signedUserBody: IUserModel){
+        const result = await userRepository.signIn(signedUserBody);
+        const doesSuit = await bcrypt.compare(signedUserBody.password, result[0].password);
+        if(!doesSuit){
+            return {message: "Неверный логин либо пароль"};
+        }
+        return {message: {id: result[0].id_user, fio: result[0].fio, email: result[0].email, role_id: result[0].role_id}};
     }
 }
 

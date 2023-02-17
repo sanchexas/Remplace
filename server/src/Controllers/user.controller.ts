@@ -13,12 +13,12 @@ class UserController{
     //     await conn.end();
     //     return res.json(users[0]); 
     // }
-    async getUserById(req: Request, res: Response, next: NextFunction){
+    async getUserById(req: Request, res: Response){
         const id = req.query.idReq;
         if(id !== undefined){
             try{
                 const user = await userService.getUserById(id);
-                return res.jsonp({message: user}).status(200);
+                return res.json({message: user}).status(200);
             }catch(e){
                 return res.json({err: "Пользователь не найден.", click_here: `https://youtu.be/dQw4w9WgXcQ`})
             }
@@ -26,13 +26,32 @@ class UserController{
     }
     async createUser(req: Request, res: Response){
         const newUser: IUserModel = req.body;
-        if(req.body !== undefined){
+        if(newUser !== undefined){
             try{
                 const result = await userService.createUser(newUser)
-                console.log(result)
-                return res.jsonp({
+                return res.json({
                     message: result.message,
                 });
+            }catch(e){
+                    return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`})
+            }
+        }
+    }
+    async signIn(req: Request, res: Response){
+        const signedUserBody: IUserModel = req.body;
+        if(signedUserBody !== undefined){
+            try{
+                const result = await userService.signIn(signedUserBody)
+                console.log(result)
+                if(typeof result.message === "string"){
+                    return res.json({message: result.message});
+                }
+                console.log(result.message)
+                res.cookie("id_user", result.message.id, {maxAge: 1*24*60*60*1000});
+                res.cookie("email", result.message.email, {maxAge: 1*24*60*60*1000});
+                res.cookie("fio", result.message.fio, {maxAge: 1*24*60*60*1000});
+                res.cookie("role_id", result.message.role_id, {maxAge: 1*24*60*60*1000});
+                return res.send();
             }catch(e){
                     return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`})
             }

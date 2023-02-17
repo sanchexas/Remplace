@@ -1,14 +1,14 @@
 import { RowDataPacket } from "mysql2";
 
 export interface IUserModel extends RowDataPacket{ 
-    id?: number;
+    id?: number | string;
     fio: string;
     email: string;
     password: string;
     reppassword?: string;
     phone?: string;
     image?: string;
-    roleId: number;
+    roleId?: number | string;
     bankCardId?: number;
     birthday?: string;
     messange?: string;

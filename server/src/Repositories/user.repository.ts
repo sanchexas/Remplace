@@ -23,6 +23,16 @@ class UserRepository{
             throw new Error("ОшибОчка");
         }
     }
+    async signIn(signedUserBody: IUserModel){
+        try{
+            const conn = await connection();
+            const result = await conn.query<IUserModel[]>('SELECT * FROM users WHERE email = ?', signedUserBody.email);
+            await conn.end();
+            return result[0];
+        }catch(e){
+            throw new Error("ОшибОчка");
+        }
+    }
     async createUser(newUser: IUserModel, hashPassword: string){
         try{
             const conn = await connection();

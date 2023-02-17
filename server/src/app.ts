@@ -6,6 +6,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import userRouter from './Routes/user.routes';
 import testRouter from './Routes/test.routes';
+import cookieParser from 'cookie-parser';
 
 export class App{
     private app: Application;
@@ -27,6 +28,7 @@ export class App{
         }));
         this.app.use(express.json());
         this.app.use(bodyParser.urlencoded({extended: true}));
+        this.app.use(cookieParser());
     }
     routes(){
         this.app.use('/users',userRouter);
