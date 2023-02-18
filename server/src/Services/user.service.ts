@@ -7,8 +7,16 @@ import { IUserModel } from "../Models/user.model";
 class UserService{
     async getUserById(idReq: string | ParsedQs | string[] | ParsedQs[]){
         const user = await userRepository.getUserById(idReq);
-        console.log(user)
-        return {fio: user[0].fio, email: user[0].email, role_id: user[0].role_id};
+        console.log(user);
+        return {
+            fio: user[0].fio,
+            email: user[0].email,
+            role_id: user[0].role_id, 
+            phone: user[0].phone, 
+            bankCardId: user[0].bank_card_id, 
+            birthday: user[0].birthday, 
+            image: user[0].image
+        };
     }
     async createUser(newUser: IUserModel){
         if(newUser.fio.length < 10 || newUser.fio.length > 100){

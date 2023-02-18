@@ -3,14 +3,11 @@ import { LogoDark } from '../components/LogoDark';
 import '../style.css';
 import { useState } from 'react';
 import UserController from '../controllers/UserController';
-import Cookies from 'universal-cookie';
 
 
 const SignIn = () =>{
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
-    const cookies = new Cookies();
-    console.log(cookies.get("email")) // DELETE IT LATER!
     return(
         <div className="sign__page">
             <div className='header__logo'>

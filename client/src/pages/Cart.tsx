@@ -8,7 +8,7 @@ const Cart = () => {
         /**
          *  Данная функция является тестовой
          */
-        UserController.getUserById(9).then((res)=>{
+        UserController.getUserById(4).then((res)=>{
             console.log(res);
         })
     },[])

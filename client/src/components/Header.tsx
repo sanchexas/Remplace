@@ -3,8 +3,12 @@ import {Link} from 'react-router-dom';
 import SignIn from '../pages/SignIn';
 import { useState } from 'react';
 import { Logo } from './Logo';
+import UserController from '../controllers/UserController';
+import axios from 'axios';
 
 const Header = () =>{
+    const [login, setLogin] = useState<string>();
+
     return(
         <header>
             <Logo/>

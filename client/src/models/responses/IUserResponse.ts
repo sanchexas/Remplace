@@ -1,5 +1,6 @@
 export type IUsersResponse = {
-    fio?: string, 
-    email?: string
-    message?: string
+    // id?: string | number,
+    // fio?: string, 
+    // email?: string,
+    message?: string | undefined,
 }
