@@ -28,7 +28,7 @@ class UserController{
         const newUser: IUserModel = req.body;
         if(newUser !== undefined){
             try{
-                const result = await userService.createUser(newUser)
+                const result = await userService.createUser(newUser);
                 return res.json({
                     message: result.message,
                 });

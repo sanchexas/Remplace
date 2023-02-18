@@ -1,14 +1,34 @@
 import '../style.css';
 import {Link} from 'react-router-dom';
-import SignIn from '../pages/SignIn';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Logo } from './Logo';
 import UserController from '../controllers/UserController';
-import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 const Header = () =>{
-    const [login, setLogin] = useState<string>();
-
+    const [fio, setFio] = useState<string>();
+    const cookies = new Cookies();
+    useEffect(()=>{
+        if(cookies.get('id_user')){
+            UserController.getUserById(cookies.get('id_user')).then((response)=>{
+                setFio(response.message?.fio);
+            });
+        }
+    },[]);
+    function loginBlock(){
+        if(cookies.get('id_user')){
+            return(
+                <Link to='/account'>
+                    {fio}
+                </Link>
+            );
+        }
+        return(
+            <Link to="/signin" className="sign__button fake__button">
+                Войти
+            </Link>
+        );
+    }
     return(
         <header>
             <Logo/>
@@ -27,9 +47,7 @@ const Header = () =>{
                     </Link>
                 </div>
                 <div className="head__nav__login">
-                    <Link to="/signin" className="sign__button fake__button">
-                        Войти
-                    </Link>
+                    {loginBlock()}
                 </div>
             </div>
         </header>
