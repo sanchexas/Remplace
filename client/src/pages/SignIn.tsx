@@ -1,13 +1,18 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LogoDark } from '../components/LogoDark';
 import '../style.css';
 import { useState } from 'react';
 import UserController from '../controllers/UserController';
+import Cookies from 'universal-cookie';
+import { IUserModel } from '../models/IUserModel';
+import { IUsersResponse } from '../models/responses/IUserResponse';
 
 
 const SignIn = () =>{
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
+    const cookies = new Cookies();
+    const redirect = useNavigate();
     return(
         <div className="sign__page">
             <div className='header__logo'>
@@ -31,7 +36,17 @@ const SignIn = () =>{
                                 <input type="password" name='password' placeholder='Пароль' onChange={(e)=> setPassword(e.target.value)} required/>
                             </div>
                         </div>
-                        <button className='sign__button' style={{height: "60px", width: "30%"}} onClick={(e)=>{UserController.signIn({email: email, password: password}); e.preventDefault()}}>Войти</button>
+                        <button className='sign__button' style={{height: "60px", width: "30%"}} onClick={(e)=>{
+                                UserController.signIn({email: email, password: password}).then((response)=>{
+                                    if(cookies.get('id_user')){
+                                        redirect('/');
+                                        window.location.reload(); 
+                                    }
+                                    console.log(response.data)
+                                })
+                                e.preventDefault();
+                            }
+                        }>Войти</button>
                         <span>или</span>
                         <Link to='/signup'>Зарегистрироватья</Link>
                     </form>
