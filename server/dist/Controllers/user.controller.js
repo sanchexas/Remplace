@@ -45,14 +45,10 @@ class UserController {
         if (signedUserBody !== undefined) {
             try {
                 const result = await user_service_1.default.signIn(signedUserBody);
-                console.log(result);
                 if (typeof result.message === "string") {
                     return res.json({ message: result.message });
                 }
-                console.log(result.message);
                 res.cookie("id_user", result.message.id, { maxAge: 1 * 24 * 60 * 60 * 1000 });
-                res.cookie("email", result.message.email, { maxAge: 1 * 24 * 60 * 60 * 1000 });
-                res.cookie("fio", result.message.fio, { maxAge: 1 * 24 * 60 * 60 * 1000 });
                 res.cookie("role_id", result.message.role_id, { maxAge: 1 * 24 * 60 * 60 * 1000 });
                 return res.send();
             }
