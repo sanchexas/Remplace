@@ -42,6 +42,15 @@ class UserRepository{
             throw new Error("ОшибОчка");
         }
     }
+    async update(updatedUserBody: IUserModel){
+        try{
+            const conn = await connection();
+            await conn.query<IUserModel[]>('UPDATE users SET fio = ?, email = ?, phone = ?, birthday = ? WHERE id_user = ?;', [updatedUserBody.fio, updatedUserBody.email, updatedUserBody.phone, updatedUserBody.birthday, updatedUserBody.id]);
+            await conn.end();
+        }catch(e){
+            throw new Error("ОшибОчка");
+        }
+    }
 }
 
 export default new UserRepository;

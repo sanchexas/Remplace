@@ -11,4 +11,5 @@ userRouter.get('/doeswork', user_controller_1.default.doesWork);
 userRouter.post('/create', user_controller_1.default.createUser);
 userRouter.get('/getuserbyid', user_controller_1.default.getUserById);
 userRouter.post('/signin', user_controller_1.default.signIn);
+userRouter.post('/update', user_controller_1.default.update);
 exports.default = userRouter;

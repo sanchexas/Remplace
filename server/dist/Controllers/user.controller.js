@@ -51,5 +51,20 @@ class UserController {
             }
         }
     }
+    async update(req, res) {
+        const updatedUserBody = req.body;
+        if (updatedUserBody !== undefined) {
+            try {
+                const result = await user_service_1.default.update(updatedUserBody);
+                if (typeof result.message === "string") {
+                    return res.json({ message: result.message });
+                }
+                // return res.send();
+            }
+            catch (e) {
+                return res.json({ err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ` });
+            }
+        }
+    }
 }
 exports.default = new UserController;

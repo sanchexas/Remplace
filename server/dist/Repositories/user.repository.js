@@ -45,5 +45,15 @@ class UserRepository {
             throw new Error("ОшибОчка");
         }
     }
+    async update(updatedUserBody) {
+        try {
+            const conn = await (0, db_1.connection)();
+            await conn.query('UPDATE users SET fio = ?, email = ?, phone = ?, birthday = ? WHERE id_user = ?;', [updatedUserBody.fio, updatedUserBody.email, updatedUserBody.phone, updatedUserBody.birthday, updatedUserBody.id]);
+            await conn.end();
+        }
+        catch (e) {
+            throw new Error("ОшибОчка");
+        }
+    }
 }
 exports.default = new UserRepository;

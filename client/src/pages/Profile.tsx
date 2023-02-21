@@ -20,9 +20,9 @@ const Profile = () => {
             setBirthday(response.message?.birthday);
         });
     },[]);
-    async function updateInfo(){
-        await UserController.updateUser({fio,email,phone,birthday});
-        await window.location.reload();
+    function updateInfo(){
+        UserController.updateUser({fio,email,phone,birthday,id: cookies.get('id_user')});
+        window.location.reload();
     }
     const editHandler = () =>{
         (edit === false) ? setEdit(true) : setEdit(false)

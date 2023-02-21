@@ -44,5 +44,9 @@ class UserService {
         }
         return { message: { id: result[0].id_user, fio: result[0].fio, email: result[0].email, role_id: result[0].role_id } };
     }
+    async update(updatedUserBody) {
+        const result = await user_repository_1.default.update(updatedUserBody); //прописать проверку
+        return { message: result };
+    }
 }
 exports.default = new UserService;
