@@ -296,7 +296,7 @@ footer{
     background: rgb(255, 255, 255);
 }
 .profile__story{
-    width: 60%;
+    width: 70%;
     height: 100%;
     background: blue;
 }
@@ -308,4 +308,35 @@ footer{
 }
 .profile__info__text{
     font-size: 25px;
+}
+.edit__button{
+    width: 80%;
+    height: 40px;
+    border: 2px solid #0762C4;
+}
+.edit__button:hover{
+    background: #0762C4;
+    color: white;
+}
+.edit__info__block input{
+    border: #426a94 solid 2px;
+    border-radius: 5px;
+    font-size: 25px;
+    padding: 5px;
+}
+.edit__buttons__block{
+    display: flex;
+    gap: 30px;
+}
+.save__button{
+    background: #2592ff;
+    color: white;
+    height: 40px;
+    width: 40%;
+}
+.cancel__button{
+    background: #7d7d7d;
+    color: white;
+    height: 40px;
+    width: 30%;
 }

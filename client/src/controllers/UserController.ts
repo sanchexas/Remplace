@@ -25,7 +25,9 @@ class UserController{
         // console.log(response);
         return response;
     }
-    
+    async updateUser(info: object){
+        await Axios.post(`${apiPath}/users/update`, info);
+    }
 }
 
 export default new UserController();
