@@ -7,6 +7,7 @@ import Favorite from './pages/Favorite';
 import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path='/' index element={<MainPage/>}/>
               <Route path='/favorite' element={<Favorite/>}/>
               <Route path='/cart' element={<Cart/>}/>
+              <Route path='/profile' element={<Profile/>}/>
             </Routes>
           </main>
           <Footer/>

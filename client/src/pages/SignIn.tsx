@@ -4,9 +4,6 @@ import '../style.css';
 import { useState } from 'react';
 import UserController from '../controllers/UserController';
 import Cookies from 'universal-cookie';
-import { IUserModel } from '../models/IUserModel';
-import { IUsersResponse } from '../models/responses/IUserResponse';
-
 
 const SignIn = () =>{
     const [email, setEmail] = useState<string>();

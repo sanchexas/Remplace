@@ -7,12 +7,6 @@ class UserController{
     doesWork(req: Request, res: Response){
         return res.json('User Router and Controller are work').status(200);
     }
-    // async getAllUsers(req: Request, res: Response): Promise<Response>{
-    //     const conn = await connection();
-    //     const users = await conn.query('SELECT * FROM users');
-    //     await conn.end();
-    //     return res.json(users[0]); 
-    // }
     async getUserById(req: Request, res: Response){
         const id = req.query.idReq;
         if(id !== undefined){
