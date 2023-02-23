@@ -3,7 +3,7 @@ import {IUserModel} from '../Models/user.model';
 import userService from "../Services/user.service";
 
 class UserController{
-
+    
     doesWork(req: Request, res: Response){
         return res.json('User Router and Controller are work').status(200);
     }
