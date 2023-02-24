@@ -8,7 +8,6 @@ class UserController{
     cookies = new Cookies();
     async getAllUsers(){
         const response = await Axios.get<IUsersResponse[]>(`${apiPath}/users/getall`);
-        // console.log(response);
         return response;
     }
     async getUserById(idReq: number | string){
@@ -18,11 +17,9 @@ class UserController{
     }
     async createUser(data: object){ 
         const response = await Axios.post<IUsersResponse[]>(`${apiPath}/users/create`, data);
-        // console.log(response);
     }
     async signIn(info: Object){
         const response = await Axios.post<IUsersResponse[]>(`${apiPath}/users/signin`, info);
-        // console.log(response);
         return response;
     }
     async updateUser(info: object){

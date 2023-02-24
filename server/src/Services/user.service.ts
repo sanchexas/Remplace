@@ -7,7 +7,6 @@ import { IUserModel } from "../Models/user.model";
 class UserService{
     async getUserById(idReq: string | ParsedQs | string[] | ParsedQs[]){
         const user = await userRepository.getUserById(idReq);
-        console.log(user);
         return {
             fio: user[0].fio,
             email: user[0].email,

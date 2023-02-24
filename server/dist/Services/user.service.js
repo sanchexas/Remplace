@@ -8,7 +8,6 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 class UserService {
     async getUserById(idReq) {
         const user = await user_repository_1.default.getUserById(idReq);
-        console.log(user);
         return {
             fio: user[0].fio,
             email: user[0].email,

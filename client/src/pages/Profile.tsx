@@ -1,11 +1,12 @@
 import '../style.css';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import UserController from '../controllers/UserController';
 import Cookies from 'universal-cookie';
-import UserInfo from '../components/UserInfo';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
     const cookies = new Cookies();
+    const redirect = useNavigate()
     let [fio, setFio] = useState<string>();
     let [email, setEmail] = useState<string>();
     let [phone, setPhone] = useState<string>();
@@ -19,13 +20,42 @@ const Profile = () => {
             setPhone(response.message?.phone);
             setBirthday(response.message?.birthday);
         });
+        console.log("fd")
     },[]);
     function updateInfo(){
         UserController.updateUser({fio,email,phone,birthday,id: cookies.get('id_user')});
         window.location.reload();
     }
+    function logOut(){
+        if(cookies.get('id_user')){
+            cookies.remove('id_user');
+            cookies.remove('role_id');
+            redirect('/');
+            window.location.reload();
+        } 
+    }
+    function whichRole(){
+        switch(cookies.get('role_id')){
+            case '1':
+                return(
+                    <div>admin</div>
+                );
+            case '2':
+                return(
+                    <div>user</div>
+                );
+            case '3':
+                return(
+                    <div>organisation</div>
+                );
+            default:
+                return(
+                    <div>ERROR</div>
+                );
+        }
+    }
     const editHandler = () =>{
-        (edit === false) ? setEdit(true) : setEdit(false)
+        (edit === false) ? setEdit(true) : setEdit(false);
     }
     return(
         <div className='profile__wrapper'>
@@ -42,10 +72,10 @@ const Profile = () => {
                         <input type="text" value={email} onChange={(event)=>setEmail(event.target.value)} placeholder='E-mail'/>
                     </p>
                     <p>
-                        <input type="text" value={phone} onChange={(event)=>setPhone(event.target.value)} placeholder='Номер телефона'/>
+                        <input type="text" value={(phone === null) ? '' : phone} onChange={(event)=>setPhone(event.target.value)} placeholder='Номер телефона'/>
                     </p>
                     <p>
-                        <input type="text" value={birthday} onChange={(event)=>setBirthday(event.target.value)} placeholder='Дата рождения'/>
+                        <input type="text" value={(birthday === null) ? '' : birthday} onChange={(event)=>setBirthday(event.target.value)} placeholder='Дата рождения'/>
                     </p>
                     <div className='edit__buttons__block'>
                         <button onClick={()=>updateInfo()} className='fake__button save__button'>Сохранить</button>
@@ -60,9 +90,10 @@ const Profile = () => {
                     <p className='profile__info__text IR'>{birthday}</p>
                     <button className='fake__button edit__button' onClick={editHandler}>Изменить</button>
                 </div>}
+                <button className='logout__button' onClick={()=>logOut()}>Выйти</button>
             </div>
             <div className='profile__story'>
-
+                    {whichRole()}
             </div>
         </div>
     );

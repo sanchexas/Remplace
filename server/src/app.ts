@@ -5,7 +5,6 @@ import { Application } from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import userRouter from './Routes/user.routes';
-import testRouter from './Routes/test.routes';
 import cookieParser from 'cookie-parser';
 
 export class App{
@@ -32,7 +31,6 @@ export class App{
     }
     routes(){
         this.app.use('/users',userRouter);
-        this.app.use(testRouter);
     }
     listen(){
         this.app.listen(this.app.get('port'));

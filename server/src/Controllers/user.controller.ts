@@ -14,7 +14,7 @@ class UserController{
                 const user = await userService.getUserById(id);
                 return res.json({message: user}).status(200);
             }catch(e){
-                return res.json({err: "Пользователь не найден.", click_here: `https://youtu.be/dQw4w9WgXcQ`})
+                return res.json({err: "Пользователь не найден.", click_here: `https://youtu.be/dQw4w9WgXcQ`});
             }
         } 
     }
@@ -27,7 +27,7 @@ class UserController{
                     message: result.message,
                 });
             }catch(e){
-                    return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`})
+                    return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
             }
         }
     }
@@ -43,7 +43,7 @@ class UserController{
                 res.cookie("role_id", result.message.role_id, {maxAge: 1*24*60*60*1000});
                 return res.send();
             }catch(e){
-                    return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`})
+                    return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
             }
         }
     }
@@ -57,7 +57,7 @@ class UserController{
                 }
                 // return res.send();
             }catch(e){
-                    return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`})
+                    return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
             }
         }
     }
