@@ -102,6 +102,7 @@ footer{
     width: 100%;
     height: 200px;
     border-top: #0762C4 5px solid;
+    margin-top: 50px;
 }
 .head__nav{
     min-width: 35%;
@@ -286,7 +287,6 @@ footer{
 .profile__wrapper{
     display: flex;
     flex-direction: row;
-    height: 2000px;
     
 }
 .profile__info{
@@ -299,7 +299,6 @@ footer{
 }
 .profile__story{
     width: 70%;
-    height: 100%;
 }
 .avatar{
     border-radius: 50%;
@@ -344,4 +343,17 @@ footer{
 .logout__button{
     margin-top: 100px;
     color: #7d7d7d;
+}
+.actions__wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.action__card{
+    border-radius: 5px;
+    min-width: 280px;
+    height: 300px;
+    background: rgb(122, 175, 255);
 }

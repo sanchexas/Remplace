@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import UserController from '../controllers/UserController';
 import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
+import AdminPanel from '../components/AdminPanel';
+import UserPanel from '../components/UserPanel';
 
 const Profile = () => {
     const cookies = new Cookies();
-    const redirect = useNavigate()
+    const redirect = useNavigate();
     let [fio, setFio] = useState<string>();
     let [email, setEmail] = useState<string>();
     let [phone, setPhone] = useState<string>();
@@ -20,7 +22,6 @@ const Profile = () => {
             setPhone(response.message?.phone);
             setBirthday(response.message?.birthday);
         });
-        console.log("fd")
     },[]);
     function updateInfo(){
         UserController.updateUser({fio,email,phone,birthday,id: cookies.get('id_user')});
@@ -37,13 +38,9 @@ const Profile = () => {
     function whichRole(){
         switch(cookies.get('role_id')){
             case '1':
-                return(
-                    <div>admin</div>
-                );
+                return <AdminPanel/>
             case '2':
-                return(
-                    <div>user</div>
-                );
+                return <UserPanel/>
             case '3':
                 return(
                     <div>organisation</div>
