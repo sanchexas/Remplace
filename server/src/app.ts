@@ -6,6 +6,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import userRouter from './Routes/user.routes';
 import cookieParser from 'cookie-parser';
+import orgRouter from './Routes/org.routes';
 
 export class App{
     private app: Application;
@@ -31,6 +32,7 @@ export class App{
     }
     routes(){
         this.app.use('/users',userRouter);
+        this.app.use('/orgs',orgRouter);
     }
     listen(){
         this.app.listen(this.app.get('port'));
