@@ -41,6 +41,7 @@ const Profile = () => {
                 return <AdminPanel/>
             case '2':
                 return <UserPanel/>
+
             case '3':
                 return(
                     <div>organisation</div>
@@ -81,10 +82,10 @@ const Profile = () => {
                 </div>
                 : 
                 <div>
-                    <p className='profile__info__text IB'>{fio}</p>
-                    <p className='profile__info__text IR'>{email}</p>
-                    <p className='profile__info__text IR'>{phone}</p>
-                    <p className='profile__info__text IR'>{birthday}</p>
+                    <p className='profile__info__text IR'>{fio}</p>
+                    <p className='profile__info__text IL'>{email}</p>
+                    <p className='profile__info__text IL'>{phone}</p>
+                    <p className='profile__info__text IL'>{birthday}</p>
                     <button className='fake__button edit__button' onClick={editHandler}>Изменить</button>
                 </div>}
                 <button className='logout__button' onClick={()=>logOut()}>Выйти</button>

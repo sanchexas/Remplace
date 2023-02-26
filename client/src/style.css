@@ -102,7 +102,7 @@ footer{
     width: 100%;
     height: 200px;
     border-top: #0762C4 5px solid;
-    margin-top: 50px;
+    margin-top: 200px;
 }
 .head__nav{
     min-width: 35%;
@@ -344,16 +344,63 @@ footer{
     margin-top: 100px;
     color: #7d7d7d;
 }
-.actions__wrapper{
+.actions{
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
 }
 .action__card{
     border-radius: 5px;
     min-width: 280px;
+    max-width: 280px;
     height: 300px;
-    background: rgb(122, 175, 255);
+    background: #0e45db;
+    overflow: hidden;
+    transition: all 0.2s;
+    position: relative;
+}
+.action__card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: all 0.2s;
+    z-index: 1;
+}
+.action__card:hover{
+    border-radius: 20px;
+}
+.action__card:hover img{
+    opacity: 0.3;
+    transform: scale(1.2);
+}
+.action__card:hover .action__card__title{
+    background: none;
+}
+.action__card__title{
+    position: absolute;
+    bottom: 80px;
+    left: 10px;
+    font-size: 25px;
+    z-index: 2;
+    color: white;
+    background: #0e45db;
+    padding: 10px;
+    transition: all 0.2s;
+}
+.action__card__desc{
+    z-index: 2;
+    position: absolute;
+    bottom: 20px;
+    font-size: 17px;
+    opacity: 0;
+    left: 10px;
+    padding: 10px;
+    color: white;
+    transition: all 0.2s;
+}
+.action__card:hover .action__card__desc{
+    opacity: 1;
 }
