@@ -19,7 +19,7 @@ const UserPanel = () =>{
                     <span className='action__card__title IB'>Оплата</span>
                     <span className='action__card__desc'>Прикрепите карту для быстрой оплаты</span>
                 </Link>
-                <Link to='/' className='action__card'>
+                <Link to='/create_org_profile' className='action__card'>
                     <img src={img3} alt="" />
                     <span className='action__card__title IB'>Партнерство</span>
                     <span className='action__card__desc'>Продавайте свою продукцию на нашей платформе</span>

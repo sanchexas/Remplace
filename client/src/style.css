@@ -404,3 +404,28 @@ footer{
 .action__card:hover .action__card__desc{
     opacity: 1;
 }
+.create__org__page{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.org__form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 40%;
+}
+.org__form__item{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 20px;
+}
+.org__form__item input, textarea{
+    font-size: 20px;
+    padding: 5px;
+    border: #064283 2px solid;
+    border-radius: 5px;
+    font-family: IM;
+}
