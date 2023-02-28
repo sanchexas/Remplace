@@ -98,6 +98,9 @@ main{
     align-items: center;
     gap: 30px;
 }
+.FS_20{
+    font-size: 20px;
+}
 footer{
     width: 100%;
     height: 200px;
@@ -365,7 +368,7 @@ footer{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.9;
+    opacity: 0.7;
     transition: all 0.2s;
     z-index: 1;
 }
@@ -428,4 +431,92 @@ footer{
     border: #064283 2px solid;
     border-radius: 5px;
     font-family: IM;
+}
+.business__wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.business__add{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.add__button{
+    width: 150px;
+    height: 50px;
+    background: #0762C4;
+    color: white;
+}
+.create__product__wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.create__product{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.create__product__form{
+    min-width: 320px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product__preview{
+    min-width: 320px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 600px;
+}
+.product__card{
+    border-radius: 0%;
+    border-bottom: 4px #465565 solid;
+    width: 350px;
+    max-height: 500px;
+    overflow: hidden;
+    /* background: rgb(203, 203, 203); */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+}
+.product__img{
+    width: 100%;
+    height: 350px;
+}
+.product__img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.product__card__actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.shadow{
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.12);
+}
+.product__card__info{
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.add__to__cart{
+    width: 50%;
+    height: 50px;
+    background: #465565;
+    color: white;
+}
+.create__product__form form{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+
 }

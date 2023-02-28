@@ -43,9 +43,7 @@ const Profile = () => {
             case '2':
                 return <UserPanel/>
             case '3':
-                return(
-                    <OrganisationPanel/>
-                );
+                return <OrganisationPanel/>
             default:
                 return(
                     <div>ERROR</div>

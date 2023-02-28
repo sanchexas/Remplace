@@ -11,6 +11,8 @@ import Profile from './pages/Profile';
 import CreateOrgProfile from './pages/CreateOrg';
 import Chat from './pages/Chat';
 import Notifications from './pages/Notifications';
+import Business from './pages/Business';
+import CreateProduct from './pages/CreateProduct';
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
               <Route path='/create_org_profile' element={<CreateOrgProfile/>}/>
               <Route path='/messanger' element={<Chat/>}/>
               <Route path='/notifications' element={<Notifications/>}/>
+              <Route path='/business' element={<Business/>}/>
+              <Route path='/create_product' element={<CreateProduct/>}/>
             </Routes>
           </main>
           <Footer/>
