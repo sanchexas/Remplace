@@ -5,6 +5,7 @@ import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
 import AdminPanel from '../components/AdminPanel';
 import UserPanel from '../components/UserPanel';
+import OrganisationPanel from '../components/OrganisationPanel';
 
 const Profile = () => {
     const cookies = new Cookies();
@@ -41,10 +42,9 @@ const Profile = () => {
                 return <AdminPanel/>
             case '2':
                 return <UserPanel/>
-
             case '3':
                 return(
-                    <div>organisation</div>
+                    <OrganisationPanel/>
                 );
             default:
                 return(

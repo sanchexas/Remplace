@@ -8,7 +8,9 @@ import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
-import CreateOrgProfile from './pages/CreateOrgProfile';
+import CreateOrgProfile from './pages/CreateOrg';
+import Chat from './pages/Chat';
+import Notifications from './pages/Notifications';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
               <Route path='/cart' element={<Cart/>}/>
               <Route path='/profile' element={<Profile/>}/>
               <Route path='/create_org_profile' element={<CreateOrgProfile/>}/>
+              <Route path='/messanger' element={<Chat/>}/>
+              <Route path='/notifications' element={<Notifications/>}/>
             </Routes>
           </main>
           <Footer/>
