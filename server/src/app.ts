@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import userRouter from './Routes/user.routes';
 import cookieParser from 'cookie-parser';
 import orgRouter from './Routes/org.routes';
+import categoryRouter from './Routes/category.routes';
 
 export class App{
     private app: Application;
@@ -33,6 +34,7 @@ export class App{
     routes(){
         this.app.use('/users',userRouter);
         this.app.use('/orgs',orgRouter);
+        this.app.use('/categories',categoryRouter);
     }
     listen(){
         this.app.listen(this.app.get('port'));

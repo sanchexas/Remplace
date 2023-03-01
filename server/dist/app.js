@@ -12,6 +12,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const user_routes_1 = __importDefault(require("./Routes/user.routes"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const org_routes_1 = __importDefault(require("./Routes/org.routes"));
+const category_routes_1 = __importDefault(require("./Routes/category.routes"));
 class App {
     constructor(port) {
         this.port = port;
@@ -36,6 +37,7 @@ class App {
     routes() {
         this.app.use('/users', user_routes_1.default);
         this.app.use('/orgs', org_routes_1.default);
+        this.app.use('/categories', category_routes_1.default);
     }
     listen() {
         this.app.listen(this.app.get('port'));
