@@ -8,6 +8,7 @@ import userRouter from './Routes/user.routes';
 import cookieParser from 'cookie-parser';
 import orgRouter from './Routes/org.routes';
 import categoryRouter from './Routes/category.routes';
+import productRouter from './Routes/product.routes';
 
 export class App{
     private app: Application;
@@ -35,6 +36,7 @@ export class App{
         this.app.use('/users',userRouter);
         this.app.use('/orgs',orgRouter);
         this.app.use('/categories',categoryRouter);
+        this.app.use('/products', productRouter);
     }
     listen(){
         this.app.listen(this.app.get('port'));

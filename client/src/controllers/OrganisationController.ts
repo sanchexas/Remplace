@@ -8,8 +8,12 @@ Axios.defaults.withCredentials = true;
 
 class OrganisationController{
     cookies = new Cookies();
-    async getById(idReq: number | string){
-        const {data} = await Axios.get<IUsersResponse>(`${apiPath}/orgs/getuserbyid`, {params:{idReq}});
+    // async getById(idReq: number | string){
+    //     const {data} = await Axios.get<IUsersResponse>(`${apiPath}/orgs/getuserbyid`, {params:{idReq}});
+    //     return data;
+    // }
+    async getByOwnerId(ownerId: number){
+        const {data} = await Axios.get<IOrganisationResponse>(`${apiPath}/orgs/getbyownerid`, {params: {ownerId}});
         return data;
     }
     async create(data: IOrganisation){ 

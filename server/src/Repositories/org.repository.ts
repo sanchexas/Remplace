@@ -14,6 +14,16 @@ class OrgRepository{
             throw new Error("ОшибОчка");
         }
     }
+    async getByOwnerId(ownerId: string | ParsedQs | string[] | ParsedQs[]){
+        try{
+            const conn = await connection();
+            const result = await conn.query<IOrganisationModel[]>('SELECT * FROM organisations WHERE owner_id = ?', ownerId);
+            conn.end();
+            return result[0];
+        }catch(e){
+            throw new Error("Ошибка");
+        }
+    }
 }
 
 export default new OrgRepository;

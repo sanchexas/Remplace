@@ -1,7 +1,7 @@
 import { RowDataPacket } from "mysql2";
 
 export interface IOrganisationModel extends RowDataPacket{ 
-    id?: number;
+    id_organisation?: number;
     name: string;
     address: string;
     ownerId: number;

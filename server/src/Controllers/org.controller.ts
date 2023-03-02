@@ -16,6 +16,19 @@ class OrgController{
             }
         }
     }
+    async getByOwnerId(req: Request, res: Response){
+        const ownerId = req.query.ownerId;
+        if(ownerId){
+            try{
+                const result = await orgService.getByOwnerId(ownerId);
+                return res.json({
+                    message: result.message
+                });
+            }catch(e){
+                return res.json({err: "Ошибка"});
+            }
+        }
+    }
 }
 
 export default new OrgController;

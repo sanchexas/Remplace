@@ -13,5 +13,16 @@ class OrgRepository {
             throw new Error("ОшибОчка");
         }
     }
+    async getByOwnerId(ownerId) {
+        try {
+            const conn = await (0, db_1.connection)();
+            const result = await conn.query('SELECT * FROM organisations WHERE owner_id = ?', ownerId);
+            conn.end();
+            return result[0];
+        }
+        catch (e) {
+            throw new Error("Ошибка");
+        }
+    }
 }
 exports.default = new OrgRepository;

@@ -5,8 +5,9 @@ export interface ProductModel extends RowDataPacket{
     title: string;
     description: string;
     originPrice: string;
-    image: string;
+    image: string | null;
     categoryId: number;
     organisationId: number;
     pickUpAddress?: string;
+    quantity: number | string;
 }

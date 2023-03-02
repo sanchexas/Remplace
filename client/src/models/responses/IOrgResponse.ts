@@ -1,6 +1,6 @@
 export type IOrganisationResponse = {
     message?: {
-        id?: number;
+        id_organisation?: number;
         name?: string;
         ownerId?: number;
         description?: string;

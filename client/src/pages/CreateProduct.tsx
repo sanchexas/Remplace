@@ -1,17 +1,26 @@
 import { Link } from 'react-router-dom';
 import '../style.css';
 import defaultImage from '../images/noimage.jpg'
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CategoryController from '../controllers/CategoryController';
 import { ICategoryResponse } from '../models/responses/ICategoryResponse';
+import OrganisationController from '../controllers/OrganisationController';
+import Cookies from 'universal-cookie';
+import ProductController from '../controllers/ProductController';
 
 const CreateProduct = () =>{
     const fileInput = useRef<HTMLInputElement>(null);
     const [preview, setPreview] = useState<string>();
     const [img, setImg] = useState<File>();
     const [title, setTitle] = useState<string>();
-    const [price, setPrice] = useState<string>();
+    const [description, setDescription] = useState<string>();
+    const [price, setPrice] = useState<number | string>();
+    const [image, setImage] = useState<string>(); // fix later
+    const [categoryId, setCategoryId] = useState<number | string>();
+    const [pickUpAddress, setPickUpAddress] = useState<string>();
+    const [quantity, setQuantity] = useState<number | string>();
     const [categories, setCategories] = useState();
+    const cookies = new Cookies();
     useEffect(()=>{
         if(img !== undefined){
             const fileReader = new FileReader();
@@ -24,20 +33,39 @@ const CreateProduct = () =>{
     useEffect(()=>{
         CategoryController.getAll().then((response)=>{
             let responseArr = response.data.message;
-            setCategories(responseArr.map((category: ICategoryResponse, i: number)=>{
+            setCategories(responseArr.map((category: ICategoryResponse)=>{
                 return(
                     <option value={category.id_category} key={category.id_category}>{category.title}</option>
                 );
             }));
         });
     },[]);
+    useEffect(()=>{
+        
+    },[]);
+    async function submit(){
+        await OrganisationController.getByOwnerId(cookies.get('id_user')).then((response)=>{
+            if(response.message?.id_organisation !== undefined){
+                let orgId: number = response.message.id_organisation;
+                ProductController.create({
+                    title: title,
+                    originPrice: price,
+                    description: description, 
+                    categoryId: categoryId, 
+                    organisationId: orgId, 
+                    pickUpAddress: pickUpAddress, 
+                    quantity: quantity
+                });
+            }
+        });
+    }
     return(
         <div className='create__product__wrapper'>
             <Link to='/business'>Назад</Link>
             <div className='create__product'>
                 <div className='create__product__form'>
                     <form encType='multipart/form-data' className='org__form'>
-                        <button  className='fake__button add__button' onClick={(event)=>{
+                        <button  className='fake__button edit__button' onClick={(event)=>{
                             event.preventDefault();
                             fileInput.current?.click();
                         }}>Загрузить фото</button>
@@ -54,23 +82,32 @@ const CreateProduct = () =>{
                             }}    
                         />
                         <div className='org__form__item'>
-                            <span>Наименование</span>
+                            <span>Наименование *</span>
                             <input type="text" onChange={(e)=>setTitle(e.target.value)}/>
                         </div>
                         <div className='org__form__item'>
-                            <span>Цена</span>
+                            <span>Цена *</span>
                             <input type="number" onChange={(e)=>setPrice(e.target.value)}/>
                         </div>
                         <div className='org__form__item'>
-                            <span>Описание</span>
-                            <textarea cols={30} rows={10} />
+                            <span>Описание *</span>
+                            <textarea cols={30} rows={10} onChange={(e)=>setDescription(e.target.value)}/>
                         </div>
                         <div className='org__form__item'>
-                            <span>Категория</span>
-                            <select name="" id="">
+                            <span>Категория *</span>
+                            <select onChange={(e)=>setCategoryId(e.target.value)}>
                                 {categories}
                             </select>
                         </div>
+                        <div className='org__form__item'>
+                            <span>Количество на складе *</span>
+                            <input type="number" onChange={(e)=>setQuantity(e.target.value)}/>
+                        </div>
+                        <div className='org__form__item'> 
+                            <span>Адрес самовывоза </span>
+                            <input type="text" onChange={(e)=>setPickUpAddress(e.target.value)}/>
+                        </div>
+                        <button className='add__button' onClick={(e)=>{submit(); e.preventDefault()}}>Создать</button>
                     </form>
                 </div>
                 <div className='product__preview'>
@@ -91,7 +128,6 @@ const CreateProduct = () =>{
                                 </button>
                             </div>
                         </div>
-                        
                     </div>
                     
                 </div>
