@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import '../style.css';
 import defaultImage from '../images/noimage.jpg'
-import { useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import CategoryController from '../controllers/CategoryController';
+import { ICategoryResponse } from '../models/responses/ICategoryResponse';
 
 const CreateProduct = () =>{
     const fileInput = useRef<HTMLInputElement>(null);
@@ -22,10 +23,14 @@ const CreateProduct = () =>{
     },[img]);
     useEffect(()=>{
         CategoryController.getAll().then((response)=>{
-            // let responseArr: Array<object> = response.data.message;
-            // setCategories(responseArr.map((category, i)));
-        })
-    },[])
+            let responseArr = response.data.message;
+            setCategories(responseArr.map((category: ICategoryResponse, i: number)=>{
+                return(
+                    <option value={category.id_category} key={category.id_category}>{category.title}</option>
+                );
+            }));
+        });
+    },[]);
     return(
         <div className='create__product__wrapper'>
             <Link to='/business'>Назад</Link>
@@ -63,7 +68,7 @@ const CreateProduct = () =>{
                         <div className='org__form__item'>
                             <span>Категория</span>
                             <select name="" id="">
-                                <option value=""></option>
+                                {categories}
                             </select>
                         </div>
                     </form>
