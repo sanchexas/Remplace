@@ -15,7 +15,6 @@ const CreateProduct = () =>{
     const [title, setTitle] = useState<string>();
     const [description, setDescription] = useState<string>();
     const [price, setPrice] = useState<number | string>();
-    const [image, setImage] = useState<string>(); // fix later
     const [categoryId, setCategoryId] = useState<number | string>();
     const [pickUpAddress, setPickUpAddress] = useState<string>();
     const [quantity, setQuantity] = useState<number | string>();
@@ -40,37 +39,73 @@ const CreateProduct = () =>{
             }));
         });
     },[]);
-    useEffect(()=>{
-        
-    },[]);
     async function submit(){
-        await OrganisationController.getByOwnerId(cookies.get('id_user')).then((response)=>{
-            if(response.message?.id_organisation !== undefined){
-                let orgId: number = response.message.id_organisation;
-                ProductController.create({
-                    title: title,
-                    originPrice: price,
-                    description: description, 
-                    categoryId: categoryId, 
-                    organisationId: orgId, 
-                    pickUpAddress: pickUpAddress, 
-                    quantity: quantity
-                });
-            }
-        });
+            let form = document.querySelector('form');
+            form?.addEventListener("submit", async (e)=>{
+                e.preventDefault();
+                if(form && title && img && price && description && pickUpAddress){
+                    const formData = new FormData();
+                    formData.append('file', img)
+                    formData.append('title', title);
+                    formData.append('price', price as string);
+                    formData.append('description', description);
+                    formData.append('category', categoryId as string);
+                    formData.append('quantity', quantity as string);
+                    formData.append('address', pickUpAddress);
+                    await ProductController.createWithFormData(formData)
+                }
+            });
+                // BEFORE
+                // ProductController.create({
+                //     title: title,
+                //     originPrice: price,
+                //     description: description, 
+                //     categoryId: categoryId, 
+                //     organisationId: orgId, 
+                //     pickUpAddress: pickUpAddress, 
+                //     quantity: quantity
+                // });
+    }
+    const submitForm = async (event: React.FormEvent<HTMLFormElement>) =>{
+        event.preventDefault();
+        let form = document.querySelector('form');
+        if(form){
+            const formData = new FormData(form);
+            // const formObj = {
+            //     file: formData.get('file'),
+            //     title: formData.get('title'),
+            //     price: formData.get('price'),
+            //     description: formData.get('description'),
+            //     category: formData.get('category'),
+            //     quantity: formData.get('quantity'),
+            //     address: formData.get('address'),
+            // }
+
+            // formData.append('file', img);
+            // formData.append('title', title);
+            // formData.append('price', price as string);
+            // formData.append('description', description);
+            // formData.append('category', categoryId as string);
+            // formData.append('quantity', quantity as string);
+            // formData.append('address', pickUpAddress);
+            await ProductController.createWithFormData(formData)
+            // console.log(formObj)
+            // console.log(formData.get('title'))
+        }
     }
     return(
         <div className='create__product__wrapper'>
             <Link to='/business'>Назад</Link>
             <div className='create__product'>
                 <div className='create__product__form'>
-                    <form encType='multipart/form-data' className='org__form'>
+                    <form id='form' className='org__form' onSubmit={submitForm} encType='multipart/form-data' method='post' action='/createwithformdata'>
                         <button  className='fake__button edit__button' onClick={(event)=>{
                             event.preventDefault();
                             fileInput.current?.click();
                         }}>Загрузить фото</button>
                         <input 
                             type="file" 
+                            name='file'
                             ref={fileInput} 
                             accept='image/*'
                             style={{display: "none"}}
@@ -83,31 +118,31 @@ const CreateProduct = () =>{
                         />
                         <div className='org__form__item'>
                             <span>Наименование *</span>
-                            <input type="text" onChange={(e)=>setTitle(e.target.value)}/>
+                            <input type="text" name='title' onChange={(e)=>setTitle(e.target.value)}/>
                         </div>
                         <div className='org__form__item'>
                             <span>Цена *</span>
-                            <input type="number" onChange={(e)=>setPrice(e.target.value)}/>
+                            <input type="number" name='price' onChange={(e)=>setPrice(e.target.value)}/>
                         </div>
                         <div className='org__form__item'>
                             <span>Описание *</span>
-                            <textarea cols={30} rows={10} onChange={(e)=>setDescription(e.target.value)}/>
+                            <textarea cols={30} rows={10} name='description' onChange={(e)=>setDescription(e.target.value)}/>
                         </div>
                         <div className='org__form__item'>
                             <span>Категория *</span>
-                            <select onChange={(e)=>setCategoryId(e.target.value)}>
+                            <select name='category' onChange={(e)=>setCategoryId(e.target.value)}>
                                 {categories}
                             </select>
                         </div>
                         <div className='org__form__item'>
                             <span>Количество на складе *</span>
-                            <input type="number" onChange={(e)=>setQuantity(e.target.value)}/>
+                            <input type="number" name='quantity' onChange={(e)=>setQuantity(e.target.value)}/>
                         </div>
                         <div className='org__form__item'> 
                             <span>Адрес самовывоза </span>
-                            <input type="text" onChange={(e)=>setPickUpAddress(e.target.value)}/>
+                            <input type="text" name='address' onChange={(e)=>setPickUpAddress(e.target.value)}/>
                         </div>
-                        <button className='add__button' onClick={(e)=>{submit(); e.preventDefault()}}>Создать</button>
+                        <button className='add__button' type='submit' /*onClick={()=>submit()}*/>Создать</button>
                     </form>
                 </div>
                 <div className='product__preview'>

@@ -7,4 +7,5 @@ const express_1 = require("express");
 const product_controller_1 = __importDefault(require("../Controllers/product.controller"));
 const productRouter = (0, express_1.Router)();
 productRouter.post('/create', product_controller_1.default.create);
+productRouter.post('/createwithformdata', product_controller_1.default.createWithFormData);
 exports.default = productRouter;

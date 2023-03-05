@@ -9,6 +9,10 @@ class ProductController{
     async create(data: IProductModel){ 
         const response = await Axios.post(`${apiPath}/products/create`, data);
     }
+    async createWithFormData(formData: FormData){
+        const result = await Axios.post(`${apiPath}/products/createwithformdata`, formData);
+        console.log(result);
+    }
 }
 
 export default new ProductController();
