@@ -39,58 +39,12 @@ const CreateProduct = () =>{
             }));
         });
     },[]);
-    async function submit(){
-            let form = document.querySelector('form');
-            form?.addEventListener("submit", async (e)=>{
-                e.preventDefault();
-                if(form && title && img && price && description && pickUpAddress){
-                    const formData = new FormData();
-                    formData.append('file', img)
-                    formData.append('title', title);
-                    formData.append('price', price as string);
-                    formData.append('description', description);
-                    formData.append('category', categoryId as string);
-                    formData.append('quantity', quantity as string);
-                    formData.append('address', pickUpAddress);
-                    await ProductController.createWithFormData(formData)
-                }
-            });
-                // BEFORE
-                // ProductController.create({
-                //     title: title,
-                //     originPrice: price,
-                //     description: description, 
-                //     categoryId: categoryId, 
-                //     organisationId: orgId, 
-                //     pickUpAddress: pickUpAddress, 
-                //     quantity: quantity
-                // });
-    }
     const submitForm = async (event: React.FormEvent<HTMLFormElement>) =>{
         event.preventDefault();
         let form = document.querySelector('form');
         if(form){
             const formData = new FormData(form);
-            // const formObj = {
-            //     file: formData.get('file'),
-            //     title: formData.get('title'),
-            //     price: formData.get('price'),
-            //     description: formData.get('description'),
-            //     category: formData.get('category'),
-            //     quantity: formData.get('quantity'),
-            //     address: formData.get('address'),
-            // }
-
-            // formData.append('file', img);
-            // formData.append('title', title);
-            // formData.append('price', price as string);
-            // formData.append('description', description);
-            // formData.append('category', categoryId as string);
-            // formData.append('quantity', quantity as string);
-            // formData.append('address', pickUpAddress);
             await ProductController.createWithFormData(formData)
-            // console.log(formObj)
-            // console.log(formData.get('title'))
         }
     }
     return(
@@ -105,7 +59,7 @@ const CreateProduct = () =>{
                         }}>Загрузить фото</button>
                         <input 
                             type="file" 
-                            name='file'
+                            name='image'
                             ref={fileInput} 
                             accept='image/*'
                             style={{display: "none"}}
@@ -130,7 +84,7 @@ const CreateProduct = () =>{
                         </div>
                         <div className='org__form__item'>
                             <span>Категория *</span>
-                            <select name='category' onChange={(e)=>setCategoryId(e.target.value)}>
+                            <select name='category_id' onChange={(e)=>setCategoryId(e.target.value)}>
                                 {categories}
                             </select>
                         </div>
@@ -140,7 +94,7 @@ const CreateProduct = () =>{
                         </div>
                         <div className='org__form__item'> 
                             <span>Адрес самовывоза </span>
-                            <input type="text" name='address' onChange={(e)=>setPickUpAddress(e.target.value)}/>
+                            <input type="text" name='pickup_address' onChange={(e)=>setPickUpAddress(e.target.value)}/>
                         </div>
                         <button className='add__button' type='submit' /*onClick={()=>submit()}*/>Создать</button>
                     </form>

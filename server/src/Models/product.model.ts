@@ -1,13 +1,13 @@
 import { RowDataPacket } from "mysql2";
 
 export interface ProductModel extends RowDataPacket{ 
-    id?: number;
+    id_product?: number;
     title: string;
-    description: string;
-    originPrice: string;
-    image: string | null;
-    categoryId: number;
-    organisationId: number;
-    pickUpAddress?: string;
+    description: string | null;
+    price: string;
+    image?: string;
+    category_id: number;
+    organisation_id?: number;
+    pickup_address?: string | null;
     quantity: number | string;
 }

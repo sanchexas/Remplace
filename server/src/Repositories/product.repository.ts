@@ -12,6 +12,15 @@ class ProductRepository{
             throw new Error("ОшибОчка");
         }
     }
+    async createWithFormData(newProduct: ProductModel, productImage: string, idOrg: string | number){
+        try{
+            const conn = await connection();
+            const response = await conn.query<ProductModel[]>('INSERT INTO products (title, description, price, category_id, organisation_id, pickup_address, quantity, image) VALUES (?,?,?,?,?,?,?,?)', [newProduct.title, newProduct.description, newProduct.price, newProduct.category_id, idOrg, newProduct.pickup_address, newProduct.quantity, productImage]);
+            await conn.end();
+        }catch(e){
+            throw new Error("ОшибОчка");
+        }
+    }
 }
 
 export default new ProductRepository;

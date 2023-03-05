@@ -8,6 +8,6 @@ const upload = multer({storage: storage});
 const productRouter = Router();
 
 productRouter.post('/create', productController.create);
-productRouter.post('/createwithformdata', upload.single('file'), productController.createWithFormData);
+productRouter.post('/createwithformdata', upload.single('image'), productController.createWithFormData);
 
 export default productRouter;

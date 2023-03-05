@@ -6,7 +6,6 @@ class CategoryRepository{
         try{
             const conn = await connection();
             const result = await conn.query<CategoryModel[]>('SELECT * FROM categories');
-            console.log(result[0])
             await conn.end();
             return result[0];
         }catch(e){
