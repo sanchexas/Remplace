@@ -16,7 +16,6 @@ class CategoryRepository {
             try {
                 const conn = yield (0, db_1.connection)();
                 const result = yield conn.query('SELECT * FROM categories');
-                console.log(result[0]);
                 yield conn.end();
                 return result[0];
             }

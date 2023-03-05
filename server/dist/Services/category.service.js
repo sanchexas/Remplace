@@ -17,7 +17,6 @@ class CategoryService {
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield category_repository_1.default.getAll();
-            console.log(result);
             return { message: result };
         });
     }

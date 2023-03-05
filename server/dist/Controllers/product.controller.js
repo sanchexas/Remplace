@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const product_service_1 = __importDefault(require("../Services/product.service"));
+const org_service_1 = __importDefault(require("../Services/org.service"));
 class ProductController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -31,10 +32,25 @@ class ProductController {
         });
     }
     createWithFormData(req, res) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
-            // const upload = multer({ dest: 'images/' })
-            console.log(req.body);
-            res.json(req.body);
+            const newProduct = req.body;
+            const productImage = (_a = req.file) === null || _a === void 0 ? void 0 : _a.path;
+            const currentUserId = req.cookies.id_user;
+            if (newProduct !== undefined && productImage !== undefined) {
+                try {
+                    const orgResult = yield org_service_1.default.getByOwnerId(currentUserId);
+                    if (typeof orgResult.message !== 'string' && orgResult.message.id_organisation !== undefined) {
+                        const result = yield product_service_1.default.createWithFormData(newProduct, productImage, orgResult.message.id_organisation);
+                        return res.json({
+                            message: result.message,
+                        });
+                    }
+                }
+                catch (e) {
+                    return res.json({ err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ` });
+                }
+            }
         });
     }
 }

@@ -23,5 +23,17 @@ class ProductRepository {
             }
         });
     }
+    createWithFormData(newProduct, productImage, idOrg) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const conn = yield (0, db_1.connection)();
+                const response = yield conn.query('INSERT INTO products (title, description, price, category_id, organisation_id, pickup_address, quantity, image) VALUES (?,?,?,?,?,?,?,?)', [newProduct.title, newProduct.description, newProduct.price, newProduct.category_id, idOrg, newProduct.pickup_address, newProduct.quantity, productImage]);
+                yield conn.end();
+            }
+            catch (e) {
+                throw new Error("ОшибОчка");
+            }
+        });
+    }
 }
 exports.default = new ProductRepository;
