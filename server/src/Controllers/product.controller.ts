@@ -35,6 +35,17 @@ class ProductController{
             }
         }
     }
-}
+    async getAll(req: Request, res: Response){
+        try{
+                const result = await productService.getAll();
+                return res.json({
+                    message: result.message,
+                });
+            }
+            catch(e){
+                return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
+            }
+        }
+    }
 
 export default new ProductController;

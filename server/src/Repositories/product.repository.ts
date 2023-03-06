@@ -21,6 +21,16 @@ class ProductRepository{
             throw new Error("ОшибОчка");
         }
     }
+    async getAll(){
+        try{
+            const conn = await connection();
+            const response = await conn.query<ProductModel[]>('SELECT * FROM products');
+            await conn.end();
+            return response[0];
+        }catch(e){
+            throw new Error("ОшибОчка");
+        }
+    }
 }
 
 export default new ProductRepository;

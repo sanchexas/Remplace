@@ -8,11 +8,15 @@ class ProductService{
         return {message: "Успешно"};
     }
     async createWithFormData(newProduct: ProductModel, productImage: string, idOrg: string | number){
-        // console.log(newProduct);
-        // console.log(productImage)
-        // console.log(idOrg)
         await productRepository.createWithFormData(newProduct, productImage, idOrg);
         return {message: "Успешно"}; // СДЕЛАТЬ ПРОВЕРКУ !!!
+    }
+    async getAll(){
+        const result = await productRepository.getAll();
+        if(result){
+            return {message: result};
+        }
+        return {message: "error, cant get all products"}
     }
 }
 
