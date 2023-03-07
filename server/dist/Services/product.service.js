@@ -22,11 +22,17 @@ class ProductService {
     }
     createWithFormData(newProduct, productImage, idOrg) {
         return __awaiter(this, void 0, void 0, function* () {
-            // console.log(newProduct);
-            // console.log(productImage)
-            // console.log(idOrg)
             yield product_repository_1.default.createWithFormData(newProduct, productImage, idOrg);
             return { message: "Успешно" }; // СДЕЛАТЬ ПРОВЕРКУ !!!
+        });
+    }
+    getAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield product_repository_1.default.getAll();
+            if (result) {
+                return { message: result };
+            }
+            return { message: "error, cant get all products" };
         });
     }
 }
