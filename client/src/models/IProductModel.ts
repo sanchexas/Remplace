@@ -1,11 +1,11 @@
 export interface IProductModel {
-    idProduct?: number;
+    id_product?: number;
     title?: string;
     description?: string;
-    originPrice?: string | number | undefined;
+    price?: string | number | undefined;
     image?: File | null;
-    categoryId?: string | number | undefined;
-    organisationId?: string | number | undefined;
-    pickUpAddress?: string;
+    category_id?: string | number | undefined;
+    organisation_id?: string | number | undefined;
+    pickup_address?: string;
     quantity?: string | number | undefined;
 }

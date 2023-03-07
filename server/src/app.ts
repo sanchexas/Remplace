@@ -37,6 +37,7 @@ export class App{
         this.app.use('/orgs',orgRouter);
         this.app.use('/categories',categoryRouter);
         this.app.use('/products', productRouter);
+        this.app.use('/src/images', express.static('src/images'));
     }
     listen(){
         this.app.listen(this.app.get('port'));

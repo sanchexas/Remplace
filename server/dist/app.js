@@ -40,6 +40,7 @@ class App {
         this.app.use('/orgs', org_routes_1.default);
         this.app.use('/categories', category_routes_1.default);
         this.app.use('/products', product_routes_1.default);
+        this.app.use('/src/images', express_1.default.static('src/images'));
     }
     listen() {
         this.app.listen(this.app.get('port'));
