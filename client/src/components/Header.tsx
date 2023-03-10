@@ -75,7 +75,7 @@ const Header = () =>{
     function loginBlock(){
         if(cookies.get('id_user')){
             return(
-                <Link to='/profile'>
+                <Link to='/profile' style={{textDecoration: "none", color: "black"}}>
                     {fio}
                 </Link>
             );

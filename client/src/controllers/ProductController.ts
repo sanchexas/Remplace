@@ -20,6 +20,12 @@ class ProductController{
             return result;
         }
     }
+    async getTopSix(){
+        const result = await Axios.get(`${apiPath}/products/gettopsix`);
+        if(result){
+            return result;
+        }
+    }
 }
 
 export default new ProductController();

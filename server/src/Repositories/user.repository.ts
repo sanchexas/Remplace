@@ -42,10 +42,10 @@ class UserRepository{
             throw new Error("ОшибОчка");
         }
     }
-    async update(updatedUserBody: IUserModel){
+    async update(updatedUserBody: IUserModel, userImage: string, currentUserId: string | number){
         try{
             const conn = await connection();
-            await conn.query<IUserModel[]>('UPDATE users SET fio = ?, email = ?, phone = ?, birthday = ? WHERE id_user = ?;', [updatedUserBody.fio, updatedUserBody.email, updatedUserBody.phone, updatedUserBody.birthday, updatedUserBody.id]);
+            await conn.query<IUserModel[]>('UPDATE users SET fio = ?, email = ?, phone = ?, birthday = ?, image = ? WHERE id_user = ?;', [updatedUserBody.fio, updatedUserBody.email, updatedUserBody.phone, updatedUserBody.birthday, userImage, currentUserId]);
             await conn.end();
         }catch(e){
             throw new Error("ОшибОчка");

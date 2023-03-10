@@ -7,10 +7,10 @@ import ProductController from '../controllers/ProductController';
 import { useEffect, useState } from 'react';
 import apiPath from '../api-path';
 
-const CarouselThree = () =>{
-    const [products, setProducts] = useState();
+const CarouselNew = () =>{
+    const [products, setProducts] = useState<object | any>();
     useEffect(()=>{
-        ProductController.getAll().then((response)=>{
+        ProductController.getTopSix().then((response)=>{
             const resArr = response?.data.message;
             console.log(resArr);
             if(resArr !== undefined){
@@ -37,32 +37,10 @@ const CarouselThree = () =>{
                 }));
             }
         });
-    },[])
-
-    function SampleNextArrow(props: { className: any; style: any; onClick: any; }) {
-        const { className, style, onClick } = props;
-        return (
-          <div
-            className={className}
-            style={{ ...style, display: "block", background: "#465565", borderRadius: "100%", width: "19px", height: "19px"}}
-            onClick={onClick}
-          />
-        );
-      }
-      
-      function SamplePrevArrow(props: { className: any; style: any; onClick: any; }) {
-        const { className, style, onClick } = props;
-        return (
-          <div
-            className={className}
-            style={{ ...style, display: "block", background: "#465565", borderRadius: "100%", width: "19px", height: "19px"}}
-            onClick={onClick}
-          />
-        );
-      }
-      
+    },[]);
 
     const settings = {
+        accessibility: false,
         autoplay: true,
         dots: true,
         infinite: true,
@@ -71,23 +49,22 @@ const CarouselThree = () =>{
         slidesToScroll: 1,
         initialSlide: 0,
         autoplaySpeed: 2000,
-        nextArrow: <SampleNextArrow className={undefined} style={undefined} onClick={undefined} />,
-        prevArrow: <SamplePrevArrow className={undefined} style={undefined} onClick={undefined} />,
+        arrows: false,
         responsive: [
           {
-            breakpoint: 1024,
+            breakpoint: 1100,
             settings: {
-              slidesToShow: 3,
+              slidesToShow: 2,
               slidesToScroll: 3,
               infinite: true,
               dots: true
             }
           },
           {
-            breakpoint: 600,
+            breakpoint: 810,
             settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
+              slidesToShow: 1,
+              slidesToScroll: 1,
               initialSlide: 2
             }
           },
@@ -107,4 +84,4 @@ const CarouselThree = () =>{
       );
 }
 
-export default CarouselThree;
+export default CarouselNew;

@@ -47,17 +47,32 @@ class UserController{
             }
         }
     }
-    async update(req: Request, res: Response){
-        const updatedUserBody: IUserModel = req.body;
-        if(updatedUserBody !== undefined){
+    // async update(req: Request, res: Response){
+    //     const updatedUserBody: IUserModel = req.body;
+    //     if(updatedUserBody !== undefined){
+    //         try{
+    //             const result = await userService.update(updatedUserBody);
+    //             if(typeof result.message === "string"){
+    //                 return res.json({message: result.message});
+    //             }
+    //             // return res.send();
+    //         }catch(e){
+    //                 return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
+    //         }
+    //     }
+    // }
+    async update(req: Request, res: Response){ //Вообще всю эту логику надо бы переместить в сервис, но мне лень
+        const newUser: IUserModel = req.body;
+        const userImage: string | undefined = req.file?.path;
+        const currentUserId: string  = req.cookies.id_user;
+        if(newUser !== undefined && userImage !== undefined){
             try{
-                const result = await userService.update(updatedUserBody);
-                if(typeof result.message === "string"){
-                    return res.json({message: result.message});
-                }
-                // return res.send();
+                    const result = await userService.update(newUser, userImage, currentUserId);
+                    return res.json({
+                        message: result.message,
+                    });
             }catch(e){
-                    return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
+                return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
             }
         }
     }

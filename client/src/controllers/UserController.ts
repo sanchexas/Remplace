@@ -22,7 +22,7 @@ class UserController{
         const response = await Axios.post<IUsersResponse[]>(`${apiPath}/users/signin`, info);
         return response;
     }
-    async updateUser(info: object){
+    async updateUser(info: FormData){
         await Axios.post(`${apiPath}/users/update`, info);
     }
 }

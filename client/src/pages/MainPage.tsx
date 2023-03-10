@@ -1,9 +1,5 @@
-import { useEffect, useState } from 'react';
 import '../style.css';
-import ProductController from '../controllers/ProductController';
-import { IProductModel } from '../models/IProductModel';
-import apiPath from '../api-path';
-import CarouselThree from '../components/CarouselThree';
+import CarouselNew from '../components/CarouselNew';
 
 const MainPage = () =>{
     
@@ -33,12 +29,9 @@ const MainPage = () =>{
                 </div>
             </div>
             <h1>Новинки</h1>
-
             <div className='carousel'>
-                {/* {products} */}
-                <CarouselThree/>
+                <CarouselNew/>
             </div>
-
         </div>
     );
 }

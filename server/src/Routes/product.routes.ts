@@ -10,5 +10,6 @@ const productRouter = Router();
 productRouter.post('/create', productController.create);
 productRouter.post('/createwithformdata', upload.single('image'), productController.createWithFormData);
 productRouter.get('/getall', productController.getAll);
+productRouter.get('/gettopsix', productController.getTopSix);
 
 export default productRouter;

@@ -4,8 +4,6 @@ import defaultImage from '../images/noimage.jpg'
 import { useEffect, useRef, useState } from 'react';
 import CategoryController from '../controllers/CategoryController';
 import { ICategoryResponse } from '../models/responses/ICategoryResponse';
-import OrganisationController from '../controllers/OrganisationController';
-import Cookies from 'universal-cookie';
 import ProductController from '../controllers/ProductController';
 
 const CreateProduct = () =>{
@@ -19,7 +17,6 @@ const CreateProduct = () =>{
     const [pickUpAddress, setPickUpAddress] = useState<string>();
     const [quantity, setQuantity] = useState<number | string>();
     const [categories, setCategories] = useState();
-    const cookies = new Cookies();
     useEffect(()=>{
         if(img !== undefined){
             const fileReader = new FileReader();

@@ -39,8 +39,8 @@ class UserService{
         }
         return {message: {id: result[0].id_user, fio: result[0].fio, email: result[0].email, role_id: result[0].role_id}};
     }
-    async update(updatedUserBody: IUserModel){
-        const result = await userRepository.update(updatedUserBody); //прописать проверку
+    async update(updatedUserBody: IUserModel, userImage: string, currentUserId: string | number){
+        const result = await userRepository.update(updatedUserBody, userImage, currentUserId); //прописать проверку
         return {message: result};
     }
 }
