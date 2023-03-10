@@ -148,6 +148,17 @@ footer{
 .sign__button:hover{
     border-radius: 50px;
 }
+.head__pfp{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.head__pfp img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .catalogue__search__wrapper{
     width: 100%;
     height: 360px;
@@ -170,7 +181,7 @@ footer{
 .catalogue__button{
     background: white;
     width: 35%;
-    
+    color: black;
 }
 .search{
     background: white;
@@ -307,8 +318,8 @@ footer{
     border-radius: 50%;
     width: 300px;
     height: 300px;
-    background: rgb(235, 235, 235);
     overflow: hidden;
+    border: solid 1px rgba(4, 73, 177, 0.482);
 }
 .avatar img{
     width: 100%;
@@ -321,14 +332,14 @@ footer{
 .edit__button{
     width: 100%;
     height: 40px;
-    border: 2px solid #0762C4;
+    border: 1px solid #0762C4;
 }
 .edit__button:hover{
     background: #0762C4;
     color: white;
 }
 .edit__info__block input{
-    border: #426a94 solid 2px;
+    border: #426a94 solid 1px;
     border-radius: 5px;
     font-size: 25px;
     padding: 5px;
@@ -434,7 +445,7 @@ footer{
 .org__form__item input, textarea{
     font-size: 20px;
     padding: 5px;
-    border: #064283 2px solid;
+    border: #064283 1px solid;
     border-radius: 5px;
     font-family: IM;
 }

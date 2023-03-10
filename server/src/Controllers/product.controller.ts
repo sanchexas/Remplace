@@ -2,6 +2,7 @@ import e, { Request, Response } from "express";
 import { ProductModel } from "../Models/product.model";
 import productService from "../Services/product.service";
 import orgService from "../Services/org.service";
+import { ParsedQs } from "qs";
 
 class ProductController{
     async create(req: Request, res: Response){
@@ -52,6 +53,20 @@ class ProductController{
             return res.json({
                 message: result.message,
             });
+        }
+        catch(e){
+            return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
+        }
+    }
+    async getByOrgId(req: Request, res: Response){
+        try{
+            if(req.query.idOrg){
+                const reqIdOrg: string | ParsedQs | string[] | ParsedQs[] = req.query.idOrg;
+                const result = await productService.getByOrgId(reqIdOrg);
+                return res.json({
+                    message: result.message,
+                });
+            }
         }
         catch(e){
             return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});

@@ -26,6 +26,10 @@ class ProductController{
             return result;
         }
     }
+    async getByOrgId(idOrg: string | number){
+        const result = await Axios.get(`${apiPath}/products/getbyorgid`, {params: {idOrg: idOrg}});
+        return result;
+    }
 }
 
 export default new ProductController();

@@ -1,5 +1,6 @@
 import '../style.css';
 import CarouselNew from '../components/CarouselNew';
+import { Link } from 'react-router-dom';
 
 const MainPage = () =>{
     
@@ -7,7 +8,7 @@ const MainPage = () =>{
         <div className='main__page'>
             <div className="catalogue__search__wrapper">
                 <div className="catalogue__search__block">
-                    <button className="catalogue__button">
+                    <Link to='catalogue' className="catalogue__button fake__button">
                         <div>
                             <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M13.125 4.375H5.83333C5.02792 4.375 4.375 5.02792 4.375 5.83333V13.125C4.375 13.9304 5.02792 14.5833 5.83333 14.5833H13.125C13.9304 14.5833 14.5833 13.9304 14.5833 13.125V5.83333C14.5833 5.02792 13.9304 4.375 13.125 4.375Z" stroke="#0762C4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -17,7 +18,7 @@ const MainPage = () =>{
                             </svg>
                             Каталог
                         </div>
-                    </button>
+                    </Link>
                     <div className="search">
                         <input type="text" placeholder="Найти..."></input>
                         <button className="search__button">

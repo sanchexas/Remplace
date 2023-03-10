@@ -7,6 +7,7 @@ import AdminPanel from '../components/AdminPanel';
 import UserPanel from '../components/UserPanel';
 import OrganisationPanel from '../components/OrganisationPanel';
 import apiPath from '../api-path';
+import defaultAvatar from '../images/avatar_default.png';
 
 const Profile = () => {
     const fileInput = useRef<HTMLInputElement>(null);
@@ -66,7 +67,7 @@ const Profile = () => {
         <div className='profile__wrapper'>
             <div className='profile__info'>
                 <div className='avatar'>
-                    <img src={`${apiPath}/${image}`} alt="pfp" />
+                    <img src={(image !== null && image !== undefined) ? `${apiPath}/${image}` : defaultAvatar} alt="pfp" />
                 </div>
                 {(edit) ? 
                 <form className='edit__info__block' encType='multipart/form-data' method='post' action='/update' onSubmit={updateInfo}>

@@ -4,14 +4,18 @@ import { useEffect, useState } from 'react';
 import { Logo } from './Logo';
 import UserController from '../controllers/UserController';
 import Cookies from 'universal-cookie';
+import apiPath from '../api-path';
+import defaultAvatar from '../images/avatar_default.png';
 
 const Header = () =>{
     const [fio, setFio] = useState<string>();
+    const [img, setImg] = useState<string>();
     const cookies = new Cookies();
     useEffect(()=>{
         if(cookies.get('id_user')){
             UserController.getUserById(cookies.get('id_user')).then((response)=>{
                 setFio(response.message?.fio);
+                setImg(response.message?.image);
             });
         }
     },[]);
@@ -75,7 +79,10 @@ const Header = () =>{
     function loginBlock(){
         if(cookies.get('id_user')){
             return(
-                <Link to='/profile' style={{textDecoration: "none", color: "black"}}>
+                <Link to='/profile' style={{textDecoration: "none", color: "black", display: "flex", alignItems: "center", gap: "10px"}}>
+                    <div className='head__pfp'>
+                        <img src={(img !== null && img !== undefined) ? `${apiPath}/${img}` : defaultAvatar} alt="avatar" />
+                    </div>
                     {fio}
                 </Link>
             );

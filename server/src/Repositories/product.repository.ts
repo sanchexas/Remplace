@@ -1,3 +1,4 @@
+import { ParsedQs } from "qs";
 import { connection } from "../db";
 import { IOrganisationModel } from "../Models/organisation.model";
 import { ProductModel } from "../Models/product.model";
@@ -35,6 +36,16 @@ class ProductRepository{
         try{
             const conn = await connection();
             const response = await conn.query<ProductModel[]>('SELECT * FROM products ORDER BY id_product DESC LIMIT 6');
+            await conn.end();
+            return response[0];
+        }catch(e){
+            throw new Error("ОшибОчка");
+        }
+    }
+    async getByOrgId(idOrg: string | ParsedQs | string[] | ParsedQs[]){
+        try{
+            const conn = await connection();
+            const response = await conn.query<ProductModel[]>('SELECT * FROM products WHERE organisation_id = ? ORDER BY id_product DESC', idOrg);
             await conn.end();
             return response[0];
         }catch(e){
