@@ -32,7 +32,25 @@ class ProductService {
             if (result) {
                 return { message: result };
             }
-            return { message: "error, cant get all products" };
+            return { message: "Не удалось загрузить товары." };
+        });
+    }
+    getTopSix() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield product_repository_1.default.getTopSix();
+            if (result) {
+                return { message: result };
+            }
+            return { message: "Не удалось загрузить 6 товаров." };
+        });
+    }
+    getByOrgId(idOrg) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield product_repository_1.default.getByOrgId(idOrg);
+            if (result) {
+                return { message: result };
+            }
+            return { message: "Не удалось найти продукты по указанному id организации." };
         });
     }
 }

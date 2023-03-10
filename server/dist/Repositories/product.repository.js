@@ -48,5 +48,31 @@ class ProductRepository {
             }
         });
     }
+    getTopSix() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const conn = yield (0, db_1.connection)();
+                const response = yield conn.query('SELECT * FROM products ORDER BY id_product DESC LIMIT 6');
+                yield conn.end();
+                return response[0];
+            }
+            catch (e) {
+                throw new Error("ОшибОчка");
+            }
+        });
+    }
+    getByOrgId(idOrg) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const conn = yield (0, db_1.connection)();
+                const response = yield conn.query('SELECT * FROM products WHERE organisation_id = ? ORDER BY id_product DESC', idOrg);
+                yield conn.end();
+                return response[0];
+            }
+            catch (e) {
+                throw new Error("ОшибОчка");
+            }
+        });
+    }
 }
 exports.default = new ProductRepository;

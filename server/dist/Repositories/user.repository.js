@@ -62,11 +62,11 @@ class UserRepository {
             }
         });
     }
-    update(updatedUserBody) {
+    update(updatedUserBody, userImage, currentUserId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const conn = yield (0, db_1.connection)();
-                yield conn.query('UPDATE users SET fio = ?, email = ?, phone = ?, birthday = ? WHERE id_user = ?;', [updatedUserBody.fio, updatedUserBody.email, updatedUserBody.phone, updatedUserBody.birthday, updatedUserBody.id]);
+                yield conn.query('UPDATE users SET fio = ?, email = ?, phone = ?, birthday = ?, image = ? WHERE id_user = ?;', [updatedUserBody.fio, updatedUserBody.email, updatedUserBody.phone, updatedUserBody.birthday, userImage, currentUserId]);
                 yield conn.end();
             }
             catch (e) {

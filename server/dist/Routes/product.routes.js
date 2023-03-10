@@ -12,4 +12,6 @@ const productRouter = (0, express_1.Router)();
 productRouter.post('/create', product_controller_1.default.create);
 productRouter.post('/createwithformdata', upload.single('image'), product_controller_1.default.createWithFormData);
 productRouter.get('/getall', product_controller_1.default.getAll);
+productRouter.get('/gettopsix', product_controller_1.default.getTopSix);
+productRouter.get('/getbyorgid', product_controller_1.default.getByOrgId);
 exports.default = productRouter;

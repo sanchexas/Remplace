@@ -66,5 +66,34 @@ class ProductController {
             }
         });
     }
+    getTopSix(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield product_service_1.default.getTopSix();
+                return res.json({
+                    message: result.message,
+                });
+            }
+            catch (e) {
+                return res.json({ err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ` });
+            }
+        });
+    }
+    getByOrgId(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (req.query.idOrg) {
+                    const reqIdOrg = req.query.idOrg;
+                    const result = yield product_service_1.default.getByOrgId(reqIdOrg);
+                    return res.json({
+                        message: result.message,
+                    });
+                }
+            }
+            catch (e) {
+                return res.json({ err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ` });
+            }
+        });
+    }
 }
 exports.default = new ProductController;
