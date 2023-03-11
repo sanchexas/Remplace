@@ -52,6 +52,16 @@ class ProductRepository{
             throw new Error("ОшибОчка");
         }
     }
+    async deleteById(idProduct: number | string){
+        try{
+            const conn = await connection();
+            const response = await conn.query('DELETE FROM products WHERE id_product = ?', idProduct);
+            await conn.end();
+            return response[0];
+        }catch(e){
+            throw new Error("ОшибОчка");
+        }
+    }
 }
 
 export default new ProductRepository;

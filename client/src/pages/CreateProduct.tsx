@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../style.css';
 import defaultImage from '../images/noimage.jpg'
 import { useEffect, useRef, useState } from 'react';
@@ -7,6 +7,7 @@ import { ICategoryResponse } from '../models/responses/ICategoryResponse';
 import ProductController from '../controllers/ProductController';
 
 const CreateProduct = () =>{
+    const redirect = useNavigate();
     const fileInput = useRef<HTMLInputElement>(null);
     const [preview, setPreview] = useState<string>();
     const [img, setImg] = useState<File>();
@@ -41,7 +42,8 @@ const CreateProduct = () =>{
         let form = document.querySelector('form');
         if(form){
             const formData = new FormData(form);
-            await ProductController.createWithFormData(formData)
+            await ProductController.createWithFormData(formData);
+            redirect('/business');
         }
     }
     return(

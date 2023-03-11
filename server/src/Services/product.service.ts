@@ -32,6 +32,13 @@ class ProductService{
         }
         return {message: "Не удалось найти продукты по указанному id организации."}
     }
+    async deleteById(idProduct: number | string){
+        const result = await productRepository.deleteById(idProduct);
+        if(result){
+            return {message: result};
+        }
+        return {message: "Не удалось удалить продукт."}
+    }
 }
 
 export default new ProductService;

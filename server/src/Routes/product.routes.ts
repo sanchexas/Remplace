@@ -12,5 +12,6 @@ productRouter.post('/createwithformdata', upload.single('image'), productControl
 productRouter.get('/getall', productController.getAll);
 productRouter.get('/gettopsix', productController.getTopSix);
 productRouter.get('/getbyorgid', productController.getByOrgId);
+productRouter.post('/deletebyid', productController.deleteById);
 
 export default productRouter;

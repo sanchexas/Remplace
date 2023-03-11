@@ -30,6 +30,10 @@ class ProductController{
         const result = await Axios.get(`${apiPath}/products/getbyorgid`, {params: {idOrg: idOrg}});
         return result;
     }
+    async deleteById(idProduct: number | string){
+        console.log(idProduct)
+        await Axios.post(`${apiPath}/products/deletebyid`, {idProduct});
+    }
 }
 
 export default new ProductController();

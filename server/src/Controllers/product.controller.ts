@@ -72,6 +72,20 @@ class ProductController{
             return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
         }
     }
+    async deleteById(req: Request, res: Response){
+        try{
+            console.log(req.body.idProduct)
+            if(req.body.idProduct){
+                const idProduct = req.body.idProduct;
+                const result = await productService.deleteById(idProduct);
+                return res.json({
+                    message: result.message,
+                });
+            }
+        }catch(e){
+            return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
+        }
+    }
 }
     
 
