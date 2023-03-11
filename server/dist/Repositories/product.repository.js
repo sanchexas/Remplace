@@ -74,5 +74,18 @@ class ProductRepository {
             }
         });
     }
+    deleteById(idProduct) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const conn = yield (0, db_1.connection)();
+                const response = yield conn.query('DELETE FROM products WHERE id_product = ?', idProduct);
+                yield conn.end();
+                return response[0];
+            }
+            catch (e) {
+                throw new Error("ОшибОчка");
+            }
+        });
+    }
 }
 exports.default = new ProductRepository;

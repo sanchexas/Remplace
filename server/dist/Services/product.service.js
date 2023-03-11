@@ -53,5 +53,14 @@ class ProductService {
             return { message: "Не удалось найти продукты по указанному id организации." };
         });
     }
+    deleteById(idProduct) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield product_repository_1.default.deleteById(idProduct);
+            if (result) {
+                return { message: result };
+            }
+            return { message: "Не удалось удалить продукт." };
+        });
+    }
 }
 exports.default = new ProductService;
