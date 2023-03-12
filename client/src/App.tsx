@@ -14,6 +14,7 @@ import Notifications from './pages/Notifications';
 import Business from './pages/Business';
 import CreateProduct from './pages/CreateProduct';
 import Catalogue from './pages/Catalogue';
+import EditProduct from './pages/EditProduct';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
               <Route path='/business' element={<Business/>}/>
               <Route path='/create_product' element={<CreateProduct/>}/>
               <Route path='/catalogue' element={<Catalogue/>}/>
+              <Route path='/editproduct' element={<EditProduct/>}/>
             </Routes>
           </main>
           <Footer/>
