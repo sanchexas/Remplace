@@ -495,12 +495,16 @@ footer{
     border-radius: 0%;
     /* border-bottom: 2px #465565 solid; */
     width: 350px;
-    min-height: 510px;
+    min-height: 450px;
     overflow: hidden;
     /* background: rgb(203, 203, 203); */
     display: flex;
     flex-direction: column;
     padding-bottom: 5px;
+}
+.product__card a{
+    color:  black;
+    text-decoration: none;
 }
 .product__img{
     width: 100%;
@@ -522,10 +526,11 @@ footer{
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.12);
 }
 .product__card__info{
-    height: 150px;
+    height: 120px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    position: relative;
 }
 .add__to__cart{
     width: 50%;
