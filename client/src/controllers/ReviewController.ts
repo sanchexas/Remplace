@@ -7,6 +7,10 @@ class ReviewController{
         const response = await Axios.post(`${apiPath}/reviews/create`, data);
         return response;
     }
+    async getByProdId(prodId: number | string){
+        const response = await Axios.get(`${apiPath}/reviews/getbyprodid`, {params: {prodId: prodId}});
+        return response;
+    }
 }
 
 export default new ReviewController();

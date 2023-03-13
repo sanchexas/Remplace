@@ -1,7 +1,7 @@
 export interface IReviewModel{
-    id?: number;
+    id_review?: number;
     text: string;
-    authorId: number;
-    productId: number;
-    sentAt?: string;
+    author_id: number;
+    product_id: number;
+    sent_at?: string;
 }
