@@ -86,6 +86,19 @@ class ProductController{
             return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
         }
     }
+    async getById(req: Request, res: Response){
+        try{
+            if(req.query.idProduct){
+                const idProduct: string | ParsedQs | string[] | ParsedQs[] = req.query.idProduct;
+                const result = await productService.getById(idProduct);
+                return res.json({
+                    message: result.message,
+                });
+            }
+        }catch(e){
+            return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
+        }
+    }
 }
     
 

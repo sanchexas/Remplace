@@ -3,17 +3,17 @@ import apiPath from '../api-path';
 import { Link } from 'react-router-dom';
 
 type productCardProps = {
-    key: string | number | null | undefined
+    id: string | number | null | undefined
     image: string | File | null | undefined
     title: string | null | undefined
     price: string | number | null | undefined
 }
 
-const ProductCard = ({key, image, title, price}: productCardProps) => {
+const ProductCard = ({id, image, title, price}: productCardProps) => {
     
     return(
-        <div className='product__card' key={key}>
-            <Link to=''>
+        <div className='product__card'>
+            <Link to={`/productinfo?id=${id}`}>
                 <div className='product__img'>
                     <img src={`${apiPath}/${image}`} alt='product pic' />
                 </div>

@@ -62,6 +62,16 @@ class ProductRepository{
             throw new Error("ОшибОчка");
         }
     }
+    async getById(idProduct: string | ParsedQs | string[] | ParsedQs[]){
+        try{
+            const conn = await connection();
+            const response = await conn.query('SELECT * FROM products WHERE id_product = ?', idProduct);
+            await conn.end();
+            return response[0];
+        }catch(e){
+            throw new Error("ОшибОчка");
+        }
+    }
 }
 
 export default new ProductRepository;

@@ -24,6 +24,16 @@ class OrgRepository{
             throw new Error("Ошибка");
         }
     }
+    async getById(id: string | ParsedQs | string[] | ParsedQs[]){
+        try{
+            const conn = await connection();
+            const result = await conn.query<IOrganisationModel[]>('SELECT * FROM organisations WHERE id_organisation = ?', id);
+            conn.end();
+            return result[0];
+        }catch(e){
+            throw new Error("Ошибка");
+        }
+    }
 }
 
 export default new OrgRepository;

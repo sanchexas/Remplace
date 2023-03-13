@@ -16,14 +16,14 @@ class ProductService{
         if(result){
             return {message: result};
         }
-        return {message: "Не удалось загрузить товары."}
+        return {message: "Не удалось загрузить товары."};
     }
     async getTopSix(){
         const result = await productRepository.getTopSix();
         if(result){
             return {message: result};
         }
-        return {message: "Не удалось загрузить 6 товаров."}
+        return {message: "Не удалось загрузить 6 товаров."};
     }
     async getByOrgId(idOrg: string | ParsedQs | string[] | ParsedQs[]){
         const result = await productRepository.getByOrgId(idOrg);
@@ -37,7 +37,14 @@ class ProductService{
         if(result){
             return {message: result};
         }
-        return {message: "Не удалось удалить продукт."}
+        return {message: "Не удалось удалить продукт."};
+    }
+    async getById(idProduct: string | ParsedQs | string[] | ParsedQs[]){
+        const result = await productRepository.getById(idProduct);
+        if(result){
+            return {message: result};
+        }
+        return {message: "Не удалось найти продукт по id."};
     }
 }
 

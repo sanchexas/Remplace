@@ -587,4 +587,21 @@ footer{
 .list__product__item:hover .delete__icon{
     stroke: #c40707;
 }
+.product__info__page{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+.product__info{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+.product__info__wrap{
+    display: flex;
+    flex-direction: column;
+}
 

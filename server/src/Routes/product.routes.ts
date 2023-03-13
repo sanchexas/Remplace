@@ -13,5 +13,6 @@ productRouter.get('/getall', productController.getAll);
 productRouter.get('/gettopsix', productController.getTopSix);
 productRouter.get('/getbyorgid', productController.getByOrgId);
 productRouter.post('/deletebyid', productController.deleteById);
+productRouter.get('/getbyid', productController.getById);
 
 export default productRouter;

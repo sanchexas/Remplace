@@ -29,6 +29,19 @@ class OrgController{
             }
         }
     }
+    async getById(req: Request, res: Response){
+        const id = req.query.id;
+        if(id){
+            try{
+                const result = await orgService.getById(id);
+                return res.json({
+                    message: result.message
+                });
+            }catch(e){
+                return res.json({err: "Ошибка"});
+            }
+        }
+    }
 }
 
 export default new OrgController;

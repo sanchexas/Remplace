@@ -20,6 +20,15 @@ class OrgService{
         }
         return {message: "Организация не найдена"}
     }
+    async getById(id: string | ParsedQs | string[] | ParsedQs[]){
+        if(id){
+            const result = await orgRepository.getById(id);
+            return {
+                message: result[0]
+            }
+        }
+        return {message: "Организация не найдена"}
+    }
 }
 
 export default new OrgService;

@@ -31,8 +31,11 @@ class ProductController{
         return result;
     }
     async deleteById(idProduct: number | string){
-        console.log(idProduct)
         await Axios.post(`${apiPath}/products/deletebyid`, {idProduct});
+    }
+    async getById(idProduct: number | string){
+        const result = await Axios.get(`${apiPath}/products/getbyid`, {params: {idProduct: idProduct}});
+        return result;
     }
 }
 
