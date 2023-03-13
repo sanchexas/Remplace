@@ -1,11 +1,12 @@
 import Axios from 'axios';
 import apiPath from '../api-path';
-import { IUsersResponse } from '../models/responses/IUserResponse';
-import Cookies from 'universal-cookie';
 Axios.defaults.withCredentials = true;
 
 class ReviewController{
-    
+    async create(data: object){
+        const response = await Axios.post(`${apiPath}/reviews/create`, data);
+        return response;
+    }
 }
 
 export default new ReviewController();

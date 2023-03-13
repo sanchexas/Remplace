@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser';
 import orgRouter from './Routes/org.routes';
 import categoryRouter from './Routes/category.routes';
 import productRouter from './Routes/product.routes';
+import reviewRouter from './Routes/review.routes';
 
 export class App{
     private app: Application;
@@ -37,6 +38,7 @@ export class App{
         this.app.use('/orgs',orgRouter);
         this.app.use('/categories',categoryRouter);
         this.app.use('/products', productRouter);
+        this.app.use('/reviews', reviewRouter);
         this.app.use('/src/images', express.static('src/images'));
     }
     listen(){

@@ -604,4 +604,9 @@ footer{
     display: flex;
     flex-direction: column;
 }
+.write__review{
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+}
 

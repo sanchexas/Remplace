@@ -2,15 +2,27 @@ import { useEffect, useState } from 'react';
 import '../style.css';
 import {Link, useSearchParams} from 'react-router-dom';
 import ProductController from '../controllers/ProductController';
-import { IProductResponse } from '../models/responses/IProductResponse';
 import apiPath from '../api-path';
 import OrganisationController from '../controllers/OrganisationController';
+import Cookies from 'universal-cookie';
+import ReviewController from '../controllers/ReviewController';
 
 const ProductInfo = () =>{
     const [searchParams, setSearchParams] = useSearchParams();
     const [product, setProduct] = useState<JSX.Element>();
     const [orgTitle, setOrgTitle] = useState();
     const curentProdId = searchParams.get("id");
+    const [review, setReview] = useState<string>();
+    const cookies = new Cookies();
+
+    function sendReview(){
+        const data = {
+            author_id: cookies.get('id_user'),
+            product_id: curentProdId,
+            text: review
+        }
+        ReviewController.create(data);
+    }
 
     useEffect(()=>{
         if(curentProdId !== null){
@@ -45,7 +57,11 @@ const ProductInfo = () =>{
         <div className='product__info__wrap'>
             {product}
             <div className='reviews__block'>
-                
+                <h1>Отзывы</h1>
+                <div className='write__review' >
+                    <textarea cols={50} rows={3} style={{width:"70%"}} onChange={(e)=>setReview(e.target.value)}></textarea>
+                    <button className='save__button' style={{width: "20%"}} onClick={()=>sendReview()}>Отправить</button>
+                </div>
             </div>
         </div>
     );

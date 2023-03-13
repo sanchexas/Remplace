@@ -3,5 +3,5 @@ export interface IReviewModel{
     text: string;
     authorId: number;
     productId: number;
-    sentAt: string;
+    sentAt?: string;
 }
