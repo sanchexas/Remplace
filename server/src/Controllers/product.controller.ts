@@ -99,6 +99,21 @@ class ProductController{
             return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
         }
     }
+    async update(req: Request, res: Response){
+        const product: ProductModel = req.body;
+        const productImage: string | undefined = req.file?.path;
+        console.log(productImage)
+        if(product !== undefined && productImage !== undefined){
+            try{
+                const result = await productService.update(product, productImage);
+                return res.json({
+                    message: result.message,
+                });
+            }catch(e){
+                return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
+            }
+        }
+    }
 }
     
 

@@ -46,6 +46,10 @@ class ProductService{
         }
         return {message: "Не удалось найти продукт по id."};
     }
+    async update(product: ProductModel, productImage: string){
+        await productRepository.update(product, productImage);
+        return {message: "Успешно"} // сделать проверку
+    }
 }
 
 export default new ProductService;

@@ -51,7 +51,6 @@ const ProductInfo = () =>{
                     );
                 });
             });
-            
         }
     },[orgTitle]); 
     useEffect(()=>{

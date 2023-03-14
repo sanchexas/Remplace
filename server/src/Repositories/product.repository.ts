@@ -72,6 +72,15 @@ class ProductRepository{
             throw new Error("ОшибОчка");
         }
     }
+    async update(product: ProductModel, productImage: string){
+        try{
+            const conn = await connection();
+            const response = await conn.query<ProductModel[]>('UPDATE products SET title = ? , description = ?, price = ?, image = ?, category_id = ?, pickup_address = ?, quantity = ? WHERE id_product = ?', [product.title, product.description, product.price, productImage, product.category_id, product.pickup_address, product.quantity, product.id_product] );
+            await conn.end();
+        }catch(e){
+            throw new Error("ОшибОчка");
+        }
+    }
 }
 
 export default new ProductRepository;

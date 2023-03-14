@@ -2,7 +2,6 @@ import Axios from 'axios';
 import apiPath from '../api-path';
 import Cookies from 'universal-cookie';
 import { IProductModel } from '../models/IProductModel';
-import { IProductResponse } from '../models/responses/IProductResponse';
 Axios.defaults.withCredentials = true;
 
 class ProductController{
@@ -12,7 +11,6 @@ class ProductController{
     }
     async createWithFormData(formData: FormData){
         const result = await Axios.post(`${apiPath}/products/createwithformdata`, formData);
-        console.log(result);
     }
     async getAll(){
         const result = await Axios.get(`${apiPath}/products/getall`);
@@ -36,6 +34,9 @@ class ProductController{
     async getById(idProduct: number | string){
         const result = await Axios.get(`${apiPath}/products/getbyid`, {params: {idProduct: idProduct}});
         return result;
+    }
+    async update(formData: FormData){
+        const result = await Axios.post(`${apiPath}/products/update`, formData);
     }
 }
 

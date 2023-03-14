@@ -14,5 +14,6 @@ productRouter.get('/gettopsix', productController.getTopSix);
 productRouter.get('/getbyorgid', productController.getByOrgId);
 productRouter.post('/deletebyid', productController.deleteById);
 productRouter.get('/getbyid', productController.getById);
+productRouter.post('/update', upload.single('image'), productController.update);
 
 export default productRouter;

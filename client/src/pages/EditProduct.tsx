@@ -1,12 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams, } from 'react-router-dom';
 import '../style.css';
-import defaultImage from '../images/noimage.jpg'
 import { useEffect, useRef, useState } from 'react';
 import CategoryController from '../controllers/CategoryController';
 import { ICategoryResponse } from '../models/responses/ICategoryResponse';
 import ProductController from '../controllers/ProductController';
+import apiPath from '../api-path';
 
 const EditProduct = () =>{
+    const [searchParams, setSearchParams] = useSearchParams();
     const redirect = useNavigate();
     const fileInput = useRef<HTMLInputElement>(null);
     const [preview, setPreview] = useState<string>();
@@ -18,6 +19,8 @@ const EditProduct = () =>{
     const [pickUpAddress, setPickUpAddress] = useState<string>();
     const [quantity, setQuantity] = useState<number | string>();
     const [categories, setCategories] = useState();
+    const [prodImg, setProdImg] = useState<string>();
+    const [productId, setProductId] = useState<string>();
     useEffect(()=>{
         if(img !== undefined){
             const fileReader = new FileReader();
@@ -32,25 +35,40 @@ const EditProduct = () =>{
             let responseArr = response.data.message;
             setCategories(responseArr.map((category: ICategoryResponse)=>{
                 return(
-                    <option value={category.id_category} key={category.id_category}>{category.title}</option>
+                    <option selected={true} value={category.id_category} key={category.id_category}>{category.title}</option>
                 );
             }));
-        }).then(()=>{
-
         });
+    },[]);
+    useEffect(()=>{
+        const curentProdId = searchParams.get("id");
+        if(curentProdId){
+            ProductController.getById(curentProdId).then((response)=>{
+                const res = response.data.message[0];
+                setProdImg(res.image);
+                setTitle(res.title);
+                setQuantity(res.quantity);
+                setDescription(res.description);
+                setPickUpAddress(res.pickup_address);
+                setPrice(res.price);
+                setCategoryId(res.category_id);
+                setProductId(res.id_product);
+            });
+        }
     },[]);
     const submitForm = async (event: React.FormEvent<HTMLFormElement>) =>{
         event.preventDefault();
         let form = document.querySelector('form');
         if(form){
             const formData = new FormData(form);
-            await ProductController.createWithFormData(formData);
+            await ProductController.update(formData);
             redirect('/business');
         }
     }
     return(
         <div className='create__product__wrapper'>
             <Link to='/business'>Назад</Link>
+            <h1>Изменить продукт</h1>
             <div className='create__product'>
                 <div className='create__product__form'>
                     <form id='form' className='org__form' onSubmit={submitForm} encType='multipart/form-data' method='post' action='/createwithformdata'>
@@ -73,15 +91,15 @@ const EditProduct = () =>{
                         />
                         <div className='org__form__item'>
                             <span>Наименование *</span>
-                            <input type="text" name='title' onChange={(e)=>setTitle(e.target.value)}/>
+                            <input type="text" name='title' value={(title) ? title : ''} onChange={(e)=>setTitle(e.target.value)}/>
                         </div>
                         <div className='org__form__item'>
                             <span>Цена *</span>
-                            <input type="number" name='price' onChange={(e)=>setPrice(e.target.value)}/>
+                            <input type="number" name='price' value={(price) ? price : ''} onChange={(e)=>setPrice(e.target.value)}/>
                         </div>
                         <div className='org__form__item'>
                             <span>Описание *</span>
-                            <textarea cols={30} rows={10} name='description' onChange={(e)=>setDescription(e.target.value)}/>
+                            <textarea cols={30} rows={10} name='description' value={(description) ? description : ''} onChange={(e)=>setDescription(e.target.value)}/>
                         </div>
                         <div className='org__form__item'>
                             <span>Категория *</span>
@@ -91,20 +109,21 @@ const EditProduct = () =>{
                         </div>
                         <div className='org__form__item'>
                             <span>Количество на складе *</span>
-                            <input type="number" name='quantity' onChange={(e)=>setQuantity(e.target.value)}/>
+                            <input type="number" name='quantity' value={(quantity) ? quantity : ''} onChange={(e)=>setQuantity(e.target.value)}/>
                         </div>
                         <div className='org__form__item'> 
                             <span>Адрес самовывоза </span>
-                            <input type="text" name='pickup_address' onChange={(e)=>setPickUpAddress(e.target.value)}/>
+                            <input type="text" name='pickup_address' value={(pickUpAddress) ? pickUpAddress : ''} onChange={(e)=>setPickUpAddress(e.target.value)}/>
                         </div>
-                        <button className='add__button' type='submit' >Создать</button>
+                        <input type="text" value={(productId) ? productId : ''} name='id_product' onChange={(e)=>setProductId(e.target.value)} style={{display: "none"}}/>
+                        <button className='add__button' type='submit' >Сохранить</button>
                     </form>
                 </div>
                 <div className='product__preview'>
                     <span className='IM' style={{fontSize: "20px"}}>Так пользователи будут видеть ваш продукт:</span>
                     <div className='product__card'>
                         <div className='product__img'>
-                            <img src={(preview !== undefined) ? preview : defaultImage} alt='product pic' />
+                            <img src={(preview !== undefined) ? preview : `${apiPath}/${prodImg}`} alt='product pic' />
                         </div>
                         <div className='product__card__info'>
                             <span className='FS_20 IR'>{title}</span>
