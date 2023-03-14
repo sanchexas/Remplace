@@ -16,7 +16,7 @@ class ReviewRepository{
     async getByProdId(prodId: string | ParsedQs | string[] | ParsedQs[]){
         try{
             const conn = await connection();
-            const result = await conn.query<ReviewModel[]>('SELECT * FROM reviews LEFT JOIN users ON reviews.author_id=users.id_user WHERE product_id=?;', prodId);
+            const result = await conn.query<ReviewModel[]>('SELECT id_review, text, author_id, product_id, sent_at, fio, image FROM reviews LEFT JOIN users ON reviews.author_id=users.id_user WHERE product_id=?;', prodId);
             console.log(result[0]);
             await conn.end();
             return result[0];

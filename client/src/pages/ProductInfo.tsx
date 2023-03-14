@@ -60,7 +60,13 @@ const ProductInfo = () =>{
                 const resArr = response.data.message;
                 setReviews(resArr.map((review: IReviewModel)=>{
                     return(
-                        <div key={review.id_review}>{review.text}</div>
+                        <div key={review.id_review} className='review FS_20'>
+                            <div>
+                                <div className='review__avatar'><img src={`${apiPath}/${review.image}`} alt="avatar" /></div>
+                                <span className='IM'>{review.fio}</span>
+                            </div>
+                            <span style={{marginLeft: '45px'}} className='IR'>{review.text}</span>
+                        </div>
                     );
                 }));
             });
@@ -75,7 +81,10 @@ const ProductInfo = () =>{
                     <textarea cols={50} rows={3} style={{width:"70%"}} onChange={(e)=>setReview(e.target.value)} placeholder='Написать отзыв'></textarea>
                     <button className='save__button' style={{width: "20%"}} onClick={()=>sendReview()}>Отправить</button>
                 </div>
-                {reviews} 
+                <div className='reviews'>
+                    {reviews} 
+
+                </div>
             </div>
         </div>
     );
