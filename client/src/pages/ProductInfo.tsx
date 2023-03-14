@@ -72,10 +72,10 @@ const ProductInfo = () =>{
             <div className='reviews__block'>
                 <h1>Отзывы</h1>
                 <div className='write__review' >
-                    <textarea cols={50} rows={3} style={{width:"70%"}} onChange={(e)=>setReview(e.target.value)}></textarea>
+                    <textarea cols={50} rows={3} style={{width:"70%"}} onChange={(e)=>setReview(e.target.value)} placeholder='Написать отзыв'></textarea>
                     <button className='save__button' style={{width: "20%"}} onClick={()=>sendReview()}>Отправить</button>
                 </div>
-                {/* {reviews} ДОДЕЛАТЬ! */}
+                {reviews} 
             </div>
         </div>
     );
