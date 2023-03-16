@@ -50,6 +50,13 @@ class ProductService{
         await productRepository.update(product, productImage);
         return {message: "Успешно"} // сделать проверку
     }
+    async getByCategoryId(idCategory: string | ParsedQs | string[] | ParsedQs[]){
+        const result = await productRepository.getByCategoryId(idCategory);
+        if(result){
+            return {message: result};
+        }
+        return {message: "Не удалось найти продукт по id категории."};
+    }
 }
 
 export default new ProductService;

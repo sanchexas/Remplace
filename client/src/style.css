@@ -644,4 +644,22 @@ footer{
     text-decoration: none;
     font-size: 25px;
     color: black;
+    max-width: 300px;
+    min-width: 200px;
+}
+.categories__list{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.products__wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.catalogue__wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
 }

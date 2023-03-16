@@ -114,6 +114,20 @@ class ProductController{
             }
         }
     }
+    async getByCategoryId(req: Request, res: Response){
+        const categoryId = req.query.id;
+        if(categoryId){
+            try{
+                const result = await productService.getByCategoryId(categoryId);
+                return res.json({
+                    message: result.message,
+                });
+            }catch(e){
+                return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
+            }
+        }
+    }
+
 }
     
 

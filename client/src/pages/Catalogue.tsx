@@ -11,7 +11,7 @@ const Catalogue = () => {
             const resArr = response.data.message;
             setCategories(resArr.map((category: ICategoryResponse)=>{
                 return(
-                    <Link to='' className='category__item'>
+                    <Link to={`/ctprd?category=${category.id_category}`} className='category__item'>
                         {category.title}
                     </Link>
                 );
@@ -19,9 +19,19 @@ const Catalogue = () => {
         });
     }, []);
     return(
-        <div style={{display: "flex", flexDirection: "column", gap: "25px"}}>
-            <h1>Каталог</h1>
-            {categories}
+        <div className='catalogue__wrapper'>
+            <div style={{display: "flex", flexDirection: "column", gap: "25px"}}>
+                <h1>Товары</h1>
+                <div className='categories__list'>
+                    {categories}
+                </div>
+            </div>
+            <div style={{display: "flex", flexDirection: "column", gap: "25px"}}>
+                <h1>Услуги</h1>
+                <div className='categories__list'>
+                    
+                </div>
+            </div>
         </div>
     );
 }

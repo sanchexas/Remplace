@@ -16,6 +16,7 @@ import CreateProduct from './pages/CreateProduct';
 import Catalogue from './pages/Catalogue';
 import EditProduct from './pages/EditProduct';
 import ProductInfo from './pages/ProductInfo';
+import Products from './pages/Products';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
               <Route path='/catalogue' element={<Catalogue/>}/>
               <Route path='/editproduct' element={<EditProduct/>}/>
               <Route path='/productinfo' element={<ProductInfo/>}/>
+              <Route path='/ctprd' element={<Products/>}/>
             </Routes>
           </main>
           <Footer/>
