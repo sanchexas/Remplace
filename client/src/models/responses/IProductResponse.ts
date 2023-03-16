@@ -9,5 +9,6 @@ export interface IProductResponse {
         organisation_id?: string | number | undefined;
         pickup_address?: string;
         quantity?: string | number | undefined;
+        cat_title?: string | undefined;
     }
 }

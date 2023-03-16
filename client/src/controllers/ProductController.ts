@@ -39,7 +39,8 @@ class ProductController{
         const result = await Axios.post(`${apiPath}/products/update`, formData);
     }
     async getByCategoryId(idCategory: number | string){
-        const result = await Axios.get(`${apiPath}/products/getbycategoryid`, {params: {id: idCategory}})
+        const result = await Axios.get(`${apiPath}/products/getbycategoryid`, {params: {id: idCategory}});
+        return result;
     }
 }
 

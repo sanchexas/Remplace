@@ -655,6 +655,13 @@ footer{
 .products__wrapper{
     display: flex;
     flex-direction: column;
+    margin-top: 40px;
+}
+.ct__products{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 80px;
 }
 .catalogue__wrapper{
     display: flex;

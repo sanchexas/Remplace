@@ -35,7 +35,7 @@ const EditProduct = () =>{
             let responseArr = response.data.message;
             setCategories(responseArr.map((category: ICategoryResponse)=>{
                 return(
-                    <option selected={true} value={category.id_category} key={category.id_category}>{category.title}</option>
+                    <option selected={true} value={category.id_category} key={category.id_category}>{category.cat_title}</option>
                 );
             }));
         });

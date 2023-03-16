@@ -1,5 +1,4 @@
 export type ICategoryResponse = {
-    title: string
-    description: string
+    cat_title: string
     id_category: number
 }

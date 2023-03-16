@@ -84,7 +84,7 @@ class ProductRepository{
     async getByCategoryId(idCategory: string | ParsedQs | string[] | ParsedQs[]){
         try{
             const conn = await connection();
-            const response = await conn.query('SELECT * FROM products WHERE category_id = ?', idCategory); // ДОДЕЛАТЬ ЛЕФТ ДЖОИН!!!!
+            const response = await conn.query('SELECT * FROM products LEFT JOIN categories ON products.category_id = categories.id_category WHERE category_id = ? ;', idCategory); 
             await conn.end();
             return response[0];
         }catch(e){

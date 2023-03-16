@@ -32,7 +32,7 @@ const CreateProduct = () =>{
             let responseArr = response.data.message;
             setCategories(responseArr.map((category: ICategoryResponse)=>{
                 return(
-                    <option value={category.id_category} key={category.id_category}>{category.title}</option>
+                    <option value={category.id_category} key={category.id_category}>{category.cat_title}</option>
                 );
             }));
         });

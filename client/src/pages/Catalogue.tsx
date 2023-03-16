@@ -12,7 +12,7 @@ const Catalogue = () => {
             setCategories(resArr.map((category: ICategoryResponse)=>{
                 return(
                     <Link to={`/ctprd?category=${category.id_category}`} className='category__item'>
-                        {category.title}
+                        {category.cat_title}
                     </Link>
                 );
             }))
@@ -29,7 +29,7 @@ const Catalogue = () => {
             <div style={{display: "flex", flexDirection: "column", gap: "25px"}}>
                 <h1>Услуги</h1>
                 <div className='categories__list'>
-                    
+
                 </div>
             </div>
         </div>
