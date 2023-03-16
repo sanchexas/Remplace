@@ -640,4 +640,8 @@ footer{
     height: 100%;
     object-fit: cover;
 }
-
+.category__item{
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+}
