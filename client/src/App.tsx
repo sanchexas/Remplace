@@ -19,6 +19,9 @@ import ProductInfo from './pages/ProductInfo';
 import Products from './pages/Products';
 
 function App() {
+  if(!localStorage.getItem('remcart')){
+    localStorage.setItem('remcart', '0');
+  }
   return (
     <BrowserRouter>
     <Routes>
