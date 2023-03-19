@@ -2,6 +2,7 @@ import '../style.css';
 import apiPath from '../api-path';
 import { Link } from 'react-router-dom';
 import CartController from '../controllers/CartController';
+import { CartProductModel } from '../models/CartProductModel';
 
 type productCardProps = {
     id: string | number | null | undefined
@@ -12,7 +13,7 @@ type productCardProps = {
 
 const ProductCard = ({id, image, title, price}: productCardProps) => {
     function addToCartHandler(){
-        const product = {
+        const product: CartProductModel = {
             id: id,
             image: image,
             title: title,
