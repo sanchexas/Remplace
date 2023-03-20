@@ -16,7 +16,7 @@ const Cart = () => {
                         </div>
                         <div className='cart__item__title'>{product.title}</div>
                         <div className='cart__item__quantity'>
-                            <button>-</button>
+                            <button onClick={()=> CartController.subQuantity(i)}>-</button>
                             <span>{product.quantity}</span>
                             <button onClick={()=> CartController.addQuantity(i)}>+</button>
                         </div>

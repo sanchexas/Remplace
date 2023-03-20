@@ -17,27 +17,20 @@ class CartController{
 
     }
     async addQuantity(key: number){
-        /*
-            FUCK TYPESCRIPT!!! 
-            Like bruh i know that value WONT BE UNDEFINED! 
-            Why you make me do this all the time? - if a != undefined, if b != undefined, if c != undefined, if d != undefined... etc etc
-            it makes my code look ugly
-            i miss Js tbh
-        */
         const remcart = localStorage.getItem('remcart');
         if(remcart !== null){
             const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
-            let productQuantity = cartObj[key].quantity;
-            if(productQuantity){
-                productQuantity += 1;
-                cartObj[key].quantity = productQuantity;
-            }
-            console.log(productQuantity)
+            cartObj[key].quantity += 1;
             localStorage.setItem('remcart', JSON.stringify(cartObj));
         }
     }
-    async subQuantity(){
-
+    async subQuantity(key: number){
+        const remcart = localStorage.getItem('remcart');
+        if(remcart !== null){
+            const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
+            (cartObj[key].quantity >= 2) ? cartObj[key].quantity -= 1 : cartObj[key].quantity -= 0;
+            localStorage.setItem('remcart', JSON.stringify(cartObj));
+        }
     }
     async saveProducts(){
         

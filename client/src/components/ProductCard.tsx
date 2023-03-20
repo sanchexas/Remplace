@@ -17,7 +17,9 @@ const ProductCard = ({id, image, title, price}: productCardProps) => {
             id: id,
             image: image,
             title: title,
-            price: price
+            price: price,
+            full_price: price,
+            quantity: 1
         };
         CartController.addToCart(product);
     }
