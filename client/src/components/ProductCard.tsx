@@ -8,7 +8,7 @@ type productCardProps = {
     id: string | number | null | undefined
     image: string | File | null | undefined
     title: string | null | undefined
-    price: string | number | null | undefined
+    price: number
 }
 
 const ProductCard = ({id, image, title, price}: productCardProps) => {

@@ -2,7 +2,7 @@ export type CartProductModel = {
     id: string | number | null | undefined
     image: string | File | null | undefined
     title: string | null | undefined
-    price: string | number | null | undefined
+    price: number
     quantity: number
-    full_price: string | number | null | undefined
+    full_price: number
 }

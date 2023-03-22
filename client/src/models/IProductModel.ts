@@ -2,7 +2,7 @@ export interface IProductModel {
     id_product?: number;
     title?: string;
     description?: string;
-    price?: string | number | undefined;
+    price: number;
     image?: File | null | string;
     category_id?: string | number | undefined;
     organisation_id?: string | number | undefined;

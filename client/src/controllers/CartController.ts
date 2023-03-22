@@ -13,24 +13,37 @@ class CartController{
             localStorage.setItem('remcart', JSON.stringify(cartObj));
         }
     }
-    async deleteFromCart(){
-
+    async deleteFromCart(key: number){
+        const remcart = localStorage.getItem('remcart');
+        if(remcart !== null){
+            const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
+            cartObj.splice(key, 1);
+            localStorage.setItem('remcart', JSON.stringify(cartObj));
+        }
     }
-    async addQuantity(key: number){
+    addQuantity(key: number): number{
         const remcart = localStorage.getItem('remcart');
         if(remcart !== null){
             const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
             cartObj[key].quantity += 1;
+            cartObj[key].full_price += cartObj[key].price;
             localStorage.setItem('remcart', JSON.stringify(cartObj));
+            return cartObj[key].quantity += 1;
         }
+        return 0;
     }
-    async subQuantity(key: number){
+    subQuantity(key: number): number{
         const remcart = localStorage.getItem('remcart');
         if(remcart !== null){
             const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
-            (cartObj[key].quantity >= 2) ? cartObj[key].quantity -= 1 : cartObj[key].quantity -= 0;
-            localStorage.setItem('remcart', JSON.stringify(cartObj));
+            if(cartObj[key].quantity > 1){
+                cartObj[key].quantity -= 1;
+                cartObj[key].full_price -= cartObj[key].price;
+                localStorage.setItem('remcart', JSON.stringify(cartObj));
+                return cartObj[key].quantity -= 1;
+            }
         }
+        return 0;
     }
     async saveProducts(){
         

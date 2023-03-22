@@ -706,11 +706,23 @@ footer{
 }
 .cart__item__quantity{
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 .cart__item__price{
 
 }
 .cart__item__actions{
-
+    height: 100%;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+.cart__item:hover .delete__icon{
+    stroke: #c40707;
+}
+.cart__plus__minus__buttons{
+    width: 30px;
+    height: 30px;
+    border: 1px black solid;
+    border-radius: 100%;
 }
