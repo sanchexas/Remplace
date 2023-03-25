@@ -3,7 +3,7 @@ import { CartProductModel } from '../models/CartProductModel';
 Axios.defaults.withCredentials = true;
 
 class CartController{
-    async addToCart(product: CartProductModel){
+    addToCart(product: CartProductModel){
         const remcart = localStorage.getItem('remcart');
         if(remcart !== null && product !== undefined){
             const cartObj: object[] = JSON.parse(remcart) || [];
@@ -13,13 +13,15 @@ class CartController{
             localStorage.setItem('remcart', JSON.stringify(cartObj));
         }
     }
-    async deleteFromCart(key: number){
+    deleteFromCart(key: number){
         const remcart = localStorage.getItem('remcart');
         if(remcart !== null){
             const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
             cartObj.splice(key, 1);
             localStorage.setItem('remcart', JSON.stringify(cartObj));
+            return true;
         }
+        return false;
     }
     addQuantity(key: number): number{
         const remcart = localStorage.getItem('remcart');
