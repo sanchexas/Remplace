@@ -1,0 +1,78 @@
+.container{
+    position: absolute;
+    width: 450px;
+    height: 300px;
+    transform-style: preserve-3d;
+    animation: rotate 2s 1 linear;
+    transition: all 1s;
+}
+/* .wrap:hover .container{
+    transform: translateZ(0px) rotateY(180deg); 
+} */
+.rotate{
+    transform: translateZ(0px) rotateY(180deg); 
+}
+.wrap{
+    position: relative;
+    height:  300px;
+}
+.side{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/cardback.jpg');
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+}
+.number{
+    font-size: 35px;
+}
+.front{
+    transform: translateZ(0px) rotateY(180deg);
+    z-index: 1;
+}
+.back{
+    transform: translateZ(1px) rotateY(0deg);
+    z-index: 2;
+}
+.date{
+    font-size: 20px;
+}
+.chipdale{
+    width: 70px;
+    position: absolute;
+    left: 30px;
+    top: 30px
+}
+.mastercard{
+    width: 65px;
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+}
+.inputs{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+.a{
+    display: flex;
+    flex-direction: column;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.info{
+
+    position:absolute;
+    bottom: 20px;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+    justify-content: space-around;
+}
+.backtext{
+    position: absolute;
+    bottom: 100px;
+    left: 30px;
+}

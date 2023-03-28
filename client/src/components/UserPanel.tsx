@@ -14,7 +14,7 @@ const UserPanel = () =>{
                     <span className='action__card__title IB'>Покупки</span>
                     <span className='action__card__desc'>Просмотрите чеки и историю покупок</span>
                 </Link>
-                <Link to='/' className='action__card'>
+                <Link to='/payment' className='action__card'>
                     <img src={img2} alt="" />
                     <span className='action__card__title IB'>Оплата</span>
                     <span className='action__card__desc'>Прикрепите карту для быстрой оплаты</span>
