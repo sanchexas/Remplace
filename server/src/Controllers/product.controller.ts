@@ -74,7 +74,6 @@ class ProductController{
     }
     async deleteById(req: Request, res: Response){
         try{
-            console.log(req.body.idProduct)
             if(req.body.idProduct){
                 const idProduct = req.body.idProduct;
                 const result = await productService.deleteById(idProduct);

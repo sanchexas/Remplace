@@ -4,11 +4,11 @@ import mastercard from '../images/mastercard.png';
 import './card.css';
 
 const CreditCard = () =>{
-    const [num, setNum] = useState('');
+    const [num, setNum] = useState<string>('');
     const [year, setYear] = useState<number | string>();
-    const [name, setName] = useState('');
-    const [back, setBack] = useState('');
-    const [focus, setFocus] = useState(false);
+    const [name, setName] = useState<string>('');
+    const [back, setBack] = useState<string>('');
+    const [focus, setFocus] = useState<boolean>(false);
     const sliceShit = (str: string) =>{
         let sliceStr = str.slice(0,4) + " " + str.slice(4,8) + " " + str.slice(8,12) + " " + str.slice(12,16);
         setNum(sliceStr);
