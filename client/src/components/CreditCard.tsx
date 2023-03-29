@@ -42,16 +42,27 @@ const CreditCard = () =>{
                 
             </div>
             <div className='inputs'>
-                <input id='num' type='text' onChange={(event)=>{
+                <div className='org__form__item'>
+                    <span>Номер карты</span>
+                    <input id='num' type='text' onChange={(event)=>{
                     sliceShit(event.target.value)
                         // let str = event.target.value;
                         // setNum(str.slice(0, 4));
                     }
-                }/>
-                <input type='text' onChange={(event)=>sliceDate(event.target.value)}/>
-                
-                <input type='text' onChange={(event)=>setName(event.target.value)}/>
-                <input type='text' onBlur={()=>setFocus(false)} onFocus={()=>setFocus(true)} onChange={(event)=>sliceBack(event.target.value)}/>
+                    }/>
+                </div>
+                <div className='org__form__item'>
+                    <span>Срок</span>
+                    <input type='text' onChange={(event)=>sliceDate(event.target.value)}/>
+                </div>
+                <div className='org__form__item'>
+                    <span>Имя</span>
+                    <input type='text' onChange={(event)=>setName(event.target.value)}/>
+                </div>
+                <div className='org__form__item'>
+                    <span>CVV / CVC</span>
+                    <input type='text' onBlur={()=>setFocus(false)} onFocus={()=>setFocus(true)} onChange={(event)=>sliceBack(event.target.value)}/>
+                </div>
             </div>
         </div>
         
