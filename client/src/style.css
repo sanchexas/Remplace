@@ -726,3 +726,15 @@ footer{
     border: 1px black solid;
     border-radius: 100%;
 }
+.payment__page{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.bank__cards{
+    width: 40%;
+    height: 100px;
+    background: red;
+}

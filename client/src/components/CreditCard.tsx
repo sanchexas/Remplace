@@ -14,11 +14,11 @@ const CreditCard = () =>{
         setNum(sliceStr);
     }
     const sliceDate = (str: string) =>{
-        let sliceStr = str.slice(0,2) + "/" + str.slice(2,4)
+        let sliceStr = str.slice(0,2) + "/" + str.slice(2,4);
         setYear(sliceStr);
     }
     const sliceBack = (str: string) =>{
-        let sliceStr = str.slice(0,3)
+        let sliceStr = str.slice(0,3);
         setBack(sliceStr);
     }
     return(
@@ -63,9 +63,12 @@ const CreditCard = () =>{
                     <span>CVV / CVC</span>
                     <input type='text' onBlur={()=>setFocus(false)} onFocus={()=>setFocus(true)} onChange={(event)=>sliceBack(event.target.value)}/>
                 </div>
+                <div className='org__form__item'>
+                    <span></span>
+                    <button className='fake__button sign__button'>Прикрепить карту</button>
+                </div>
             </div>
         </div>
-        
     );
 }
 

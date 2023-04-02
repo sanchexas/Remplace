@@ -3,7 +3,12 @@ import '../style.css';
 
 const Payment = () =>{
     return(
-        <div><CreditCard/></div>
+        <div className='payment__page'>
+            <CreditCard/>
+            <div className='bank__cards'>
+
+            </div>
+        </div>
     );
 }
 
