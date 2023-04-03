@@ -10,6 +10,7 @@ import orgRouter from './Routes/org.routes';
 import categoryRouter from './Routes/category.routes';
 import productRouter from './Routes/product.routes';
 import reviewRouter from './Routes/review.routes';
+import bankCardRouter from './Routes/bankcard.routes';
 
 export class App{
     private app: Application;
@@ -40,6 +41,7 @@ export class App{
         this.app.use('/products', productRouter);
         this.app.use('/reviews', reviewRouter);
         this.app.use('/src/images', express.static('src/images'));
+        this.app.use('/bankcards', bankCardRouter);
     }
     listen(){
         this.app.listen(this.app.get('port'));

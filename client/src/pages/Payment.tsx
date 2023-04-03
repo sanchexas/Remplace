@@ -6,7 +6,7 @@ const Payment = () =>{
         <div className='payment__page'>
             <CreditCard/>
             <div className='bank__cards'>
-
+                
             </div>
         </div>
     );

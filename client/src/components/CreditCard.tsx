@@ -2,10 +2,11 @@ import { useState } from 'react';
 import chipchip from '../images/chip.png';
 import mastercard from '../images/mastercard.png';
 import './card.css';
+import BankCardController from '../controllers/BankCardController';
 
 const CreditCard = () =>{
     const [num, setNum] = useState<string>('');
-    const [year, setYear] = useState<number | string>();
+    const [year, setYear] = useState<number | string>('');
     const [name, setName] = useState<string>('');
     const [back, setBack] = useState<string>('');
     const [focus, setFocus] = useState<boolean>(false);
@@ -20,6 +21,9 @@ const CreditCard = () =>{
     const sliceBack = (str: string) =>{
         let sliceStr = str.slice(0,3);
         setBack(sliceStr);
+    }
+    function pushCard(){
+        BankCardController.create({number: num, cvc: back, expire: year, is_selected: 1});
     }
     return(
         <div className='a'>
@@ -55,17 +59,17 @@ const CreditCard = () =>{
                     <span>Срок</span>
                     <input type='text' onChange={(event)=>sliceDate(event.target.value)}/>
                 </div>
-                <div className='org__form__item'>
+                {/* <div className='org__form__item'>
                     <span>Имя</span>
                     <input type='text' onChange={(event)=>setName(event.target.value)}/>
-                </div>
+                </div> */}
                 <div className='org__form__item'>
                     <span>CVV / CVC</span>
                     <input type='text' onBlur={()=>setFocus(false)} onFocus={()=>setFocus(true)} onChange={(event)=>sliceBack(event.target.value)}/>
                 </div>
                 <div className='org__form__item'>
                     <span></span>
-                    <button className='fake__button sign__button'>Прикрепить карту</button>
+                    <button className='fake__button sign__button' onClick={()=> pushCard()}>Прикрепить карту</button>
                 </div>
             </div>
         </div>
