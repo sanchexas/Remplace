@@ -3,12 +3,13 @@ import { BankCardModel } from "../Models/bankcard.model";
 import bankcardService from "../Services/bankcard.service";
 
 class BankCardController{
-    // async getAll(req: Request, res: Response){
-    //     const result = await categoryService.getAll();
-    //     return res.json({
-    //         message: result.message,
-    //     });
-    // }
+    async getAll(req: Request, res: Response){
+        const idUser: number | string = req.cookies.id_user;
+        const result = await bankcardService.getAll(idUser);
+        return res.json({
+            message: result.message,
+        });
+    }
     async create(req: Request, res: Response){
         const newCard: BankCardModel = req.body;
         const idUser: number | string = req.cookies.id_user;
