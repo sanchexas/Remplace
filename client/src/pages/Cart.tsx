@@ -3,11 +3,15 @@ import { useEffect, useState } from 'react';
 import CartController from '../controllers/CartController';
 import { CartProductModel } from '../models/CartProductModel';
 import apiPath from '../api-path';
+import BankCardController from '../controllers/BankCardController';
+import { IBankCardResponse } from '../models/responses/IBankCardResponse';
 
 const Cart = () => {
     const [products, setProducts] = useState();
     const [quantity, setQuantity] = useState<number>();
     const [deleteItem, setDeleteItem] = useState<boolean>(false);
+    const [generalPrice, setGeneralPrice] = useState<string | number>();
+    const [bankCards, setBankCards] = useState<JSX.Element>();
     useEffect(()=>{
         CartController.getAll().then((response)=>{
             setProducts(response.map((product: CartProductModel, i: number)=>{
@@ -36,7 +40,21 @@ const Cart = () => {
                 );
             }));
         });
+        let getGeneralPrice = localStorage.getItem('general_price');
+        setGeneralPrice((getGeneralPrice !== null) ? getGeneralPrice : 0);
     }, [quantity, deleteItem]);
+    useEffect(()=>{
+        BankCardController.getAll().then((response)=>{
+            const cardsArr = response.data.message;
+            setBankCards(cardsArr.map((card: IBankCardResponse)=>{
+                return(
+                    <div key={card.id_card} className='chose__card__item'>
+                        
+                    </div>
+                );
+            }));
+        });
+    },[]);
     return(
         <div className='cart__page'>
             <div className='cart__products'>
@@ -44,8 +62,14 @@ const Cart = () => {
                 {products}
             </div>
             <div className='cart__order'>
-                <span></span>
+                <h1>Заказ</h1>
+                <span className='FS_20'>Цена: <span className='FS_20 IB'>{generalPrice} ₽</span></span>
+                <div className='chose__card'>
+                    <span className='FS_20'>Выберите карту</span>
+                    {bankCards}
+                </div>
             </div>
+            
         </div>
     );
 }
