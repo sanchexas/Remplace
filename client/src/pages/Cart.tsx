@@ -44,7 +44,7 @@ const Cart = () => {
                 {products}
             </div>
             <div className='cart__order'>
-
+                <span></span>
             </div>
         </div>
     );

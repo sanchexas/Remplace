@@ -23,6 +23,9 @@ function App() {
   if(!localStorage.getItem('remcart')){
     localStorage.setItem('remcart', '0');
   }
+  if(!localStorage.getItem('general_price')){
+    localStorage.setItem('general_price', '0');
+  }
   return (
     <BrowserRouter>
     <Routes>

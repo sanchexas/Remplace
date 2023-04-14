@@ -5,19 +5,27 @@ Axios.defaults.withCredentials = true;
 class CartController{
     addToCart(product: CartProductModel){
         const remcart = localStorage.getItem('remcart');
-        if(remcart !== null && product !== undefined){
+        const generalPrice = localStorage.getItem('general_price');
+        if(remcart !== null && product !== undefined && generalPrice !== null){
             const cartObj: object[] = JSON.parse(remcart) || [];
+            let generalPriceObj: number = JSON.parse(generalPrice);
             product.quantity = 1;
             product.full_price = product.price;
+            generalPriceObj += product.price;
             cartObj.push(product);
+            localStorage.setItem('general_price', '' + generalPriceObj);
             localStorage.setItem('remcart', JSON.stringify(cartObj));
         }
     }
     deleteFromCart(key: number){
         const remcart = localStorage.getItem('remcart');
-        if(remcart !== null){
+        const generalPrice = localStorage.getItem('general_price');
+        if(remcart !== null && generalPrice !== null){
             const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
+            let generalPriceObj: number = JSON.parse(generalPrice);
+            generalPriceObj -= cartObj[key].full_price;
             cartObj.splice(key, 1);
+            localStorage.setItem('general_price', '' + generalPriceObj);
             localStorage.setItem('remcart', JSON.stringify(cartObj));
             return true;
         }
@@ -25,10 +33,14 @@ class CartController{
     }
     addQuantity(key: number): number{
         const remcart = localStorage.getItem('remcart');
-        if(remcart !== null){
+        const generalPrice = localStorage.getItem('general_price');
+        if(remcart !== null && generalPrice !== null){
             const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
+            let generalPriceObj: number = JSON.parse(generalPrice);
             cartObj[key].quantity += 1;
             cartObj[key].full_price += cartObj[key].price;
+            generalPriceObj += cartObj[key].price;
+            localStorage.setItem('general_price', '' + generalPriceObj);
             localStorage.setItem('remcart', JSON.stringify(cartObj));
             return cartObj[key].quantity += 1;
         }
@@ -36,11 +48,15 @@ class CartController{
     }
     subQuantity(key: number): number{
         const remcart = localStorage.getItem('remcart');
-        if(remcart !== null){
+        const generalPrice = localStorage.getItem('general_price');
+        if(remcart !== null && generalPrice !== null){
             const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
+            let generalPriceObj: number = JSON.parse(generalPrice);
             if(cartObj[key].quantity > 1){
                 cartObj[key].quantity -= 1;
                 cartObj[key].full_price -= cartObj[key].price;
+                generalPriceObj -= cartObj[key].price;
+                localStorage.setItem('general_price', '' + generalPriceObj);
                 localStorage.setItem('remcart', JSON.stringify(cartObj));
                 return cartObj[key].quantity -= 1;
             }

@@ -10,7 +10,6 @@ class BankCardController{
     }
     async create(data: IBankCardModel){
         await Axios.post(`${apiPath}/bankcards/create`, data);
-
     }
 }
 
