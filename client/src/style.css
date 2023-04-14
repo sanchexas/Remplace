@@ -695,7 +695,43 @@ footer{
     align-items: center;
     gap: 20px;
     border-radius: 5px;
-    box-shadow:inset 0px 0px 10px rgba(185, 185, 185, 0.281);
+    /* box-shadow:inset 0px 0px 10px rgba(185, 185, 185, 0.281); */
+}
+.card__icon{
+    stroke: rgb(137, 137, 137);
+}
+[type='radio'] {
+    display: none;
+}
+[type='radio'] ~ label{
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-left: 20px;
+}
+[type='radio'] ~ label svg{
+    transition: all 0.2s;
+}
+[type='radio']:checked ~ label svg {
+    
+    stroke: white;
+    fill: rgb(7, 104, 222);
+}
+.order__button{
+    margin-top: 20px;
+    background: #1c7de3;
+    color: white;
+    width: 100%;
+    opacity: 1;
+    transition: all 0.3s;
+    height: 50px;
+    font-size: 20px;
+}
+.zero__opacity{
+    opacity: 0;
 }
 .chose__card__item{
     width: 95%;
