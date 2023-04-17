@@ -37,12 +37,14 @@ class CartController{
         if(remcart !== null && generalPrice !== null){
             const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
             let generalPriceObj: number = JSON.parse(generalPrice);
-            cartObj[key].cart_quantity += 1;
-            cartObj[key].full_price += cartObj[key].price;
-            generalPriceObj += cartObj[key].price;
-            localStorage.setItem('general_price', '' + generalPriceObj);
-            localStorage.setItem('remcart', JSON.stringify(cartObj));
-            return cartObj[key].cart_quantity += 1;
+            if(cartObj[key].cart_quantity < cartObj[key].quantity){
+                cartObj[key].cart_quantity += 1;
+                cartObj[key].full_price += cartObj[key].price;
+                generalPriceObj += cartObj[key].price;
+                localStorage.setItem('general_price', '' + generalPriceObj);
+                localStorage.setItem('remcart', JSON.stringify(cartObj));
+                return cartObj[key].cart_quantity += 1;
+            }
         }
         return 0;
     }
