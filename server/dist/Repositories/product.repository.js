@@ -87,5 +87,43 @@ class ProductRepository {
             }
         });
     }
+    getById(idProduct) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const conn = yield (0, db_1.connection)();
+                const response = yield conn.query('SELECT * FROM products WHERE id_product = ?', idProduct);
+                yield conn.end();
+                return response[0];
+            }
+            catch (e) {
+                throw new Error("ОшибОчка");
+            }
+        });
+    }
+    update(product, productImage) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const conn = yield (0, db_1.connection)();
+                const response = yield conn.query('UPDATE products SET title = ? , description = ?, price = ?, image = ?, category_id = ?, pickup_address = ?, quantity = ? WHERE id_product = ?', [product.title, product.description, product.price, productImage, product.category_id, product.pickup_address, product.quantity, product.id_product]);
+                yield conn.end();
+            }
+            catch (e) {
+                throw new Error("ОшибОчка");
+            }
+        });
+    }
+    getByCategoryId(idCategory) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const conn = yield (0, db_1.connection)();
+                const response = yield conn.query('SELECT * FROM products LEFT JOIN categories ON products.category_id = categories.id_category WHERE category_id = ? ;', idCategory);
+                yield conn.end();
+                return response[0];
+            }
+            catch (e) {
+                throw new Error("ОшибОчка");
+            }
+        });
+    }
 }
 exports.default = new ProductRepository;

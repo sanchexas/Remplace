@@ -62,5 +62,29 @@ class ProductService {
             return { message: "Не удалось удалить продукт." };
         });
     }
+    getById(idProduct) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield product_repository_1.default.getById(idProduct);
+            if (result) {
+                return { message: result };
+            }
+            return { message: "Не удалось найти продукт по id." };
+        });
+    }
+    update(product, productImage) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield product_repository_1.default.update(product, productImage);
+            return { message: "Успешно" }; // сделать проверку
+        });
+    }
+    getByCategoryId(idCategory) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield product_repository_1.default.getByCategoryId(idCategory);
+            if (result) {
+                return { message: result };
+            }
+            return { message: "Не удалось найти продукт по id категории." };
+        });
+    }
 }
 exports.default = new ProductService;

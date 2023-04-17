@@ -12,14 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const org_service_1 = __importDefault(require("../Services/org.service"));
-class OrgController {
+const review_service_1 = __importDefault(require("../Services/review.service"));
+class ReviewController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const newOrg = req.body;
-            if (newOrg !== undefined) {
+            const newReview = req.body;
+            if (newReview !== undefined) {
                 try {
-                    const result = yield org_service_1.default.create(newOrg);
+                    const result = yield review_service_1.default.create(newReview);
                     return res.json({
                         message: result.message,
                     });
@@ -30,28 +30,12 @@ class OrgController {
             }
         });
     }
-    getByOwnerId(req, res) {
+    getByProdId(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const ownerId = req.query.ownerId;
-            if (ownerId) {
+            const prodId = req.query.prodId;
+            if (prodId) {
                 try {
-                    const result = yield org_service_1.default.getByOwnerId(ownerId);
-                    return res.json({
-                        message: result.message
-                    });
-                }
-                catch (e) {
-                    return res.json({ err: "Ошибка" });
-                }
-            }
-        });
-    }
-    getById(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const id = req.query.id;
-            if (id) {
-                try {
-                    const result = yield org_service_1.default.getById(id);
+                    const result = yield review_service_1.default.getByProdId(prodId);
                     return res.json({
                         message: result.message
                     });
@@ -63,4 +47,4 @@ class OrgController {
         });
     }
 }
-exports.default = new OrgController;
+exports.default = new ReviewController;

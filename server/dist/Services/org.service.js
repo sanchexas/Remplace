@@ -34,5 +34,16 @@ class OrgService {
             return { message: "Организация не найдена" };
         });
     }
+    getById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (id) {
+                const result = yield org_repository_1.default.getById(id);
+                return {
+                    message: result[0]
+                };
+            }
+            return { message: "Организация не найдена" };
+        });
+    }
 }
 exports.default = new OrgService;

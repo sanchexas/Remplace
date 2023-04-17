@@ -10,45 +10,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("../db");
-class OrgRepository {
-    create(newOrg) {
+class ReviewRepository {
+    create(newReview) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const conn = yield (0, db_1.connection)();
-                yield conn.query('INSERT INTO organisations (name, address, owner_id, description, website_link, ogrn, inn, kpp) VALUES (?,?,?,?,?,?,?,?)', [newOrg.name, newOrg.address, newOrg.ownerId, newOrg.description, newOrg.link, newOrg.ogrn, newOrg.inn, newOrg.kpp]);
-                yield conn.query('UPDATE users SET role_id = ? WHERE id_user = ?;', [3, newOrg.ownerId]);
+                const result = yield conn.query('INSERT INTO reviews (text, author_id, product_id) VALUES (?, ?, ?)', [newReview.text, newReview.author_id, newReview.product_id]);
                 yield conn.end();
+                return result[0];
             }
             catch (e) {
                 throw new Error("ОшибОчка");
             }
         });
     }
-    getByOwnerId(ownerId) {
+    getByProdId(prodId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const conn = yield (0, db_1.connection)();
-                const result = yield conn.query('SELECT * FROM organisations WHERE owner_id = ?', ownerId);
-                conn.end();
+                const result = yield conn.query('SELECT id_review, text, author_id, product_id, sent_at, fio, image FROM reviews LEFT JOIN users ON reviews.author_id=users.id_user WHERE product_id=?;', prodId);
+                console.log(result[0]);
+                yield conn.end();
                 return result[0];
             }
             catch (e) {
-                throw new Error("Ошибка");
-            }
-        });
-    }
-    getById(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const conn = yield (0, db_1.connection)();
-                const result = yield conn.query('SELECT * FROM organisations WHERE id_organisation = ?', id);
-                conn.end();
-                return result[0];
-            }
-            catch (e) {
-                throw new Error("Ошибка");
+                throw new Error("ОшибОчка");
             }
         });
     }
 }
-exports.default = new OrgRepository;
+exports.default = new ReviewRepository;

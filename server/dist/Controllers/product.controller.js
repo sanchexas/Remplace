@@ -98,7 +98,6 @@ class ProductController {
     deleteById(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log(req.body.idProduct);
                 if (req.body.idProduct) {
                     const idProduct = req.body.idProduct;
                     const result = yield product_service_1.default.deleteById(idProduct);
@@ -109,6 +108,57 @@ class ProductController {
             }
             catch (e) {
                 return res.json({ err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ` });
+            }
+        });
+    }
+    getById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (req.query.idProduct) {
+                    const idProduct = req.query.idProduct;
+                    const result = yield product_service_1.default.getById(idProduct);
+                    return res.json({
+                        message: result.message,
+                    });
+                }
+            }
+            catch (e) {
+                return res.json({ err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ` });
+            }
+        });
+    }
+    update(req, res) {
+        var _a;
+        return __awaiter(this, void 0, void 0, function* () {
+            const product = req.body;
+            const productImage = (_a = req.file) === null || _a === void 0 ? void 0 : _a.path;
+            console.log(productImage);
+            if (product !== undefined && productImage !== undefined) {
+                try {
+                    const result = yield product_service_1.default.update(product, productImage);
+                    return res.json({
+                        message: result.message,
+                    });
+                }
+                catch (e) {
+                    return res.json({ err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ` });
+                }
+            }
+        });
+    }
+    getByCategoryId(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const categoryId = req.query.id;
+            if (categoryId) {
+                try {
+                    const result = yield product_service_1.default.getByCategoryId(categoryId);
+                    return res.json({
+                        message: result.message,
+                    });
+                }
+                catch (e) {
+                    return res.json({ err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ` });
+                }
             }
         });
     }
