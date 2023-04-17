@@ -21,6 +21,7 @@ const CarouselNew = () =>{
                         image={product.image} 
                         title={product.title} 
                         price={product.price} 
+                        quantity={product.quantity}
                         key={product.id_product}
                       />
                     );

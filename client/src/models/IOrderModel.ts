@@ -1,7 +1,7 @@
 export interface IOrderModel{
-    id?: number;
-    productsIds: string;
-    generalPrice: number;
-    buyerId: number;
-    createdAt: string;
+    id_order?: number;
+    products_ids: string;
+    general_price: number;
+    buyer_id: number;
+    created_at: string;
 }

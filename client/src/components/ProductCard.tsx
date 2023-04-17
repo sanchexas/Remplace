@@ -9,9 +9,10 @@ type productCardProps = {
     image: string | File | null | undefined
     title: string | null | undefined
     price: number
+    quantity: number
 }
 
-const ProductCard = ({id, image, title, price}: productCardProps) => {
+const ProductCard = ({id, image, title, price, quantity}: productCardProps) => {
     function addToCartHandler(){
         const product: CartProductModel = {
             id: id,
@@ -19,7 +20,8 @@ const ProductCard = ({id, image, title, price}: productCardProps) => {
             title: title,
             price: price,
             full_price: price,
-            quantity: 1
+            cart_quantity: 1,
+            quantity: quantity
         };
         CartController.addToCart(product);
     }

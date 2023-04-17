@@ -9,7 +9,7 @@ class CartController{
         if(remcart !== null && product !== undefined && generalPrice !== null){
             const cartObj: object[] = JSON.parse(remcart) || [];
             let generalPriceObj: number = JSON.parse(generalPrice);
-            product.quantity = 1;
+            product.cart_quantity = 1;
             product.full_price = product.price;
             generalPriceObj += product.price;
             cartObj.push(product);
@@ -37,12 +37,12 @@ class CartController{
         if(remcart !== null && generalPrice !== null){
             const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
             let generalPriceObj: number = JSON.parse(generalPrice);
-            cartObj[key].quantity += 1;
+            cartObj[key].cart_quantity += 1;
             cartObj[key].full_price += cartObj[key].price;
             generalPriceObj += cartObj[key].price;
             localStorage.setItem('general_price', '' + generalPriceObj);
             localStorage.setItem('remcart', JSON.stringify(cartObj));
-            return cartObj[key].quantity += 1;
+            return cartObj[key].cart_quantity += 1;
         }
         return 0;
     }
@@ -52,13 +52,13 @@ class CartController{
         if(remcart !== null && generalPrice !== null){
             const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
             let generalPriceObj: number = JSON.parse(generalPrice);
-            if(cartObj[key].quantity > 1){
-                cartObj[key].quantity -= 1;
+            if(cartObj[key].cart_quantity > 1){
+                cartObj[key].cart_quantity -= 1;
                 cartObj[key].full_price -= cartObj[key].price;
                 generalPriceObj -= cartObj[key].price;
                 localStorage.setItem('general_price', '' + generalPriceObj);
                 localStorage.setItem('remcart', JSON.stringify(cartObj));
-                return cartObj[key].quantity -= 1;
+                return cartObj[key].cart_quantity -= 1;
             }
         }
         return 0;

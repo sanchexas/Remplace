@@ -7,5 +7,5 @@ export interface IProductModel {
     category_id?: string | number | undefined;
     organisation_id?: string | number | undefined;
     pickup_address?: string;
-    quantity?: string | number | undefined;
+    quantity: number;
 }

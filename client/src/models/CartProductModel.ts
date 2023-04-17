@@ -3,6 +3,7 @@ export type CartProductModel = {
     image: string | File | null | undefined
     title: string | null | undefined
     price: number
+    cart_quantity: number
     quantity: number
     full_price: number
 }
