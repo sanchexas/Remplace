@@ -12,7 +12,6 @@ const CarouselNew = () =>{
     useEffect(()=>{
         ProductController.getTopSix().then((response)=>{
             const resArr = response?.data.message;
-            console.log(resArr);
             if(resArr !== undefined){
                 setProducts(resArr.map((product: IProductModel)=>{
                     return(

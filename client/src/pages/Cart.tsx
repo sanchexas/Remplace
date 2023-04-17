@@ -5,6 +5,7 @@ import { CartProductModel } from '../models/CartProductModel';
 import apiPath from '../api-path';
 import BankCardController from '../controllers/BankCardController';
 import { IBankCardResponse } from '../models/responses/IBankCardResponse';
+import Cookies from 'universal-cookie';
 
 const Cart = () => {
     const [radioValue, setRadioValue] = useState<string | number>();
@@ -13,9 +14,9 @@ const Cart = () => {
     const [deleteItem, setDeleteItem] = useState<boolean>(false);
     const [generalPrice, setGeneralPrice] = useState<string | number>();
     const [bankCards, setBankCards] = useState<JSX.Element>();
+    const checkCart = localStorage.getItem('remcart');
+    const cookies = new Cookies();
 
-    
-    
     useEffect(()=>{
         CartController.getAll().then((response)=>{
             setProducts(response.map((product: CartProductModel, i: number)=>{
@@ -48,46 +49,57 @@ const Cart = () => {
         setGeneralPrice((getGeneralPrice !== null) ? getGeneralPrice : 0);
     }, [quantity, deleteItem, radioValue]);
     useEffect(()=>{
-        BankCardController.getAll().then((response)=>{
-            const cardsArr = response.data.message;
-            setBankCards(cardsArr.map((card: IBankCardResponse)=>{
-                return(
-                    <div key={card.id_card} className='chose__card__item' >
-                        
-                        <input type="radio" name='radio' value={card.id_card}
-                        id={''+card.id_card}
-                        onChange={(e)=>setRadioValue(e.target.value)}
-                        />
-                        <label htmlFor={''+card.id_card}>
-                        <svg className='card__icon' width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M25 5H5C3.61929 5 2.5 6.11929 2.5 7.5V22.5C2.5 23.8807 3.61929 25 5 25H25C26.3807 25 27.5 23.8807 27.5 22.5V7.5C27.5 6.11929 26.3807 5 25 5Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M7.5 10H10V12.5H7.5V10Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                            {card.number}
-                        </label>
-                    </div>
-                );
-            }));
-        });
+        if(cookies.get('id_user')){
+            BankCardController.getAll().then((response)=>{
+                const cardsArr = response.data.message;
+                setBankCards(cardsArr.map((card: IBankCardResponse)=>{
+                    return(
+                        <div key={card.id_card} className='chose__card__item' >
+                            <input type="radio" name='radio' value={card.id_card}
+                            id={''+card.id_card}
+                            onChange={(e)=>setRadioValue(e.target.value)}
+                            />
+                            <label htmlFor={''+card.id_card}>
+                            <svg className='card__icon' width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M25 5H5C3.61929 5 2.5 6.11929 2.5 7.5V22.5C2.5 23.8807 3.61929 25 5 25H25C26.3807 25 27.5 23.8807 27.5 22.5V7.5C27.5 6.11929 26.3807 5 25 5Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M7.5 10H10V12.5H7.5V10Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                                {card.number}
+                            </label>
+                        </div>
+                    );
+                }));
+            });
+        }
+        setBankCards(
+            <div>
+                Авторизуйтесь!
+            </div>
+        );
     },[]);
-    return(
-        <div className='cart__page'>
-            <div className='cart__products'>
-                <h1>Корзина</h1>
-                {products}
-            </div>
-            <div className='cart__order'>
-                <h1>Заказ</h1>
-                <span className='FS_20'>Цена: <span className='FS_20 IB'>{generalPrice} ₽</span></span>
-                <div className='chose__card'>
-                    <span className='FS_20'>Выберите карту</span>
-                    {bankCards}
+    if(checkCart === '[]' || checkCart === '0'){
+        return(
+            <div>Картинка "Ваша корзина пуста"</div>
+        )
+    }else{
+        return(
+            <div className='cart__page'>
+                <div className='cart__products'>
+                    <h1>Корзина</h1>
+                    {products}
                 </div>
-                <button onClick={()=>console.log("dfdff")} className={!radioValue ? 'order__button zero__opacity' : 'order__button'} disabled={!radioValue ? true : false}>Заказать</button>
+                <div className='cart__order'>
+                    <h1>Заказ</h1>
+                    <span className='FS_20'>Цена: <span className='FS_20 IB'>{generalPrice} ₽</span></span>
+                    <div className='chose__card'>
+                        <span className='FS_20'>{cookies.get('id_user') ? 'Выберите карту' : ''}</span>
+                        {bankCards}
+                    </div>
+                    <button onClick={()=>console.log("dfdff")} className={!radioValue ? 'order__button zero__opacity' : 'order__button'} disabled={!radioValue ? true : false}>Заказать</button>
+                </div>
             </div>
-            
-        </div>
-    );
+        );
+    }
 }
 
 export default Cart;

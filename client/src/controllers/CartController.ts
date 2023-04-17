@@ -65,8 +65,19 @@ class CartController{
         }
         return 0;
     }
+    isInCart(id: string | number | null | undefined){
+        const remcart = localStorage.getItem('remcart');
+        if(remcart !== null){
+            const cartObj: CartProductModel[] = JSON.parse(remcart) || [];
+            for(let i = 0; i < cartObj.length;){
+                if(cartObj[i].id === id){
+                    return true;
+                }
+                i++;
+            }
+        }
+    }
     async saveProducts(){
-        
     }
     async getAll(){
         const remcart = localStorage.getItem('remcart');
