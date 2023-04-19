@@ -2,6 +2,7 @@ import { CartOrderModel, OrderDbModel, OrderModel } from "../Models/order.model"
 import { connection } from "../db";
 
 class OrderRepository{
+    
     async create(productOrder: CartOrderModel, idUser: string | number, uniqId: string, generalPrice: number){
         try{
             const conn = await connection();
@@ -15,6 +16,16 @@ class OrderRepository{
                 idUser
             ]);
             await conn.end();
+        }catch(e){
+            throw new Error("ОшибОчка");
+        }
+    }
+    async getProductsByUserId(idUser: number | string){
+        try{
+            const conn = await connection();
+            const result = await conn.query<OrderDbModel[]>('SELECT * FROM orders LEFT JOIN products ON orders.product_id = products.id_product WHERE buyer_id = ? ORDER BY id_order DESC;', idUser);
+            await conn.end();
+            return result[0];
         }catch(e){
             throw new Error("ОшибОчка");
         }

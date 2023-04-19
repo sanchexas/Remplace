@@ -17,6 +17,17 @@ class OrderController{
             }
         }
     }
+    async getProductsByUserId(req: Request, res: Response){
+        const idUser: number | string = req.cookies.id_user
+        try{
+            const result = await orderService.getProductsByUserId(idUser);
+            return res.json({
+                message: result,
+            });
+        }catch(e){
+            return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
+        }
+    }
 }
     
 

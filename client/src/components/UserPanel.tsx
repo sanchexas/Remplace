@@ -9,10 +9,10 @@ const UserPanel = () =>{
         <div>
             <h1 className='IR'>Сервисы</h1>
             <div className='actions'>
-                <Link to='/' className='action__card'>
+                <Link to='/product_story' className='action__card'>
                     <img src={img1} alt="" />
                     <span className='action__card__title IB'>Покупки</span>
-                    <span className='action__card__desc'>Просмотрите чеки и историю покупок</span>
+                    <span className='action__card__desc'>Просмотрите историю покупок</span>
                 </Link>
                 <Link to='/payment' className='action__card'>
                     <img src={img2} alt="" />

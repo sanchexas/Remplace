@@ -7,5 +7,5 @@ const express_1 = require("express");
 const order_controller_1 = __importDefault(require("../Controllers/order.controller"));
 const orderRouter = (0, express_1.Router)();
 orderRouter.post('/create', order_controller_1.default.create);
-// orgRouter.get('/getbyownerid', orgController.getByOwnerId);
+orderRouter.get('/getByUserId', order_controller_1.default.getProductsByUserId);
 exports.default = orderRouter;

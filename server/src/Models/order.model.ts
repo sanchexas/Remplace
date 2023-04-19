@@ -23,4 +23,8 @@ export interface OrderDbModel extends RowDataPacket{
     general_price: number
     buyer_id: number
     created_at?: string
+    id_product: number
+    title: string
+    price: number
+    image: string
 }

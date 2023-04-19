@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import apiPath from '../api-path';
 import { IOrderModel } from '../models/IOrderModel';
+import { IOrderResponse } from '../models/responses/IOrderResponse';
 Axios.defaults.withCredentials = true;
 
 class OrderController{
@@ -20,6 +21,10 @@ class OrderController{
             const response = await Axios.post<IOrderModel>(`${apiPath}/orders/create`, data);
         }
         
+    }
+    async getByUserId(){
+        const response = await Axios.get(`${apiPath}/orders/getByUserId`);
+        return response;
     }
 }
 

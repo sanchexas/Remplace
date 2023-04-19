@@ -11,7 +11,14 @@ class OrderService{
         }
         return {message: "yay"};
     }
-    
+    async getProductsByUserId(idUser: number | string){
+        const result = await orderRepository.getProductsByUserId(idUser);
+        if(result){
+            return result;
+        }
+        return "Не удалось загрузить товары.";
+
+    }
 }
 
 export default new OrderService;

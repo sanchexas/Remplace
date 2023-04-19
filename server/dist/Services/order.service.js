@@ -24,5 +24,14 @@ class OrderService {
             return { message: "yay" };
         });
     }
+    getProductsByUserId(idUser) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield order_repository_1.default.getProductsByUserId(idUser);
+            if (result) {
+                return result;
+            }
+            return "Не удалось загрузить товары.";
+        });
+    }
 }
 exports.default = new OrderService;

@@ -5,6 +5,5 @@ import orderController from "../Controllers/order.controller";
 const orderRouter = Router();
 
 orderRouter.post('/create', orderController.create);
-// orgRouter.get('/getbyownerid', orgController.getByOwnerId);
-
+orderRouter.get('/getByUserId', orderController.getProductsByUserId);
 export default orderRouter;

@@ -31,5 +31,19 @@ class OrderController {
             }
         });
     }
+    getProductsByUserId(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const idUser = req.cookies.id_user;
+            try {
+                const result = yield order_service_1.default.getProductsByUserId(idUser);
+                return res.json({
+                    message: result,
+                });
+            }
+            catch (e) {
+                return res.json({ err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ` });
+            }
+        });
+    }
 }
 exports.default = new OrderController;

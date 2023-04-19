@@ -30,5 +30,18 @@ class OrderRepository {
             }
         });
     }
+    getProductsByUserId(idUser) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const conn = yield (0, db_1.connection)();
+                const result = yield conn.query('SELECT * FROM orders LEFT JOIN products ON orders.product_id = products.id_product WHERE buyer_id = ? ORDER BY id_order DESC;', idUser);
+                yield conn.end();
+                return result[0];
+            }
+            catch (e) {
+                throw new Error("ОшибОчка");
+            }
+        });
+    }
 }
 exports.default = new OrderRepository;
