@@ -16,6 +16,7 @@ const category_routes_1 = __importDefault(require("./Routes/category.routes"));
 const product_routes_1 = __importDefault(require("./Routes/product.routes"));
 const review_routes_1 = __importDefault(require("./Routes/review.routes"));
 const bankcard_routes_1 = __importDefault(require("./Routes/bankcard.routes"));
+const order_routes_1 = __importDefault(require("./Routes/order.routes"));
 class App {
     constructor(port) {
         this.port = port;
@@ -45,6 +46,7 @@ class App {
         this.app.use('/reviews', review_routes_1.default);
         this.app.use('/src/images', express_1.default.static('src/images'));
         this.app.use('/bankcards', bankcard_routes_1.default);
+        this.app.use('/orders', order_routes_1.default);
     }
     listen() {
         this.app.listen(this.app.get('port'));

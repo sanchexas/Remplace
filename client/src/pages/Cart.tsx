@@ -6,6 +6,7 @@ import apiPath from '../api-path';
 import BankCardController from '../controllers/BankCardController';
 import { IBankCardResponse } from '../models/responses/IBankCardResponse';
 import Cookies from 'universal-cookie';
+import OrderController from '../controllers/OrderController';
 
 const Cart = () => {
     const [radioValue, setRadioValue] = useState<string | number>();
@@ -16,7 +17,6 @@ const Cart = () => {
     const [bankCards, setBankCards] = useState<JSX.Element>();
     const checkCart = localStorage.getItem('remcart');
     const cookies = new Cookies();
-
     useEffect(()=>{
         CartController.getAll().then((response)=>{
             setProducts(response.map((product: CartProductModel, i: number)=>{
@@ -95,7 +95,7 @@ const Cart = () => {
                         <span className='FS_20'>{cookies.get('id_user') ? 'Выберите карту' : ''}</span>
                         {bankCards}
                     </div>
-                    <button onClick={()=>console.log("dfdff")} className={!radioValue ? 'order__button zero__opacity' : 'order__button'} disabled={!radioValue ? true : false}>Заказать</button>
+                    <button onClick={()=>OrderController.create()} className={!radioValue ? 'order__button zero__opacity' : 'order__button'} disabled={!radioValue ? true : false}>Заказать</button>
                 </div>
             </div>
         );

@@ -2,8 +2,11 @@ import '../style.css';
 
 const Favorite = () =>{
     return(
-        <div>favvvvv</div>
+        <div>
+            
+        </div>
     );
+
 }
 
 export default Favorite

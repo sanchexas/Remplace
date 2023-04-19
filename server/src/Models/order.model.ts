@@ -1,9 +1,26 @@
 import { RowDataPacket } from "mysql2";
 
-export interface OrderModel extends RowDataPacket{ 
-    id?: number;
-    productsIds: string;
-    generalPrice: number;
-    buyerId: number;
-    createdAt: string;
+export interface CartOrderModel{ 
+    id: number
+    image: string
+    title: string
+    price: number
+    full_price: number
+    cart_quantity: number
+}
+
+export interface OrderModel{ 
+    cartObj: CartOrderModel[],
+    generalPrice: number
+}
+
+export interface OrderDbModel extends RowDataPacket{
+    id_order?: number
+    uniq_order_id: string
+    product_id: number
+    cart_quantity: number
+    full_product_price: number
+    general_price: number
+    buyer_id: number
+    created_at?: string
 }
