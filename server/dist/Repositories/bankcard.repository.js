@@ -15,7 +15,7 @@ class BankCardRepository {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const conn = yield (0, db_1.connection)();
-                const response = yield conn.query('INSERT INTO bank_cards (number, cvc, expire, owner, is_selected) VALUES (?,?,?,?,?)', [newCard.number, newCard.cvc, newCard.expire, idUser, 1]);
+                const response = yield conn.query('INSERT INTO bank_cards (number, cvc, expire, owner, is_selected, balance) VALUES (?,?,?,?,?,?)', [newCard.number, newCard.cvc, newCard.expire, idUser, 1, 0]);
                 yield conn.end();
             }
             catch (e) {
@@ -30,6 +30,18 @@ class BankCardRepository {
                 const response = yield conn.query('SELECT * FROM bank_cards WHERE owner = ?', idUser);
                 yield conn.end();
                 return response[0];
+            }
+            catch (e) {
+                throw new Error("ОшибОчка");
+            }
+        });
+    }
+    minusBalance(idCard, value) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const conn = yield (0, db_1.connection)();
+                const response = yield conn.query('UPDATE bank_cards SET balance = (balance - ?) WHERE id_card = ?', [value, idCard]);
+                yield conn.end();
             }
             catch (e) {
                 throw new Error("ОшибОчка");

@@ -19,7 +19,7 @@ class OrderService {
         return __awaiter(this, void 0, void 0, function* () {
             const uniqId = (0, idGenerator_1.idGenerator)(idUser);
             for (let i = 0; i < newOrder.cartObj.length; i++) {
-                yield order_repository_1.default.create(newOrder.cartObj[i], idUser, uniqId, newOrder.generalPrice);
+                yield order_repository_1.default.create(newOrder.cartObj[i], idUser, uniqId, newOrder.generalPrice, newOrder.address, newOrder.idCard);
             }
             return { message: "yay" };
         });

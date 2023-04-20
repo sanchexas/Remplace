@@ -44,6 +44,9 @@ body{
     margin: 0px;
     font-family: IR;
 }
+a{
+    color: #0762C4;
+}
 .center__wrapper{
     padding: 10px;
     margin: 0px auto;
@@ -686,13 +689,12 @@ footer{
     flex-direction: column;
 }
 .chose__card{
-    padding-top: 10px;
     padding-bottom: 10px;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     gap: 20px;
     border-radius: 5px;
     /* box-shadow:inset 0px 0px 10px rgba(185, 185, 185, 0.281); */
@@ -732,9 +734,10 @@ footer{
 }
 .zero__opacity{
     opacity: 0;
+    cursor: auto;
 }
 .chose__card__item{
-    width: 95%;
+    width: 100%;
     background: white;
     height: 50px;
     display: flex;

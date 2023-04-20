@@ -10,15 +10,17 @@ import OrderController from '../controllers/OrderController';
 import { AddressSuggestions } from 'react-dadata';
 import 'react-dadata/dist/react-dadata.css';
 import { API_KEY } from '../api-path';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-    const [radioValue, setRadioValue] = useState<string | number>();
+    const [radioValue, setRadioValue] = useState<string | number>(0);
     const [products, setProducts] = useState();
     const [quantity, setQuantity] = useState<number>();
     const [deleteItem, setDeleteItem] = useState<boolean>(false);
     const [generalPrice, setGeneralPrice] = useState<string | number>();
-    const [bankCards, setBankCards] = useState<JSX.Element>();
-    const [addressValue, setAddressValue] = useState<string | undefined>();
+    const [bankCards, setBankCards] = useState<JSX.Element[] | JSX.Element>();
+    const [addressValue, setAddressValue] = useState<string>('');
+    const redirect = useNavigate();
     const checkCart = localStorage.getItem('remcart');
     const cookies = new Cookies();
     useEffect(()=>{
@@ -55,31 +57,37 @@ const Cart = () => {
     useEffect(()=>{
         if(cookies.get('id_user')){
             BankCardController.getAll().then((response)=>{
-                const cardsArr = response.data.message;
-                console.log(addressValue)
-                setBankCards(cardsArr.map((card: IBankCardResponse)=>{
-                    return(
-                        <div key={card.id_card} className='chose__card__item' >
-                            <input type="radio" name='radio' value={card.id_card}
-                            id={''+card.id_card}
-                            onChange={(e)=>setRadioValue(e.target.value)}
-                            />
-                            <label htmlFor={''+card.id_card}>
-                            <svg className='card__icon' width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M25 5H5C3.61929 5 2.5 6.11929 2.5 7.5V22.5C2.5 23.8807 3.61929 25 5 25H25C26.3807 25 27.5 23.8807 27.5 22.5V7.5C27.5 6.11929 26.3807 5 25 5Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M7.5 10H10V12.5H7.5V10Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                                {card.number}
-                            </label>
-                        </div>
+                const cardsArr: IBankCardResponse[] = response.data.message;
+                if(cardsArr.length < 1){
+                    setBankCards(
+                        <Link to='/payment' className='fake__button edit__button'>Привязать карту</Link>
                     );
-                }));
+                }else{
+                    setBankCards(cardsArr.map((card: IBankCardResponse)=>{
+                        const stringCardnumber: string = '' + card.number;
+                        return(
+                            <div key={card.id_card} className='chose__card__item' >
+                                <input type="radio" name='radio' value={card.id_card}
+                                id={''+card.id_card}
+                                onChange={(e)=>setRadioValue(e.target.value)}
+                                />
+                                <label htmlFor={''+card.id_card}>
+                                <svg className='card__icon' width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M25 5H5C3.61929 5 2.5 6.11929 2.5 7.5V22.5C2.5 23.8807 3.61929 25 5 25H25C26.3807 25 27.5 23.8807 27.5 22.5V7.5C27.5 6.11929 26.3807 5 25 5Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M7.5 10H10V12.5H7.5V10Z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                                    {stringCardnumber.substring(0, 4)} **** **** {stringCardnumber.substring(15, 19)}
+                                </label>
+                            </div>
+                        );
+                    }));
+                }
             });
         }
         setBankCards(
-            <div>
-                Авторизуйтесь!
-            </div>
+            <h3>
+                Чтобы сделать заказ, необходимо <Link to='/signin'>авторизоваться</Link>
+            </h3>
         );
     },[]);
     if(checkCart === '[]' || checkCart === '0'){
@@ -95,19 +103,31 @@ const Cart = () => {
                 </div>
                 <div className='cart__order'>
                     <h1>Заказ</h1>
-                    <span className='FS_20'>Цена: <span className='FS_20 IB'>{generalPrice} ₽</span></span>
+                    <span className='FS_20' >Итого: <span className='FS_20 IB' style={{color: "rgb(7, 104, 222)"}}>{generalPrice}</span> ₽</span>
                     <div className='chose__card'>
-                        <span className='FS_20'>{cookies.get('id_user') ? 'Выберите карту' : ''}</span>
+                        <h3 className='FS_20'>{cookies.get('id_user') ? 'Выберите карту' : ''}</h3>
                         {bankCards}
                     </div>
-                    <span>
-                    Адрес доставки
-
-                    </span>
-                    <AddressSuggestions token={API_KEY} onChange={(e)=>{
-                        setAddressValue(e?.value);
-                    }} />
-                    <button onClick={()=>OrderController.create()} className={(radioValue && addressValue) ? 'order__button' : 'order__button zero__opacity'} disabled={!radioValue ? true : false}>Заказать</button>
+                    {
+                    cookies.get('id_user')
+                    ? 
+                    <div>
+                        <h3>Куда:</h3>
+                        <AddressSuggestions token={API_KEY} onChange={(e)=>{ 
+                            if(e)
+                            setAddressValue(e.value);
+                        }} />
+                    </div>
+                    :
+                    ''
+                    }
+                    <button 
+                        onClick={()=>{
+                            OrderController.create(addressValue, radioValue);
+                            redirect('/');
+                        }}
+                        className={(radioValue && addressValue) ? 'order__button' : 'order__button zero__opacity'} 
+                        disabled={!radioValue && !addressValue ? true : false}>Заказать</button>
                 </div>
             </div>
         );

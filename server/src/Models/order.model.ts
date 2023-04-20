@@ -12,6 +12,8 @@ export interface CartOrderModel{
 export interface OrderModel{ 
     cartObj: CartOrderModel[],
     generalPrice: number
+    address: string
+    idCard: string | number
 }
 
 export interface OrderDbModel extends RowDataPacket{

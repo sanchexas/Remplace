@@ -8,7 +8,7 @@ class OrderController{
     // async create(data: IOrganisation){ 
     //     const response = await Axios.post<IOrganisationResponse[]>(`${apiPath}/orgs/create`, data);
     // }
-    async create(){
+    async create(address: string, idCard: number | string){
         const cart = localStorage.getItem('remcart');
         const generalPrice = localStorage.getItem('general_price');
         if(cart && generalPrice){
@@ -16,7 +16,9 @@ class OrderController{
             const generalPriceNumber = JSON.parse(generalPrice);
             const data = {
                 cartObj: cartObj,
-                generalPrice: generalPriceNumber
+                generalPrice: generalPriceNumber,
+                address: address,
+                idCard: idCard
             }
             const response = await Axios.post<IOrderModel>(`${apiPath}/orders/create`, data);
         }
