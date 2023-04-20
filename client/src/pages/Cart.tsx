@@ -1,5 +1,5 @@
 import '../style.css';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CartController from '../controllers/CartController';
 import { CartProductModel } from '../models/CartProductModel';
 import apiPath from '../api-path';
@@ -7,6 +7,9 @@ import BankCardController from '../controllers/BankCardController';
 import { IBankCardResponse } from '../models/responses/IBankCardResponse';
 import Cookies from 'universal-cookie';
 import OrderController from '../controllers/OrderController';
+import { AddressSuggestions } from 'react-dadata';
+import 'react-dadata/dist/react-dadata.css';
+import { API_KEY } from '../api-path';
 
 const Cart = () => {
     const [radioValue, setRadioValue] = useState<string | number>();
@@ -15,6 +18,7 @@ const Cart = () => {
     const [deleteItem, setDeleteItem] = useState<boolean>(false);
     const [generalPrice, setGeneralPrice] = useState<string | number>();
     const [bankCards, setBankCards] = useState<JSX.Element>();
+    const [addressValue, setAddressValue] = useState<string | undefined>();
     const checkCart = localStorage.getItem('remcart');
     const cookies = new Cookies();
     useEffect(()=>{
@@ -52,6 +56,7 @@ const Cart = () => {
         if(cookies.get('id_user')){
             BankCardController.getAll().then((response)=>{
                 const cardsArr = response.data.message;
+                console.log(addressValue)
                 setBankCards(cardsArr.map((card: IBankCardResponse)=>{
                     return(
                         <div key={card.id_card} className='chose__card__item' >
@@ -95,7 +100,14 @@ const Cart = () => {
                         <span className='FS_20'>{cookies.get('id_user') ? 'Выберите карту' : ''}</span>
                         {bankCards}
                     </div>
-                    <button onClick={()=>OrderController.create()} className={!radioValue ? 'order__button zero__opacity' : 'order__button'} disabled={!radioValue ? true : false}>Заказать</button>
+                    <span>
+                    Адрес доставки
+
+                    </span>
+                    <AddressSuggestions token={API_KEY} onChange={(e)=>{
+                        setAddressValue(e?.value);
+                    }} />
+                    <button onClick={()=>OrderController.create()} className={(radioValue && addressValue) ? 'order__button' : 'order__button zero__opacity'} disabled={!radioValue ? true : false}>Заказать</button>
                 </div>
             </div>
         );
