@@ -27,6 +27,9 @@ function App() {
   if(!localStorage.getItem('general_price')){
     localStorage.setItem('general_price', '0');
   }
+  if(!localStorage.getItem('favorite')){
+    localStorage.setItem('favorite', '[]');
+  }
   return (
     <BrowserRouter>
     <Routes>

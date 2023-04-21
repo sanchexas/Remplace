@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import apiPath from '../api-path';
 import { IOrderModel } from '../models/IOrderModel';
-import { IOrderResponse } from '../models/responses/IOrderResponse';
 Axios.defaults.withCredentials = true;
 
 class OrderController{
@@ -21,7 +20,6 @@ class OrderController{
             localStorage.clear();
             window.location.reload();
         }
-        
     }
     async getByUserId(){
         const response = await Axios.get(`${apiPath}/orders/getByUserId`);

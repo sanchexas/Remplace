@@ -838,3 +838,7 @@ footer{
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.113);
 }
+.fill__red{
+    fill: #c40707;
+    stroke: #c40707;
+}
