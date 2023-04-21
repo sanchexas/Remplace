@@ -24,13 +24,12 @@ const ProductStory = () =>{
                             <span className='FS_20 IBl' style={{position: "absolute", top: "80px"}}>{product.price} ₽</span>
                         </div>
                     </Link>
-                )
+                );
             }));
         });
         
     }, []);
     return(
-        
         <div>
             <h1>История покупок</h1>
             <div className='product__story'>

@@ -35,7 +35,7 @@ class FavoritesController{
             }
         }
     }
-    getAll(){
+    async getAll(){
         const getFavorites = localStorage.getItem('favorite');
         if(getFavorites !== null){
             const favoritesToObj: IFavoriteModel[] = JSON.parse(getFavorites) || [];
