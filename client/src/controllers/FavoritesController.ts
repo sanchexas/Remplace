@@ -35,6 +35,14 @@ class FavoritesController{
             }
         }
     }
+    getAll(){
+        const getFavorites = localStorage.getItem('favorite');
+        if(getFavorites !== null){
+            const favoritesToObj: IFavoriteModel[] = JSON.parse(getFavorites) || [];
+            return favoritesToObj;
+        }
+        return [];
+    }
 }
 
 export default new FavoritesController();
