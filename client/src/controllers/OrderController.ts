@@ -5,9 +5,6 @@ import { IOrderResponse } from '../models/responses/IOrderResponse';
 Axios.defaults.withCredentials = true;
 
 class OrderController{
-    // async create(data: IOrganisation){ 
-    //     const response = await Axios.post<IOrganisationResponse[]>(`${apiPath}/orgs/create`, data);
-    // }
     async create(address: string, idCard: number | string){
         const cart = localStorage.getItem('remcart');
         const generalPrice = localStorage.getItem('general_price');
@@ -21,6 +18,8 @@ class OrderController{
                 idCard: idCard
             }
             const response = await Axios.post<IOrderModel>(`${apiPath}/orders/create`, data);
+            localStorage.clear();
+            window.location.reload();
         }
         
     }
