@@ -3,9 +3,11 @@ import apiPath from '../api-path';
 import { Link } from 'react-router-dom';
 import CartController from '../controllers/CartController';
 import { CartProductModel } from '../models/CartProductModel';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FavoritesController from '../controllers/FavoritesController';
 import { IFavoriteModel } from '../models/IFavoriteModel';
+import PaintStarsByRate from './PaintStarsByRate';
+import ReviewController from '../controllers/ReviewController';
 
 type productCardProps = {
     id: string | number | null | undefined
@@ -18,6 +20,7 @@ type productCardProps = {
 const ProductCard = ({id, image, title, price, quantity}: productCardProps) => {
     const [putInCart, setPutInCart] = useState<boolean>(false);
     const [like, setLike] = useState<boolean>(FavoritesController.isInFav(id) ? true : false);
+    const [rate, setRate] = useState<number>(0);
     
     function addToCartHandler(){
         const product: CartProductModel = {
@@ -47,6 +50,11 @@ const ProductCard = ({id, image, title, price, quantity}: productCardProps) => {
             FavoritesController.addToFav(favProd);
         }
     }
+    useEffect(()=>{
+        ReviewController.getAveregeRateByProdId(id).then((response)=>{
+            setRate(response.data.message);
+        })
+    },[]);
     return(
         <div className='product__card'>
             <Link to={`/productinfo?id=${id}`}>
@@ -56,6 +64,7 @@ const ProductCard = ({id, image, title, price, quantity}: productCardProps) => {
                 <div className='product__card__info'>
                     <span className='FS_20 IR' style={{position: "absolute", top: "20px"}}>{title}</span>
                     <span className='FS_20 IBl' style={{position: "absolute", top: "80px"}}>{price} ₽</span>
+                    <div style={{position: "absolute", top: "81px", right: "0px"}}><PaintStarsByRate rate={rate}/></div>
                 </div>
             </Link>
             <div className='product__card__actions'>

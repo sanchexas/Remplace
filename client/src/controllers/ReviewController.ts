@@ -11,6 +11,10 @@ class ReviewController{
         const response = await Axios.get(`${apiPath}/reviews/getbyprodid`, {params: {prodId: prodId}});
         return response;
     }
+    async getAveregeRateByProdId(prodId: string | number | null | undefined){
+        const response = await Axios.get(`${apiPath}/reviews/getratebyprodid`, {params: {prodId: prodId}});
+        return response;
+    }
 }
 
 export default new ReviewController();

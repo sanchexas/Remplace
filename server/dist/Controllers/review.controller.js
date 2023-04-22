@@ -46,5 +46,21 @@ class ReviewController {
             }
         });
     }
+    getAveregeRateByProdId(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const prodId = req.query.prodId;
+            if (prodId) {
+                try {
+                    const result = yield review_service_1.default.getAveregeRateByProdId(prodId);
+                    return res.json({
+                        message: result.message
+                    });
+                }
+                catch (e) {
+                    return res.json({ err: "Ошибка" });
+                }
+            }
+        });
+    }
 }
 exports.default = new ReviewController;

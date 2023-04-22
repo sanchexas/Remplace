@@ -5,14 +5,14 @@ const RateFiveStars = () =>{
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
     return(
-        <div>
+        <div style={{display: "flex", gap: "3px"}}>
             {[...Array(5)].map((_, i)=>{
                 const  ratingValue = i + 1;
                 return(
                     <label 
                         htmlFor="" 
                         key={i} 
-                        onClick={()=>{setRating(ratingValue); console.log(ratingValue)}} 
+                        onClick={()=>{setRating(ratingValue)}} 
                         onMouseEnter={()=>setHover(ratingValue)}
                         onMouseLeave={()=>setHover(0)}
                         >

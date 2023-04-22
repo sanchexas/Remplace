@@ -8,6 +8,8 @@ import Cookies from 'universal-cookie';
 import ReviewController from '../controllers/ReviewController';
 import { IReviewModel } from '../models/IReviewModel';
 import RateFiveStars from '../components/RateFiveStars';
+import Star from '../components/Star';
+import PaintStarsByRate from '../components/PaintStarsByRate';
 
 const ProductInfo = () =>{
     const [searchParams, setSearchParams] = useSearchParams();
@@ -16,15 +18,24 @@ const ProductInfo = () =>{
     const curentProdId = searchParams.get("id");
     const [review, setReview] = useState<string>();
     const [reviews, setReviews] = useState();
+    const [rating, setRating] = useState(0);
+    const [hover, setHover] = useState(0);
+    const [isSent, setIsSent] = useState<boolean>(false);
     const cookies = new Cookies();
 
     function sendReview(){
         const data = {
             author_id: cookies.get('id_user'),
             product_id: curentProdId,
-            text: review
-        }
+            text: review,
+            rate: rating
+        };
         ReviewController.create(data);
+        setIsSent(true);
+        setRating(0);
+        setTimeout(()=>{
+            setIsSent(false);
+        }, 100);
     }
 
     useEffect(()=>{
@@ -65,19 +76,38 @@ const ProductInfo = () =>{
                                 <div className='review__avatar'><img src={`${apiPath}/${review.image}`} alt="avatar" /></div>
                                 <span className='IM'>{review.fio}</span>
                             </div>
-                            <span style={{marginLeft: '45px'}} className='IR'>{review.text}</span>
+                            <div style={{marginLeft: '45px', display: "flex", flexDirection: "column", alignItems: "baseline"}}>
+                                <PaintStarsByRate rate={review.rate}/>
+                                <span  className='IR'>{review.text}</span>
+                            </div>
                         </div>
                     );
                 }));
             });
         }
-    },[]);    
+    },[isSent]);    
     return(
         <div className='product__info__wrap'>
             {product}
             <div className='reviews__block'>
                 <h1>Отзывы</h1>
-                <RateFiveStars/>
+                <div style={{display: "flex", gap: "3px"}}>
+                    {[...Array(5)].map((_, i)=>{
+                        const  ratingValue = i + 1;
+                        return(
+                            <label 
+                                htmlFor="" 
+                                key={i} 
+                                onClick={()=>{setRating(ratingValue); console.log(ratingValue)}} 
+                                onMouseEnter={()=>setHover(ratingValue)}
+                                onMouseLeave={()=>setHover(0)}
+                                >
+                                <input type="radio" name="rating" value={ratingValue} />
+                                <Star color={ratingValue <= (rating || hover) ? '#ffbb00' : '#cccccc'}/>
+                            </label> 
+                        );
+                    })}
+                </div>
                 <div className='write__review' >
                     <textarea cols={50} rows={3} style={{width:"70%"}} onChange={(e)=>setReview(e.target.value)} placeholder='Написать отзыв'></textarea>
                     <button className='save__button' style={{width: "20%"}} onClick={()=>sendReview()}>Отправить</button>

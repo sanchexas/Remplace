@@ -26,5 +26,17 @@ class ReviewService {
             return { message: result };
         });
     }
+    getAveregeRateByProdId(prodId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield review_repository_1.default.getAveregeRateByProdId(prodId);
+            let avgRate = 0;
+            let avg = 0;
+            for (let i = 0; i < result.length; i++) {
+                avgRate += result[i].rate;
+                avg = (avgRate / result.length);
+            }
+            return { message: Math.round(avg) };
+        });
+    }
 }
 exports.default = new ReviewService;

@@ -29,7 +29,19 @@ class ReviewController{
             }
         }
     }
-    
+    async getAveregeRateByProdId(req: Request, res: Response){
+        const prodId = req.query.prodId;
+        if(prodId){
+            try{
+                const result = await reviewService.getAveregeRateByProdId(prodId);
+                return res.json({
+                    message: result.message
+                });
+            }catch(e){
+                return res.json({err: "Ошибка"});
+            }
+        }
+    }
 }
     
 

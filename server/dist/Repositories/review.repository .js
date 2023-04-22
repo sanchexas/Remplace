@@ -15,7 +15,7 @@ class ReviewRepository {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const conn = yield (0, db_1.connection)();
-                const result = yield conn.query('INSERT INTO reviews (text, author_id, product_id) VALUES (?, ?, ?)', [newReview.text, newReview.author_id, newReview.product_id]);
+                const result = yield conn.query('INSERT INTO reviews (text, author_id, product_id, rate) VALUES (?, ?, ?, ?)', [newReview.text, newReview.author_id, newReview.product_id, newReview.rate]);
                 yield conn.end();
                 return result[0];
             }
@@ -28,8 +28,21 @@ class ReviewRepository {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const conn = yield (0, db_1.connection)();
-                const result = yield conn.query('SELECT id_review, text, author_id, product_id, sent_at, fio, image FROM reviews LEFT JOIN users ON reviews.author_id=users.id_user WHERE product_id=?;', prodId);
+                const result = yield conn.query('SELECT id_review, text, author_id, product_id, sent_at, rate, fio, image FROM reviews LEFT JOIN users ON reviews.author_id=users.id_user WHERE product_id=?;', prodId);
                 console.log(result[0]);
+                yield conn.end();
+                return result[0];
+            }
+            catch (e) {
+                throw new Error("ОшибОчка");
+            }
+        });
+    }
+    getAveregeRateByProdId(prodId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const conn = yield (0, db_1.connection)();
+                const result = yield conn.query('SELECT rate FROM reviews WHERE product_id = ?', prodId);
                 yield conn.end();
                 return result[0];
             }

@@ -8,4 +8,5 @@ const review_controller_1 = __importDefault(require("../Controllers/review.contr
 const reviewRouter = (0, express_1.Router)();
 reviewRouter.post('/create', review_controller_1.default.create);
 reviewRouter.get('/getbyprodid', review_controller_1.default.getByProdId);
+reviewRouter.get('/getratebyprodid', review_controller_1.default.getAveregeRateByProdId);
 exports.default = reviewRouter;
