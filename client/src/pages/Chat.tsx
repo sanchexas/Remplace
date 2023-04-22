@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import '../style.css';
 
 const Chat = () =>{
     return(
-        <div>chat</div>
+        <div>
+        </div>
     );
 }
 

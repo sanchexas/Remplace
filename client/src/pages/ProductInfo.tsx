@@ -7,6 +7,7 @@ import OrganisationController from '../controllers/OrganisationController';
 import Cookies from 'universal-cookie';
 import ReviewController from '../controllers/ReviewController';
 import { IReviewModel } from '../models/IReviewModel';
+import RateFiveStars from '../components/RateFiveStars';
 
 const ProductInfo = () =>{
     const [searchParams, setSearchParams] = useSearchParams();
@@ -76,13 +77,13 @@ const ProductInfo = () =>{
             {product}
             <div className='reviews__block'>
                 <h1>Отзывы</h1>
+                <RateFiveStars/>
                 <div className='write__review' >
                     <textarea cols={50} rows={3} style={{width:"70%"}} onChange={(e)=>setReview(e.target.value)} placeholder='Написать отзыв'></textarea>
                     <button className='save__button' style={{width: "20%"}} onClick={()=>sendReview()}>Отправить</button>
                 </div>
                 <div className='reviews'>
                     {reviews} 
-
                 </div>
             </div>
         </div>

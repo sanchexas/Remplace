@@ -30,7 +30,6 @@ const Favorite = () =>{
                             </div>
                         </Link>
                     </div>
-                    
                 );
             }));
         });
