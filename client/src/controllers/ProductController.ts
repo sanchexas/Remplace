@@ -42,6 +42,10 @@ class ProductController{
         const result = await Axios.get(`${apiPath}/products/getbycategoryid`, {params: {id: idCategory}});
         return result;
     }
+    async getByTitle(title: string | null){
+        const result = await Axios.get(`${apiPath}/products/getbytitle`, {params: {title: title}});
+        return result;
+    }
 }
 
 export default new ProductController();

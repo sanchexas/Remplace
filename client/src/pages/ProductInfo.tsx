@@ -7,7 +7,6 @@ import OrganisationController from '../controllers/OrganisationController';
 import Cookies from 'universal-cookie';
 import ReviewController from '../controllers/ReviewController';
 import { IReviewModel } from '../models/IReviewModel';
-import RateFiveStars from '../components/RateFiveStars';
 import Star from '../components/Star';
 import PaintStarsByRate from '../components/PaintStarsByRate';
 

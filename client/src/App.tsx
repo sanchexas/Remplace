@@ -19,6 +19,7 @@ import ProductInfo from './pages/ProductInfo';
 import Products from './pages/Products';
 import Payment from './pages/Payment';
 import ProductStory from './pages/ProductsStory';
+import SearchResult from './pages/SearchResult';
 
 function App() {
   if(!localStorage.getItem('remcart')){
@@ -56,6 +57,7 @@ function App() {
               <Route path='/ctprd' element={<Products/>}/>
               <Route path='/payment' element={<Payment/>}/>
               <Route path='/product_story' element={<ProductStory/>}/>
+              <Route path='/search' element={<SearchResult/>}/>
             </Routes>
           </main>
           <Footer/>

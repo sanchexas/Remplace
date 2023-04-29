@@ -1,9 +1,12 @@
 import '../style.css';
 import CarouselNew from '../components/CarouselNew';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const MainPage = () =>{
-    
+    const [query, setQuery] = useState<string>('');
+    const redirect = useNavigate();
     return(
         <div className='main__page'>
             <div className="catalogue__search__wrapper">
@@ -20,8 +23,8 @@ const MainPage = () =>{
                         </div>
                     </Link>
                     <div className="search">
-                        <input type="text" placeholder="Найти..."></input>
-                        <button className="search__button">
+                        <input type="text" placeholder="Найти..." onChange={(e)=>setQuery(e.target.value)}/>
+                        <button className="search__button" onClick={()=>redirect(`/search?text=${query}`)}>
                             <svg width="20" height="20" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M21.8749 21.875L17.202 17.1938M19.7916 10.9375C19.7916 13.2858 18.8587 15.5379 17.1983 17.1984C15.5378 18.8589 13.2857 19.7917 10.9374 19.7917C8.58915 19.7917 6.33706 18.8589 4.67658 17.1984C3.0161 15.5379 2.08325 13.2858 2.08325 10.9375C2.08325 8.58927 3.0161 6.33718 4.67658 4.6767C6.33706 3.01622 8.58915 2.08337 10.9374 2.08337C13.2857 2.08337 15.5378 3.01622 17.1983 4.6767C18.8587 6.33718 19.7916 8.58927 19.7916 10.9375Z" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                             </svg>

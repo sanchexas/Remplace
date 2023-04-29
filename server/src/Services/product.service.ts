@@ -57,6 +57,13 @@ class ProductService{
         }
         return {message: "Не удалось найти продукт по id категории."};
     }
+    async getByTitle(title: string | ParsedQs | string[] | ParsedQs[]){
+        const result = await productRepository.getByTitle(title);
+        if(result){
+            return {message: result};
+        }
+        return {message: "Не удалось найти продукт по названию."};
+    }
 }
 
 export default new ProductService;

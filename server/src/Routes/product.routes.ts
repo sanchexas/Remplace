@@ -16,5 +16,6 @@ productRouter.post('/deletebyid', productController.deleteById);
 productRouter.get('/getbyid', productController.getById);
 productRouter.post('/update', upload.single('image'), productController.update);
 productRouter.get('/getbycategoryid', productController.getByCategoryId);
+productRouter.get('/getbytitle', productController.getByTitle);
 
 export default productRouter;

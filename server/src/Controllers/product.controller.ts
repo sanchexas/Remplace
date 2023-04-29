@@ -126,7 +126,19 @@ class ProductController{
             }
         }
     }
-
+    async getByTitle(req: Request, res: Response){
+        try{
+            if(req.query.title){
+                const title: string | ParsedQs | string[] | ParsedQs[] = req.query.title;
+                const result = await productService.getByTitle(title);
+                return res.json({
+                    message: result.message,
+                });
+            }
+        }catch(e){
+            return res.json({err: "Ошибка", click_here: `https://youtu.be/dQw4w9WgXcQ`});
+        }
+    }
 }
     
 
