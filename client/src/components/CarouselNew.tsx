@@ -9,6 +9,17 @@ import ProductCard from './ProductCard';
 
 const CarouselNew = () =>{
     const [products, setProducts] = useState();
+
+    const [width, setWidth] = useState<number>(window.innerWidth);
+
+    useEffect(()=>{
+        const handleResizeWindow = () => setWidth(window.innerWidth);
+        window.addEventListener("resize", handleResizeWindow);
+        if(width < 400){
+            console.log("SFDHSDHFj");
+        }
+    },[width]);
+
     useEffect(()=>{
         ProductController.getTopSix().then((response)=>{
             const resArr = response?.data.message;
@@ -45,15 +56,15 @@ const CarouselNew = () =>{
             breakpoint: 1100,
             settings: {
               slidesToShow: 2,
-              slidesToScroll: 3,
+              slidesToScroll: 1,
               infinite: true,
               dots: true
             }
           },
           {
-            breakpoint: 810,
+            breakpoint: 870,
             settings: {
-              slidesToShow: 1,
+              slidesToShow: 2,
               slidesToScroll: 1,
               initialSlide: 2
             }

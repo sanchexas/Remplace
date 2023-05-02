@@ -1,12 +1,14 @@
 import '../style.css';
 import CarouselNew from '../components/CarouselNew';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const MainPage = () =>{
     const [query, setQuery] = useState<string>('');
     const redirect = useNavigate();
+    
+
     return(
         <div className='main__page'>
             <div className="catalogue__search__wrapper">
