@@ -94,7 +94,7 @@ class ProductRepository{
     async getByTitle(title: string | ParsedQs | string[] | ParsedQs[]){
         try{
             const conn = await connection();
-            const response = await conn.query(`SELECT * FROM products WHERE title LIKE '%${title}%';`); 
+            const response = await conn.query(`SELECT * FROM products WHERE title LIKE '%${title}%';`);
             console.log(response[0]);
             await conn.end();
             return response[0];

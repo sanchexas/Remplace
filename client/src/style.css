@@ -870,3 +870,12 @@ footer{
 .fav__item:hover .df__btn{
     visibility: visible;
 }
+
+@media  screen and (max-width: 593px) {
+    .head__nav{
+        display: none;
+    }
+    .logo{
+        width: 80px;
+    }
+}
