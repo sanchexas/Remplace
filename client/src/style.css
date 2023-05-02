@@ -878,6 +878,7 @@ footer{
     width: 100%;
     position: sticky;
     bottom: 0px;
+    
 }
 
 @media  screen and (max-width: 593px) {
@@ -888,6 +889,9 @@ footer{
         width: 80px;
     }
     .bottom__menu{
-        display: block;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
     }
 }
