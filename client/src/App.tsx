@@ -20,6 +20,7 @@ import Products from './pages/Products';
 import Payment from './pages/Payment';
 import ProductStory from './pages/ProductsStory';
 import SearchResult from './pages/SearchResult';
+import BottomMenu from './components/BottomMenu';
 
 function App() {
   if(!localStorage.getItem('remcart')){
@@ -61,6 +62,7 @@ function App() {
             </Routes>
           </main>
           <Footer/>
+          <BottomMenu/>
         </div>
       </div>
     </BrowserRouter>

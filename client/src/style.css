@@ -870,6 +870,15 @@ footer{
 .fav__item:hover .df__btn{
     visibility: visible;
 }
+.bottom__menu{
+    display: none;
+    border-radius: 0px;
+    background: white;
+    height: 50px;
+    width: 100%;
+    position: sticky;
+    bottom: 0px;
+}
 
 @media  screen and (max-width: 593px) {
     .head__nav{
@@ -877,5 +886,8 @@ footer{
     }
     .logo{
         width: 80px;
+    }
+    .bottom__menu{
+        display: block;
     }
 }
